@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
 
+@SuppressWarnings("unchecked")
 @ZenRegister
 @ZenExpansion("mods.modularmachinery.RecipePrimer")
 public class RecipePrimerExt {
