@@ -1,0 +1,186 @@
+buildscript {
+    repositories {
+        jcenter()
+        maven { url = "https://files.minecraftforge.net/maven" }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
+    }
+}
+apply plugin: 'net.minecraftforge.gradle.forge'
+//Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+
+
+version = '0.1'
+group = 'com.warmthdawn.mod.gugu-utils' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'gugu-utils'
+
+sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
+compileJava {
+    sourceCompatibility = targetCompatibility = '1.8'
+}
+
+minecraft {
+    version = "1.12.2-14.23.5.2847"
+    runDir = "run"
+
+    // the mappings can be changed at any time, and must be in the following format.
+    // snapshot_YYYYMMDD   snapshot are built nightly.
+    // stable_#            stables are built at the discretion of the MCP team.
+    // Use non-default mappings at your own risk. they may not always work.
+    // simply re-run your setup task after changing the mappings to update your workspace.
+    mappings = "snapshot_20171003"
+    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+}
+
+
+repositories {
+    maven {
+        name = "blamejared"
+        url = 'https://maven.blamejared.com'
+    }
+    maven {
+        name = "CoFH Maven"
+        url = "https://maven.covers1624.net"
+    }
+    maven {
+        name = "thiakil"
+        url = "http://maven.thiakil.com"
+    }
+    maven {
+        // location of the maven that hosts JEI files
+        name = "Progwml6 maven"
+        url = "https://dvs1.progwml6.com/files/maven/"
+    }
+    maven { url "https://maven.hellfiredev.net" }
+    maven {
+        // location of a maven mirror for JEI files, as a fallback
+        name = "ModMaven"
+        url = "https://modmaven.k-4u.nl"
+    }
+    maven {
+        name = "ChickenBones Maven"
+        url = "http://chickenbones.net/maven/"
+    }
+
+    maven { url = "http://maven.cil.li/" }
+
+
+    maven {
+        url "https://www.cursemaven.com"
+    }
+}
+
+dependencies {
+
+    compileOnly "mezz.jei:jei_1.12.2:4.16.1.302:api"
+    runtime "mezz.jei:jei_1.12.2:4.16.1.302"
+    deobfCompile "com.github.mcjty:mcjtylib:1.12-3.5.4"
+    implementation 'org.jetbrains:annotations:20.1.0'
+    deobfCompile "hellfirepvp.modularmachinery:modularmachinery:1.12.2-1.11.1-v53"
+
+//    deobfProvided 'vazkii.botania:Botania:r1.10-364.1'
+//    deobfProvided 'vazkii.psi:Psi:r1.1-78.77'
+//    deobfProvided "vazkii.autoreglib:AutoRegLib:1.3-27.13"
+//    deobfProvided "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.586"
+//    deobfProvided "com.blamejared:MTLib:3.0.4.8"
+//    deobfProvided "hellfirepvp.astralsorcery:astralsorcery:1.12.2-1.10.25-v167"
+    deobfProvided "curse.maven:embersrekindled-300777:3010691"
+//    runtime "com.azanor.baubles:Baubles:1.12-1.5.2"
+
+    deobfCompile 'vazkii.botania:Botania:r1.10-364.1'
+    deobfCompile 'vazkii.psi:Psi:r1.1-78.77'
+    deobfCompile "vazkii.autoreglib:AutoRegLib:1.3-27.13"
+    runtime "com.azanor.baubles:Baubles:1.12-1.5.2"
+    deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.586"
+    deobfCompile "com.blamejared:MTLib:3.0.4.8"
+    deobfCompile "hellfirepvp.astralsorcery:astralsorcery:1.12.2-1.10.25-v167"
+//    deobfCompile "curse.maven:embersrekindled-300777:3010691"
+
+
+    deobfProvided("cofh:RedstoneFlux:1.12-2.1.0.+:universal") {
+        exclude group: 'mezz.jei'
+    }
+    deobfProvided("cofh:CoFHCore:1.12.2-4.6.0.+:universal") {
+        exclude group: 'mezz.jei'
+    }
+    deobfProvided("cofh:ThermalFoundation:1.12.2-2.6.0.+:universal") {
+        exclude group: 'mezz.jei'
+    }
+    deobfProvided("cofh:ThermalDynamics:1.12.2-2.5.5.+:universal") {
+        exclude group: 'mezz.jei'
+    }
+    deobfProvided("cofh:CoFHWorld:1.12.2-1.3.0.6:universal") {
+        exclude group: 'mezz.jei'
+    }
+    deobfProvided("codechicken:CodeChickenLib:1.12.2-3.2.2.353:universal") {
+        exclude group: 'mezz.jei'
+    }
+
+    deobfProvided("appeng:appliedenergistics2:rv6-stable-7") {
+        exclude group: 'mezz.jei'
+    }
+//    deobfCompile("cofh:RedstoneFlux:1.12-2.1.0.+:universal") {
+//        exclude group: 'mezz.jei'
+//    }
+//    deobfCompile("cofh:CoFHCore:1.12.2-4.6.0.+:universal") {
+//        exclude group: 'mezz.jei'
+//    }
+//    deobfCompile("cofh:ThermalFoundation:1.12.2-2.6.0.+:universal") {
+//        exclude group: 'mezz.jei'
+//    }
+//    deobfCompile("cofh:ThermalDynamics:1.12.2-2.5.5.+:universal") {
+//        exclude group: 'mezz.jei'
+//    }
+//    deobfCompile("cofh:CoFHWorld:1.12.2-1.3.0.6:universal") {
+//        exclude group: 'mezz.jei'
+//    }
+//    deobfCompile("codechicken:CodeChickenLib:1.12.2-3.2.2.353:universal") {
+//        exclude group: 'mezz.jei'
+//    }
+//
+//    deobfCompile("appeng:appliedenergistics2:rv6-stable-7") {
+//        exclude group: 'mezz.jei'
+//    }
+
+    // you may put jars on which you depend on in ./libs
+    // or you may define them like so..
+    //compile "some.group:artifact:version:classifier"
+    //compile "some.group:artifact:version"
+
+    // real examples
+    //compile 'com.mod-buildcraft:buildcraft:6.0.8:dev'  // adds buildcraft to the dev env
+    //compile 'com.googlecode.efficient-java-matrix-library:ejml:0.24' // adds ejml to the dev env
+
+    // the 'provided' configuration is for optional dependencies that exist at compile-time but might not at runtime.
+    //provided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
+
+    // the deobf configurations:  'deobfCompile' and 'deobfProvided' are the same as the normal compile and provided,
+    // except that these dependencies get remapped to your current MCP mappings
+    //deobfCompile 'com.mod-buildcraft:buildcraft:6.0.8:dev'
+    //deobfProvided 'com.mod-buildcraft:buildcraft:6.0.8:dev'
+
+    // for more info...
+    // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
+    // http://www.gradle.org/docs/current/userguide/dependency_management.html
+
+}
+
+processResources {
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+
+        // replace version and mcversion
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+
+    // copy everything else except the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}

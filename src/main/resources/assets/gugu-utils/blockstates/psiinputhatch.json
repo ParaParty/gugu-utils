@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "variant=normal": {
+      "model": "gugu-utils:psiinputhatch"
+    },
+    "variant=invaild": {
+      "model": "gugu-utils:psiinputhatch_invaild"
+    }
+  }
+}
