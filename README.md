@@ -1,12 +1,14 @@
 # gugu-utils
 
-###简介
+### 简介
 
 这原本是为了 鸽子之家 这个整合包制作的专属mod
 
 但是在开发过程中脑洞越来越大索性打算最终独立出来
 
 模组WIP中，咕~
+
+[发布地址](https://github.com/ParaParty/gugu-utils/releases)
 
 ### 现有功能
 
