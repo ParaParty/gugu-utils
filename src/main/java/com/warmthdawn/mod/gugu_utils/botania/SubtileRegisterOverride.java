@@ -22,19 +22,17 @@ public class SubtileRegisterOverride {
 
 
     public void reRegisterSubtile() {
-        //重新注册勿落草（产魔2倍）
-        registerSubTileForce(LibBlockNames.SUBTILE_SHULK_ME_NOT, SubTileShulkMeNotModified.class);
         //重新注册火红莲（禁止堆）
         registerSubTileForce(LibBlockNames.SUBTILE_ENDOFLAME, SubTileEndoflameModified.class);
-        //重新注册热爆花（产魔2倍，阻止刷TNT）
+        //重新注册热爆花（产魔1.5倍，阻止刷TNT）
         registerSubTileForce(LibBlockNames.SUBTILE_ENTROPINNYUM, SubTileEntropinnyumModified.class);
-        //重新注册斑斓花（产魔3倍）
+        //重新注册斑斓花（产魔2倍）
         registerSubTileForce(LibBlockNames.SUBTILE_SPECTROLUS, SubTileSpectrolusModified.class);
         //重新注册阿卡纳（禁止堆）
         registerSubTileForce(LibBlockNames.SUBTILE_ARCANE_ROSE, SubTileArcaneRoseModified.class);
         //重新注册启命英（产魔8倍）
         registerSubTileForce(LibBlockNames.SUBTILE_DANDELIFEON, SubTileDandelifeonModified.class);
-        //重新注册噬草花（产魔4倍）
+        //重新注册噬草花（产魔3倍）
         registerSubTileForce(LibBlockNames.SUBTILE_RAFFLOWSIA, SubTileRafflowsiaModified.class);
     }
 

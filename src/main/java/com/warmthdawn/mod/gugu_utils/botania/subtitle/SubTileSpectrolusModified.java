@@ -48,7 +48,7 @@ public class SubTileSpectrolusModified extends SubTileGenerating {
             if (!stack.isEmpty() && stack.getItem() == wool && !item.isDead && item.getAge() >= slowdown) {
                 int meta = stack.getItemDamage();
                 if (meta == nextColor) {
-                    mana = Math.min(getMaxMana(), mana + 7200);
+                    mana = Math.min(getMaxMana(), mana + 4800);
                     nextColor = nextColor == 15 ? 0 : nextColor + 1;
                     sync();
 
