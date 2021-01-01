@@ -63,6 +63,15 @@ public class CommonProxy {
     public void postInit(FMLPostInitializationEvent event) {
         if (Loads.CRAFT_TWEAKER)
             CraftTweakerCompact.postInit();
+
+        if(Loads.BOTANIA_TWEAKS){
+            try {
+                MinecraftForge.EVENT_BUS.unregister(Class.forName("quaternary.botaniatweaks.modules.botania.handler.TNTDuplicatorDetectionWorldTickHander"));
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     public ListenableFuture<Object> addScheduledTaskClient(Runnable runnableToSchedule) {

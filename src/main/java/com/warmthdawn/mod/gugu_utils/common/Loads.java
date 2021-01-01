@@ -1,6 +1,8 @@
 package com.warmthdawn.mod.gugu_utils.common;
 
 public final class Loads {
+    public static boolean ACTUALLY_ADDITIONS = false;
+    public static boolean BOTANIA_TWEAKS = false;
     public static boolean APPLIED_ENERGISTICS = false;
     public static boolean BOTANIA = false;
     public static boolean ASTRAL_SORCERY = false;

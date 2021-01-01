@@ -27,6 +27,8 @@ public class SubTileSpectrolusModified extends SubTileGenerating {
     private static final String TAG_NEXT_COLOR = "nextColor";
 
     private static final int RANGE = 1;
+    private static final int MAX_MANA = 32000;
+    private static final int SINGLE_MANA = 4800;
 
     int nextColor;
 
@@ -48,7 +50,7 @@ public class SubTileSpectrolusModified extends SubTileGenerating {
             if (!stack.isEmpty() && stack.getItem() == wool && !item.isDead && item.getAge() >= slowdown) {
                 int meta = stack.getItemDamage();
                 if (meta == nextColor) {
-                    mana = Math.min(getMaxMana(), mana + 7200);
+                    mana = Math.min(getMaxMana(), mana + SINGLE_MANA);
                     nextColor = nextColor == 15 ? 0 : nextColor + 1;
                     sync();
 
@@ -67,7 +69,7 @@ public class SubTileSpectrolusModified extends SubTileGenerating {
 
     @Override
     public int getMaxMana() {
-        return 32000;
+        return MAX_MANA;
     }
 
     @Override

@@ -1,15 +1,14 @@
 package com.warmthdawn.mod.gugu_utils.jei;
 
-import appeng.client.gui.implementations.GuiPatternTerm;
+import appeng.client.gui.implementations.*;
+import appeng.fluids.client.gui.*;
 import cofh.thermaldynamics.gui.client.GuiDuctConnection;
-import cofh.thermaldynamics.gui.slot.SlotFilter;
 import com.blamejared.ctgui.api.SlotRecipe;
 import com.blamejared.ctgui.client.gui.craftingtable.GuiCraftingTable;
 import com.warmthdawn.mod.gugu_utils.common.Loads;
 import com.warmthdawn.mod.gugu_utils.gugucrttool.CrtToolGui;
 import com.warmthdawn.mod.gugu_utils.gugucrttool.GhostJEIHandler;
-import com.warmthdawn.mod.gugu_utils.jei.gui.AEPatternGhostHandler;
-import com.warmthdawn.mod.gugu_utils.jei.gui.GenericGhostHandler;
+import com.warmthdawn.mod.gugu_utils.jei.gui.*;
 import com.warmthdawn.mod.gugu_utils.jei.ingedients.IngedientMana;
 import com.warmthdawn.mod.gugu_utils.jei.ingedients.IngredientEmber;
 import com.warmthdawn.mod.gugu_utils.jei.ingedients.IngredientEnvironment;
@@ -18,6 +17,9 @@ import com.warmthdawn.mod.gugu_utils.jei.renders.RendererEmber;
 import com.warmthdawn.mod.gugu_utils.jei.renders.RendererEnvironment;
 import com.warmthdawn.mod.gugu_utils.jei.renders.RendererMana;
 import com.warmthdawn.mod.gugu_utils.jei.renders.RendererStarlight;
+import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiFilter;
+import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiLaserRelayItemWhitelist;
+import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiRangedCollector;
 import mezz.jei.api.*;
 import mezz.jei.api.ingredients.IModIngredientRegistration;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
@@ -56,10 +58,30 @@ public class JEICompact implements IModPlugin {
             registry.addGhostIngredientHandler(GuiFurnace.class, new GenericGhostHandler<>(SlotRecipe.class));
         }
         if (Loads.THERMAL_DYNAMICS)
-            registry.addGhostIngredientHandler(GuiDuctConnection.class, new GenericGhostHandler<>(SlotFilter.class));
-        if (Loads.APPLIED_ENERGISTICS)
+            registry.addGhostIngredientHandler(GuiDuctConnection.class, new GenericGhostHandler<>(cofh.thermaldynamics.gui.slot.SlotFilter.class));
+        if (Loads.APPLIED_ENERGISTICS) {
             registry.addGhostIngredientHandler(GuiPatternTerm.class, new AEPatternGhostHandler());
+            registry.addGhostIngredientHandler(GuiLevelEmitter.class, new AEGenericGhostHandler<>());
+            registry.addGhostIngredientHandler(GuiStorageBus.class, new AEGenericGhostHandler<>());
+            registry.addGhostIngredientHandler(GuiFormationPlane.class, new AEGenericGhostHandler<>());
+            registry.addGhostIngredientHandler(GuiCellWorkbench.class, new AEGenericGhostHandler<>());
+            registry.addGhostIngredientHandler(GuiInterface.class, new AEInterfaceGhostHandler());
+            registry.addGhostIngredientHandler(GuiUpgradeable.class, new AEIOBusGhostHandler());
 
+
+            registry.addGhostIngredientHandler(GuiFluidIO.class, new AEFluidGhostHandler<>());
+            registry.addGhostIngredientHandler(GuiFluidLevelEmitter.class, new AEFluidGhostHandler<>());
+            registry.addGhostIngredientHandler(GuiFluidFormationPlane.class, new AEFluidGhostHandler<>());
+            registry.addGhostIngredientHandler(GuiFluidStorageBus.class, new AEFluidGhostHandler<>());
+            registry.addGhostIngredientHandler(GuiFluidInterface.class, new AEFluidGhostHandler<>());
+
+        }
+
+        if (Loads.ACTUALLY_ADDITIONS) {
+            registry.addGhostIngredientHandler(GuiLaserRelayItemWhitelist.class, new AAFilterGhostHandler<>());
+            registry.addGhostIngredientHandler(GuiFilter.class, new AAFilterGhostHandler<>());
+            registry.addGhostIngredientHandler(GuiRangedCollector.class, new AAFilterGhostHandler<>());
+        }
 //        registry.addGhostIngredientHandler(GuiCraftingTable.class, new GenericGhostHandler<>());
 
     }

@@ -1,21 +1,23 @@
 package com.warmthdawn.mod.gugu_utils.proxy;
 
 import com.warmthdawn.mod.gugu_utils.botania.subtitle.SubTileEntropinnyumModified;
+import com.warmthdawn.mod.gugu_utils.botania.subtitle.SubTileShulkMeNotModified;
 import net.minecraft.block.BlockRailDetector;
 import net.minecraft.block.BlockSlime;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityTNTPrimed;
+import net.minecraft.entity.monster.EntityShulker;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityPiston;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class MiscEventHandler {
-
-    private static boolean isTNTUnethical(Entity e) {
+    public static boolean isTNTUnethical(Entity e) {
         if (!e.world.isBlockLoaded(e.getPosition())) {
             return false;
         }
@@ -55,10 +57,27 @@ public class MiscEventHandler {
         return false;
     }
 
+    public static boolean isShulkerFormCursedEarth(Entity e) {
+        if (e instanceof EntityShulker) {
+            return e.getEntityData().hasKey("CursedEarth");
+        }
+        return false;
+    }
+
     @SubscribeEvent
     public void onEntityJoinWorld(EntityJoinWorldEvent evt) {
-        if (!evt.getWorld().isRemote && evt.getEntity() instanceof EntityTNTPrimed && isTNTUnethical(evt.getEntity())) {
-            evt.getEntity().getTags().add(SubTileEntropinnyumModified.TAG_UNETHICAL);
+        if (!evt.getWorld().isRemote) {
+            if (evt.getEntity() instanceof EntityTNTPrimed && isTNTUnethical(evt.getEntity())) {
+                evt.getEntity().getTags().add(SubTileEntropinnyumModified.TAG_UNETHICAL);
+            } else if (isShulkerFormCursedEarth(evt.getEntity())) {
+                evt.getEntity().getTags().add(SubTileShulkMeNotModified.TAG_CURSED_EARTH);
+            }
         }
+
+    }
+
+    @SubscribeEvent
+    public void onEntitySpecialSpawn(LivingSpawnEvent.SpecialSpawn event) {
+
     }
 }

@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class GenericGhostHandler<T extends GuiContainer> implements IGhostIngredientHandler<T> {
 
@@ -29,7 +30,7 @@ public class GenericGhostHandler<T extends GuiContainer> implements IGhostIngred
             ItemStack stack = ((ItemStack) ingredient).copy();
             for (Slot slot : gui.inventorySlots.inventorySlots) {
                 if (isSlotValid(slot, stack, doStart)) {
-                    targets.add(new GhostTarget<>(slot, gui.getGuiLeft(), gui.getGuiTop()));
+                    targets.add(createTarget(slot, gui));
                 }
             }
         }
@@ -37,6 +38,11 @@ public class GenericGhostHandler<T extends GuiContainer> implements IGhostIngred
         return targets;
     }
 
+    public <I> IGhostIngredientHandler.Target<I> createTarget(Slot slot, T gui) {
+        return new GhostTarget<I>(slot, gui.getGuiLeft(), gui.getGuiTop());
+    }
+
+    @SuppressWarnings("unchecked")
     public boolean isSlotValid(Slot slot, ItemStack stack, boolean doStart) {
         return applySlot.isAssignableFrom(slot.getClass()) && slot.isItemValid(stack);
     }
@@ -48,9 +54,10 @@ public class GenericGhostHandler<T extends GuiContainer> implements IGhostIngred
         }
     }
 
-    private static class GhostTarget<I> implements IGhostIngredientHandler.Target<I> {
-        private final Rectangle rectangle;
-        private final Slot slot;
+    protected static class GhostTarget<I> implements IGhostIngredientHandler.Target<I> {
+        protected final Rectangle rectangle;
+        protected final Slot slot;
+        protected Consumer<I> accept;
 
         public GhostTarget(Slot slot, int xoff, int yoff) {
             this.rectangle = new Rectangle(slot.xPos + xoff, slot.yPos + yoff, 16, 16);

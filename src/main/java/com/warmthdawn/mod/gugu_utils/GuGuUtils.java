@@ -3,6 +3,7 @@ package com.warmthdawn.mod.gugu_utils;
 import com.warmthdawn.mod.gugu_utils.command.GuGuCraftCommand;
 import com.warmthdawn.mod.gugu_utils.common.Loads;
 import com.warmthdawn.mod.gugu_utils.proxy.CommonProxy;
+import de.ellpeck.actuallyadditions.mod.ActuallyAdditions;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
@@ -73,9 +74,8 @@ public class GuGuUtils {
         Loads.CRAFT_TWEAKER = Loader.isModLoaded("crafttweaker");
         Loads.THERMAL_DYNAMICS = Loader.isModLoaded("thermaldynamics");
         Loads.APPLIED_ENERGISTICS = Loader.isModLoaded("appliedenergistics2");
-
-
-
+        Loads.BOTANIA_TWEAKS = Loader.isModLoaded("botania_tweaks");
+        Loads.ACTUALLY_ADDITIONS = Loader.isModLoaded("actuallyadditions");
         logger = event.getModLog();
         proxy.preInit(event);
     }
