@@ -73,77 +73,10 @@ repositories {
 
 dependencies {
 
-    compileOnly "mezz.jei:jei_${mc_version}:${jei_version}:api"
     runtime "mezz.jei:jei_${mc_version}:${jei_version}"
-    deobfCompile "com.github.mcjty:mcjtylib:${mc_short}-${mcjtylib_version}"
-    implementation "org.jetbrains:annotations:20.1.0"
-    deobfCompile "hellfirepvp.modularmachinery:modularmachinery:${mc_version}-${modularmachinery_version}"
-
-//    deobfProvided "vazkii.botania:Botania:${botania_version}"
-//    deobfProvided "vazkii.psi:Psi:${psi_version}"
-//    deobfProvided "vazkii.autoreglib:AutoRegLib:${arl_version}"
-//    deobfProvided "CraftTweaker2:CraftTweaker2-MC1120-Main:${mc_short}-${crafttweaker_version}"
-//    deobfProvided "com.blamejared:MTLib:${mtlib_version}"
-//    deobfProvided "hellfirepvp.astralsorcery:astralsorcery:${mc_version}-${astralsorcery_version}"
-    deobfProvided "curse.maven:embersrekindled-${embers_version}"
-//    runtime "com.azanor.baubles:Baubles:${mc_short}-${baubles_version}"
-
     deobfCompile "vazkii.botania:Botania:${botania_version}"
-    deobfCompile "vazkii.psi:Psi:${psi_version}"
     deobfCompile "vazkii.autoreglib:AutoRegLib:${arl_version}"
     runtime "com.azanor.baubles:Baubles:${mc_short}-${baubles_version}"
-    deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:${mc_short}-${crafttweaker_version}"
-    deobfCompile "com.blamejared:MTLib:${mtlib_version}"
-    deobfCompile "hellfirepvp.astralsorcery:astralsorcery:${mc_version}-${astralsorcery_version}"
-//    deobfCompile "curse.maven:embersrekindled-${embers_version}"
-
-
-    deobfProvided("cofh:RedstoneFlux:${mc_short}-${redstoneflux_version}:universal") {
-        exclude group: "mezz.jei"
-    }
-    deobfProvided("cofh:CoFHCore:${mc_version}-${cofhcore_version}:universal") {
-        exclude group: "mezz.jei"
-    }
-    deobfProvided("cofh:ThermalFoundation:${mc_version}-${thermalfoundation_version}:universal") {
-        exclude group: "mezz.jei"
-    }
-    deobfProvided("cofh:ThermalDynamics:${mc_version}-${thermaldynamics_version}:universal") {
-        exclude group: "mezz.jei"
-    }
-    deobfProvided("cofh:CoFHWorld:${mc_version}-${cofhworld_version}:universal") {
-        exclude group: "mezz.jei"
-    }
-    deobfProvided("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal") {
-        exclude group: "mezz.jei"
-    }
-
-    deobfProvided("appeng:appliedenergistics2:${ae2_version}") {
-        exclude group: "mezz.jei"
-    }
-//    deobfCompile("cofh:RedstoneFlux:${mc_short}-${redstoneflux_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfCompile("cofh:CoFHCore:${mc_version}-${cofhcore_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfCompile("cofh:ThermalFoundation:${mc_version}-${thermalfoundation_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfCompile("cofh:ThermalDynamics:${mc_version}-${thermaldynamics_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfCompile("cofh:CoFHWorld:${mc_version}-${cofhworld_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfCompile("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//
-//    deobfCompile("appeng:appliedenergistics2:${ae2_version}") {
-//        exclude group: "mezz.jei"
-//    }
-
-
 }
 
 processResources {

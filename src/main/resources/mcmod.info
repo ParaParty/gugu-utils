@@ -16,13 +16,8 @@
     "screenshots": [],
     "dependencies": [
       "botania",
-      "psi",
       "babules",
-      "autoreglib",
-      "crafttweaker",
-      "mtlib",
-      "embers",
-      "modularmachinery"
+      "autoreglib"
     ]
   }
 ]
