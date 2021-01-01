@@ -2,10 +2,7 @@ package com.warmthdawn.mod.gugu_utils.modularmachenary;
 
 import com.warmthdawn.mod.gugu_utils.common.Constants;
 import com.warmthdawn.mod.gugu_utils.common.Loads;
-import com.warmthdawn.mod.gugu_utils.modularmachenary.components.ComponentEmber;
-import com.warmthdawn.mod.gugu_utils.modularmachenary.components.ComponentEnvironment;
-import com.warmthdawn.mod.gugu_utils.modularmachenary.components.ComponentMana;
-import com.warmthdawn.mod.gugu_utils.modularmachenary.components.ComponentStarlight;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.components.*;
 import crafttweaker.annotations.ModOnly;
 import hellfirepvp.modularmachinery.common.crafting.ComponentType;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -23,6 +20,8 @@ public class MMCompoments {
     public static ComponentType COMPONENT_EMBER;
     @GameRegistry.ObjectHolder(Constants.STRING_RESOURCE_ENVIRONMENT)
     public static ComponentType COMPONENT_ENVIRONMENT;
+    @GameRegistry.ObjectHolder(Constants.STRING_RESOURCE_AURA)
+    public static ComponentType COMPONENT_AURA;
 
 
     public static void initComponents(IForgeRegistry<ComponentType> registry) {
@@ -32,8 +31,9 @@ public class MMCompoments {
             registry.register(new ComponentStarlight().setRegistryName(Constants.RESOURCE_STARLIGHT));
         if (Loads.EMBERS)
             registry.register(new ComponentEmber().setRegistryName(Constants.RESOURCE_EMBER));
-
         registry.register(new ComponentEnvironment().setRegistryName(Constants.RESOURCE_ENVIRONMENT));
+        if(Loads.NATURES_AURA)
+            registry.register(new ComponentAura().setRegistryName(Constants.RESOURCE_AURA));
     }
 
 

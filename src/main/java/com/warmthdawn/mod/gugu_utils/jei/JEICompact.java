@@ -9,14 +9,8 @@ import com.warmthdawn.mod.gugu_utils.common.Loads;
 import com.warmthdawn.mod.gugu_utils.gugucrttool.CrtToolGui;
 import com.warmthdawn.mod.gugu_utils.gugucrttool.GhostJEIHandler;
 import com.warmthdawn.mod.gugu_utils.jei.gui.*;
-import com.warmthdawn.mod.gugu_utils.jei.ingedients.IngedientMana;
-import com.warmthdawn.mod.gugu_utils.jei.ingedients.IngredientEmber;
-import com.warmthdawn.mod.gugu_utils.jei.ingedients.IngredientEnvironment;
-import com.warmthdawn.mod.gugu_utils.jei.ingedients.IngredientStarlight;
-import com.warmthdawn.mod.gugu_utils.jei.renders.RendererEmber;
-import com.warmthdawn.mod.gugu_utils.jei.renders.RendererEnvironment;
-import com.warmthdawn.mod.gugu_utils.jei.renders.RendererMana;
-import com.warmthdawn.mod.gugu_utils.jei.renders.RendererStarlight;
+import com.warmthdawn.mod.gugu_utils.jei.ingedients.*;
+import com.warmthdawn.mod.gugu_utils.jei.renders.*;
 import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiFilter;
 import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiLaserRelayItemWhitelist;
 import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiRangedCollector;
@@ -43,7 +37,11 @@ public class JEICompact implements IModPlugin {
         if (Loads.EMBERS)
             registry.register(() -> IngredientEmber.class, new ArrayList<>(), new InfoHelper<>(), RendererEmber.INSTANCE);
         registry.register(() -> IngredientEnvironment.class, new ArrayList<>(), new InfoHelper<>(), RendererEnvironment.INSTANCE);
+
+        if (Loads.NATURES_AURA)
+            registry.register(() -> IngredientAura.class, new ArrayList<>(), new InfoHelper<>(), RendererAura.INSTANCE);
     }
+
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registry) {

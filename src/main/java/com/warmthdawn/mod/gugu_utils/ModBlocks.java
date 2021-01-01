@@ -3,6 +3,8 @@ package com.warmthdawn.mod.gugu_utils;
 import com.warmthdawn.mod.gugu_utils.common.GenericBlock;
 import com.warmthdawn.mod.gugu_utils.common.Loads;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.IColorableTileEntity;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.aura.BlockAuraInputHatch;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.aura.TileAuraInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.embers.BlockEmberInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.embers.TileEmberInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.environment.BlockEnvironmentHatch;
@@ -41,6 +43,9 @@ public class ModBlocks {
     //环境输入仓
     @GameRegistry.ObjectHolder(STRING_RESOURCE_ENVIRONMENTHATCH)
     public static GenericBlock blockEnvironmentHatch;
+    //灵气输入仓
+    @GameRegistry.ObjectHolder(STRING_RESOURCE_AURAHATCH_INPUT)
+    public static GenericBlock blockAuraInputHatch;
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
@@ -51,8 +56,9 @@ public class ModBlocks {
                 blockStarightInputHatch.initModel();
             if (Loads.EMBERS)
                 blockEmberInputHatch.initModel();
-
             blockEnvironmentHatch.initModel();
+            if (Loads.NATURES_AURA)
+                blockAuraInputHatch.initModel();
         }
     }
 
@@ -75,9 +81,13 @@ public class ModBlocks {
                 GameRegistry.registerTileEntity(TileEmberInputHatch.class, RESOURCE_EMBERHATCH_INPUT);
             }
 
-
             registry.register(new BlockEnvironmentHatch());
             GameRegistry.registerTileEntity(TileEnvironmentHatch.class, RESOURCE_ENVIRONMENTHATCH);
+
+            if (Loads.NATURES_AURA) {
+                registry.register(new BlockAuraInputHatch());
+                GameRegistry.registerTileEntity(TileAuraInputHatch.class, RESOURCE_AURAHATCH_INPUT);
+            }
         }
     }
 
@@ -122,6 +132,10 @@ public class ModBlocks {
         blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockEnvironmentHatch);
         itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockEnvironmentHatch));
 
+        if (Loads.NATURES_AURA) {
+            blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockAuraInputHatch);
+            itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockAuraInputHatch));
+        }
     }
 
 

@@ -76,6 +76,7 @@ public class GuGuUtils {
         Loads.APPLIED_ENERGISTICS = Loader.isModLoaded("appliedenergistics2");
         Loads.BOTANIA_TWEAKS = Loader.isModLoaded("botania_tweaks");
         Loads.ACTUALLY_ADDITIONS = Loader.isModLoaded("actuallyadditions");
+        Loads.NATURES_AURA = Loader.isModLoaded("naturesaura");
         logger = event.getModLog();
         proxy.preInit(event);
     }

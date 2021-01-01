@@ -22,9 +22,12 @@ public class Constants {
     public static final ResourceLocation RESOURCE_EMBER = new ResourceLocation(GuGuUtils.MODID, "ember");
     public static final String STRING_RESOURCE_EMBER = GuGuUtils.MODID + ":" + "ember";
 
-
     public static final ResourceLocation RESOURCE_ENVIRONMENT = new ResourceLocation(GuGuUtils.MODID, "environment");
     public static final String STRING_RESOURCE_ENVIRONMENT = GuGuUtils.MODID + ":" + "environment";
+
+
+    public static final ResourceLocation RESOURCE_AURA = new ResourceLocation(GuGuUtils.MODID, "aura");
+    public static final String STRING_RESOURCE_AURA = GuGuUtils.MODID + ":" + "aura";
 
     //方块相关
     public static final String NAME_MANAHATCH = "sparkmanahatch";
@@ -44,6 +47,10 @@ public class Constants {
     public static final String NAME_ENVIRONMENTHATCH = "environmenthatch";
     public static final ResourceLocation RESOURCE_ENVIRONMENTHATCH = new ResourceLocation(GuGuUtils.MODID, NAME_ENVIRONMENTHATCH);
     public static final String STRING_RESOURCE_ENVIRONMENTHATCH = GuGuUtils.MODID + ":" + NAME_ENVIRONMENTHATCH;
+
+    public static final String NAME_AURAHATCH_INPUT = "aurainputhatch";
+    public static final ResourceLocation RESOURCE_AURAHATCH_INPUT = new ResourceLocation(GuGuUtils.MODID, NAME_AURAHATCH_INPUT);
+    public static final String STRING_RESOURCE_AURAHATCH_INPUT = GuGuUtils.MODID + ":" + NAME_AURAHATCH_INPUT;
 
 
 

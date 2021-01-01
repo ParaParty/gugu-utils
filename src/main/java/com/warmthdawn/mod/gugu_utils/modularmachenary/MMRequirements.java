@@ -31,6 +31,10 @@ public class MMRequirements {
     public static final RequirementTypeEnvironment REQUIREMENT_TYPE_ENVIRONMENT = null;
 
 
+    @GameRegistry.ObjectHolder(STRING_RESOURCE_AURA)
+    public static final RequirementTypeAura REQUIREMENT_TYPE_AURA = null;
+
+
     @SuppressWarnings("unchecked")
     public static void initRequirements(IForgeRegistry registry) {
         if (Loads.BOTANIA) {
@@ -41,8 +45,9 @@ public class MMRequirements {
             registry.register(new RequirementTypeStarlight().setRegistryName(RESOURCE_STARLIGHT));
         if (Loads.EMBERS)
             registry.register(new RequirementTypeEmber().setRegistryName(RESOURCE_EMBER));
-
         registry.register(new RequirementTypeEnvironment().setRegistryName(RESOURCE_ENVIRONMENT));
+        if (Loads.NATURES_AURA)
+            registry.register(new RequirementTypeAura().setRegistryName(RESOURCE_AURA));
 
 
     }

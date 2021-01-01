@@ -24,7 +24,6 @@ import teamroots.embers.power.DefaultEmberCapability;
 
 public class TileEmberInputHatch extends TileEntity implements IColorableTileEntity, IRestorableTileEntity, IConsumable<RequirementEmber.RT>, MachineComponentTile {
     public static final String KEY_MACHINE_COLOR = "machine_color";
-    public static final String KEY_EMBER = "ember";
 
     protected int machineColor = hellfirepvp.modularmachinery.common.data.Config.machineColor;
     private IEmberCapability capability;

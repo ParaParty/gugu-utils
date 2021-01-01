@@ -46,6 +46,11 @@ public class ModItems {
                 registry.register(new VariantItem<>((BlockEmberInputHatch) ModBlocks.blockEmberInputHatch).setRegistryName(RESOURCE_EMBERHATCH_INPUT));
             }
 
+            if (Loads.NATURES_AURA) {
+                registry.register(new ItemBlock(ModBlocks.blockAuraInputHatch).setRegistryName(RESOURCE_AURAHATCH_INPUT));
+            }
+
+
             registry.register(new ItemBlock(ModBlocks.blockEnvironmentHatch).setRegistryName(RESOURCE_ENVIRONMENTHATCH));
 
         }

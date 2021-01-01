@@ -16,6 +16,7 @@ tile.gugu-utils.emberinputhatch.ludicrous.name=超级灰烬能量输入仓
 tile.gugu-utils.emberinputhatch.extreme.name=极限灰烬能量输入仓
 
 tile.gugu-utils.environmenthatch.name=环境传感器
+tile.gugu-utils.aurainputhatch.name=灵气输入仓
 
 
 message.gugu-utils.sparkmanahatch=魔力: %s / %s
@@ -25,6 +26,7 @@ message.gugu-utils.starlightinputhatch.ext.brilliant=四倍于 %s 的容量
 message.gugu-utils.starlightinputhatch=最大星能: %s
 
 
+
 tooltips.gugu-utils.mana_amount=魔力: %s Mana
 tooltips.gugu-utils.mana_amount.tick=魔力: %s Mana/t
 tooltips.gugu-utils.mana_amount.total=总计: %s Mana
@@ -32,6 +34,10 @@ tooltips.gugu-utils.starlight=星能: %s
 tooltips.gugu-utils.starlight.constellation= §9需要星座：%s
 tooltips.gugu-utils.ember_amount=灰烬能量: %s
 tooltips.gugu-utils.ember_minimum_hatch=需要 %s 或其他更高等级的输入仓
+
+tooltips.gugu-utils.aura_amount.tick=灵气: %s Aura/t
+tooltips.gugu-utils.aura_amount.total=总计: %s 灵气
+tooltips.gugu-utils.aura.force=§4可能耗尽区块内的所有灵气！
 
 tooltips.gugu-utils.environment.altitude=当 Y >= %s 并且 Y <= %s 时工作
 tooltips.gugu-utils.environment.time=在 %s 到 %s 期间工作
@@ -57,6 +63,7 @@ component.missing.gugu-utils:mana.input=缺少魔力输入仓！
 component.missing.gugu-utils:mana.output=缺少魔力输出仓！
 component.missing.gugu-utils:starlight.input=缺少星辉输入仓！
 component.missing.gugu-utils:environment.input=缺少环境传感器！
+component.missing.gugu-utils:aura.input=缺少灵气输入仓!
 
 
 craftcheck.failure.gugu-utils:mana.input=缺少魔力输入！
@@ -64,6 +71,7 @@ craftcheck.failure.gugu-utils:mana.output.space=没有足够的空间用于魔�
 craftcheck.failure.gugu-utils:starlight.input=输入星能不足！
 craftcheck.failure.gugu-utils:starlight.input.wrong_constellation=输入星能的星座不正确！
 craftcheck.failure.gugu-utils:ember.input=余烬能量不足!
+craftcheck.failure.gugu-utils:aura.input=输入灵气不足!
 
 craftcheck.failure.gugu-utils:environment.altitude=无法在当前海拔下工作!
 craftcheck.failure.gugu-utils:environment.dimensions=无法在当前维度下工作!
