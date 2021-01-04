@@ -1,6 +1,7 @@
 package com.warmthdawn.mod.gugu_utils.common;
 
 public final class Loads {
+    public static boolean BLOOD_MAGIC = false;
     public static boolean NATURES_AURA = false;
     public static boolean ACTUALLY_ADDITIONS = false;
     public static boolean BOTANIA_TWEAKS = false;

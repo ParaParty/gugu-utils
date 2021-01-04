@@ -1,22 +1,52 @@
 package com.warmthdawn.mod.gugu_utils.proxy;
 
+import WayofTime.bloodmagic.core.RegistrarBloodMagic;
 import com.warmthdawn.mod.gugu_utils.botania.subtitle.SubTileEntropinnyumModified;
 import com.warmthdawn.mod.gugu_utils.botania.subtitle.SubTileShulkMeNotModified;
+import com.warmthdawn.mod.gugu_utils.common.Loads;
 import net.minecraft.block.BlockRailDetector;
 import net.minecraft.block.BlockSlime;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.monster.EntityShulker;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityPiston;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import vazkii.botania.common.entity.EntityDoppleganger;
+
+import java.lang.reflect.Field;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 public class MiscEventHandler {
+    public static final Set<UUID> playersWithBMFlight = new HashSet<>();
+    private Field playersWhoAttacked;
+    private Field playerCount;
+
+    public MiscEventHandler() {
+        try {
+            this.playersWhoAttacked = EntityDoppleganger.class.getDeclaredField("playersWhoAttacked");
+            this.playersWhoAttacked.setAccessible(true);
+            this.playerCount = EntityDoppleganger.class.getDeclaredField("playerCount");
+            this.playerCount.setAccessible(true);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static boolean isTNTUnethical(Entity e) {
         if (!e.world.isBlockLoaded(e.getPosition())) {
             return false;
@@ -74,6 +104,67 @@ public class MiscEventHandler {
             }
         }
 
+    }
+
+    @SubscribeEvent
+    public void onEntityUpdate(LivingEvent.LivingUpdateEvent event) {
+        EntityLivingBase entity = event.getEntityLiving();
+        if (entity instanceof EntityPlayer) {
+            EntityPlayer player = (EntityPlayer) entity;
+            if (!player.world.isRemote && Loads.BLOOD_MAGIC) {
+                if (player.isPotionActive(RegistrarBloodMagic.FLIGHT)) {
+                    if (!player.isSpectator() && !player.capabilities.allowFlying) {
+                        player.capabilities.allowFlying = true;
+                        player.sendPlayerAbilities();
+                    }
+                    if (!player.isSpectator()) {
+                        playersWithBMFlight.add(player.getUniqueID());
+                    }
+                } else {
+                    if (playersWithBMFlight.contains(player.getUniqueID())) {
+                        player.capabilities.allowFlying = false;
+                        player.capabilities.isFlying = false;
+                        player.sendPlayerAbilities();
+                        playersWithBMFlight.remove(player.getUniqueID());
+                    }
+                }
+
+            }
+        }
+    }
+
+
+    @SubscribeEvent
+    @SuppressWarnings("unchecked")
+    public void onLivingAttack(LivingAttackEvent event) {
+        EntityLivingBase entity = event.getEntityLiving();
+        //盖亚受伤事件
+        if (Loads.BOTANIA && playersWhoAttacked != null && playerCount != null && entity instanceof EntityDoppleganger) {
+            try {
+                UUID uuid = entity.getUniqueID();
+                final List<UUID> playersWhoAttacked = (List<UUID>) this.playersWhoAttacked.get(entity);
+                final int playerCount = this.playerCount.getInt(entity);
+                int currentCount = playersWhoAttacked.size();
+                if (playerCount <= currentCount) {
+                    this.playerCount.setInt(entity, currentCount);
+                    final int BASE_MAX_HEALTH = (int) (entity.getMaxHealth() / playerCount);
+                    entity.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH)
+                            .setBaseValue(BASE_MAX_HEALTH * currentCount);
+                    entity.setHealth(entity.getHealth() + BASE_MAX_HEALTH * (currentCount - playerCount));
+                }
+
+
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
+    @SubscribeEvent
+    public void playerLoggedOut(PlayerEvent.PlayerLoggedOutEvent event) {
+        UUID uuid = event.player.getUniqueID();
+        playersWithBMFlight.remove(uuid);
     }
 
     @SubscribeEvent

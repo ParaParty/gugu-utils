@@ -19,6 +19,10 @@ tile.gugu-utils.environmenthatch.name=环境传感器
 tile.gugu-utils.aurainputhatch.name=灵气输入仓
 
 
+
+message.gugu-utils.botaniaaddon.manyflowers=花太多了，效率 %s;
+
+
 message.gugu-utils.sparkmanahatch=魔力: %s / %s
 message.gugu-utils.starlightinputhatch.ext.basic=相当于 %s 的容量
 message.gugu-utils.starlightinputhatch.ext.trait=相当于 %s 的容量

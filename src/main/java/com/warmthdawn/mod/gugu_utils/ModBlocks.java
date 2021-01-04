@@ -91,6 +91,7 @@ public class ModBlocks {
         }
     }
 
+    @SideOnly(Side.CLIENT)
     public static void registerDynamicColor() {
         final int defaultColor = hellfirepvp.modularmachinery.common.data.Config.machineColor;
 

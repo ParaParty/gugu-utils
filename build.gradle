@@ -70,6 +70,7 @@ repositories {
     maven {
         url "https://www.cursemaven.com"
     }
+
 }
 
 dependencies {
@@ -95,49 +96,53 @@ dependencies {
     }
     deobfCompile "de.ellpeck.naturesaura:NaturesAura:${naturesaura_version}"
     deobfCompile "de.ellpeck.actuallyadditions:ActuallyAdditions:${mc_version}-${actuallyadditions_version}"
+//    deobfCompile "com.wayoftime.bloodmagic:BloodMagic:BloodMagic-${mc_version}-${bloodmagic_version}"
+
+    runtime "curse.maven:guideapi-${guideapi_version}"
 
 //    deobfCompile "curse.maven:embersrekindled-${embers_version}"
     deobfProvided "curse.maven:embersrekindled-${embers_version}"
+    deobfCompile "curse.maven:bloodmagic-${bloodmagic_version_curse}"
 
 
-    deobfProvided("cofh:RedstoneFlux:${mc_short}-${redstoneflux_version}:universal") {
+//    deobfProvided("cofh:RedstoneFlux:${mc_short}-${redstoneflux_version}:universal") {
+//        exclude group: "mezz.jei"
+//    }
+//    deobfProvided("cofh:CoFHCore:${mc_version}-${cofhcore_version}:universal") {
+//        exclude group: "mezz.jei"
+//    }
+//    deobfProvided("cofh:ThermalFoundation:${mc_version}-${thermalfoundation_version}:universal") {
+//        exclude group: "mezz.jei"
+//    }
+//    deobfProvided("cofh:ThermalDynamics:${mc_version}-${thermaldynamics_version}:universal") {
+//        exclude group: "mezz.jei"
+//    }
+//    deobfProvided("cofh:CoFHWorld:${mc_version}-${cofhworld_version}:universal") {
+//        exclude group: "mezz.jei"
+//    }
+//    deobfProvided("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal") {
+//        exclude group: "mezz.jei"
+//    }
+
+    deobfCompile("cofh:RedstoneFlux:${mc_short}-${redstoneflux_version}:universal") {
         exclude group: "mezz.jei"
     }
-    deobfProvided("cofh:CoFHCore:${mc_version}-${cofhcore_version}:universal") {
+    deobfCompile("cofh:CoFHCore:${mc_version}-${cofhcore_version}:universal") {
         exclude group: "mezz.jei"
     }
-    deobfProvided("cofh:ThermalFoundation:${mc_version}-${thermalfoundation_version}:universal") {
+    deobfCompile("cofh:ThermalFoundation:${mc_version}-${thermalfoundation_version}:universal") {
         exclude group: "mezz.jei"
     }
-    deobfProvided("cofh:ThermalDynamics:${mc_version}-${thermaldynamics_version}:universal") {
+    deobfCompile("cofh:ThermalDynamics:${mc_version}-${thermaldynamics_version}:universal") {
         exclude group: "mezz.jei"
     }
-    deobfProvided("cofh:CoFHWorld:${mc_version}-${cofhworld_version}:universal") {
+    deobfCompile("cofh:CoFHWorld:${mc_version}-${cofhworld_version}:universal") {
         exclude group: "mezz.jei"
     }
-    deobfProvided("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal") {
+    deobfCompile("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal") {
         exclude group: "mezz.jei"
     }
 
-//    deobfCompile("cofh:RedstoneFlux:${mc_short}-${redstoneflux_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfCompile("cofh:CoFHCore:${mc_version}-${cofhcore_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfCompile("cofh:ThermalFoundation:${mc_version}-${thermalfoundation_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfCompile("cofh:ThermalDynamics:${mc_version}-${thermaldynamics_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfCompile("cofh:CoFHWorld:${mc_version}-${cofhworld_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfCompile("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//
 
 
 }

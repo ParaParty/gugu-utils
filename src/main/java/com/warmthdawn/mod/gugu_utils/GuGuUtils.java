@@ -1,5 +1,7 @@
 package com.warmthdawn.mod.gugu_utils;
 
+import WayofTime.bloodmagic.BloodMagic;
+import WayofTime.bloodmagic.api.impl.BloodMagicAPI;
 import com.warmthdawn.mod.gugu_utils.command.GuGuCraftCommand;
 import com.warmthdawn.mod.gugu_utils.common.Loads;
 import com.warmthdawn.mod.gugu_utils.proxy.CommonProxy;
@@ -22,9 +24,10 @@ import org.apache.logging.log4j.Logger;
 
 import javax.annotation.Nonnull;
 
-@Mod(modid = GuGuUtils.MODID, name = GuGuUtils.NAME, version = GuGuUtils.VERSION)
+@Mod(modid = GuGuUtils.MODID, name = GuGuUtils.NAME, version = GuGuUtils.VERSION, dependencies = GuGuUtils.DEPENDENCY)
 public class GuGuUtils {
     public static final String MODID = "gugu-utils";
+    public static final String DEPENDENCY = "after:modularmachinery";
     public static final String NAME = "GuGu Utils";
     public static final String VERSION = "0.1";
     public static final CreativeTabs creativeTab = new CreativeTabs(GuGuUtils.MODID) {
@@ -77,6 +80,7 @@ public class GuGuUtils {
         Loads.BOTANIA_TWEAKS = Loader.isModLoaded("botania_tweaks");
         Loads.ACTUALLY_ADDITIONS = Loader.isModLoaded("actuallyadditions");
         Loads.NATURES_AURA = Loader.isModLoaded("naturesaura");
+        Loads.BLOOD_MAGIC = Loader.isModLoaded("bloodmagic");
         logger = event.getModLog();
         proxy.preInit(event);
     }

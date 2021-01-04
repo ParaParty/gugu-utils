@@ -20,6 +20,9 @@ tile.gugu-utils.aurainputhatch.name=Aura Input Hatch
 
 
 
+message.gugu-utils.botaniaaddon.manyflowers=Too many flowers, Efficiency %s;
+
+
 message.gugu-utils.sparkmanahatch=Mana: %s/%s
 message.gugu-utils.starlightinputhatch.ext.basic=Same as %s
 message.gugu-utils.starlightinputhatch.ext.trait=Same as %s

@@ -12,6 +12,8 @@ import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.SlotItemHandler;
 
 public class GuGuCrtToolProvider implements IGuiProvider {
@@ -22,6 +24,7 @@ public class GuGuCrtToolProvider implements IGuiProvider {
     }
 
     @Override
+    @SideOnly(Side.CLIENT)
     public GuiScreen createGui(EntityPlayer player) {
         return new CrtToolGui(new CrtToolContainer(player));
     }

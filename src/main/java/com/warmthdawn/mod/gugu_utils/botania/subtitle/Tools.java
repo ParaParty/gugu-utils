@@ -3,6 +3,7 @@ package com.warmthdawn.mod.gugu_utils.botania.subtitle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -33,7 +34,7 @@ public final class Tools {
         if (flowerNum > max) {
             GlStateManager.enableBlend();
             GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-            String infoName = "附近的花产生了干扰, 效率" + String.format("%.1f", getOutputEfficiency(flowerNum, max) * 100) + "%";
+            String infoName = I18n.format("message.gugu-utils.botaniaaddon.manyflowers", String.format("%.1f", getOutputEfficiency(flowerNum, max) * 100));
             int width = 16 + mc.fontRenderer.getStringWidth(infoName) / 2;
             int x = res.getScaledWidth() / 2 - width;
             int y = res.getScaledHeight() / 2 + 30;
@@ -46,5 +47,19 @@ public final class Tools {
 
     public static double getOutputEfficiency(int flowerNum, int max) {
         return (max + Math.log1p(flowerNum - max)) / flowerNum;
+    }
+
+    public static int getGenerationPeriod(double generationPerTick) {
+        double minError = generationPerTick * 2 % 1;
+        int minIndex = 2;
+        for (int i = 3; i < 20; i++) {
+            double error = (generationPerTick * i) % 1;
+            if (error < minError) {
+                minError = error;
+                minIndex = i;
+            }
+        }
+        return minIndex;
+
     }
 }
