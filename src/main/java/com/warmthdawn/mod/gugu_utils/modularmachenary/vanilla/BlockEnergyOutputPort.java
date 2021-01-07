@@ -41,7 +41,7 @@ public class BlockEnergyOutputPort extends GenericBlock implements ITileEntityPr
         setHardness(4.0F);
         setResistance(10.0F);
         setRegistryName(RESOURCE_ENERGYPORT_OUTPUT);
-        setUnlocalizedName(j(GuGuUtils.MODID, NAME_ENERGYPORT_OUTPUT));
+        setTranslationKey(j(GuGuUtils.MODID, NAME_ENERGYPORT_OUTPUT));
 
         setDefaultState(blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
     }
@@ -56,7 +56,7 @@ public class BlockEnergyOutputPort extends GenericBlock implements ITileEntityPr
     @Override
     @Nonnull
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 
@@ -92,7 +92,7 @@ public class BlockEnergyOutputPort extends GenericBlock implements ITileEntityPr
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return this.getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7));
+        return this.getDefaultState().withProperty(FACING, EnumFacing.byIndex(meta & 7));
     }
 
     @Override

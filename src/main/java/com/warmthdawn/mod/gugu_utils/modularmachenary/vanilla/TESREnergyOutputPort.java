@@ -110,7 +110,6 @@ public class TESREnergyOutputPort extends TileEntitySpecialRenderer<TileEnergyOu
         if (new Vec3d(facing.getDirectionVec()).distanceTo(direction.normalize()) > 0.01) {
             return;
         }
-        double dirLength = direction.lengthSquared();
         direction = direction.add(new Vec3d(facing.getOpposite().getDirectionVec()));
 
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -155,18 +154,18 @@ public class TESREnergyOutputPort extends TileEntitySpecialRenderer<TileEnergyOu
     }
 
     private Vec3d getBasePlane(EnumFacing facing) {
-        return new Vec3d(facing.getDirectionVec()).addVector(1, 1, 1).scale(0.5);
+        return new Vec3d(facing.getDirectionVec()).add(1, 1, 1).scale(0.5);
     }
 
     private Vec3d addVector2d(Vec3d vec3d, float x, float y) {
         if (vec3d.x == 0 || vec3d.x == 1) {
-            return vec3d.addVector(0, x, y);
+            return vec3d.add(0, x, y);
         }
         if (vec3d.y == 0 || vec3d.y == 1) {
-            return vec3d.addVector(x, 0, y);
+            return vec3d.add(x, 0, y);
         }
         if (vec3d.z == 0 || vec3d.z == 1) {
-            return vec3d.addVector(x, y, 0);
+            return vec3d.add(x, y, 0);
         }
         return vec3d;
     }
