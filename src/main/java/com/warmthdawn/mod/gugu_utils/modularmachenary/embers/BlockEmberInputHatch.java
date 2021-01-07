@@ -37,7 +37,7 @@ public class BlockEmberInputHatch extends VariantBlock<EmbersHatchVariant> imple
         setSoundType(SoundType.STONE);
         setHarvestLevel("pickaxe", 0);
         setRegistryName(RESOURCE_EMBERHATCH_INPUT);
-        setTranslationKey(j(GuGuUtils.MODID, NAME_EMBERHATCH_INPUT));
+        setUnlocalizedName(j(GuGuUtils.MODID, NAME_EMBERHATCH_INPUT));
     }
 
     @Override
@@ -54,10 +54,9 @@ public class BlockEmberInputHatch extends VariantBlock<EmbersHatchVariant> imple
     @Override
     @Nonnull
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getRenderLayer() {
+    public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.CUTOUT;
     }
-
 
     @Nullable
     @Override

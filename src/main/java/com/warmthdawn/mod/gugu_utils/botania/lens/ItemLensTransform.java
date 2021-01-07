@@ -17,7 +17,7 @@ public class ItemLensTransform extends ItemLensAddition {
     public ItemLensTransform() {
         super();
         setCreativeTab(GuGuUtils.creativeTab);
-        setTranslationKey(j(GuGuUtils.MODID, NAME_LENS_TRANSFORM));
+        setUnlocalizedName(j(GuGuUtils.MODID, NAME_LENS_TRANSFORM));
     }
 
     @Override

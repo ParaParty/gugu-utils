@@ -25,8 +25,10 @@ public class VariantItem<T extends Enum<T> & IStringSerializable> extends ItemBl
 
     @Override
     @NotNull
-    public String getTranslationKey(ItemStack stack) {
+    public String getUnlocalizedName(ItemStack stack) {
         int meta = stack.getMetadata() < variantType.getEnumConstants().length ? stack.getMetadata() : 0;
-        return super.getTranslationKey(stack) + "." + variantType.getEnumConstants()[meta].getName();
+        return super.getUnlocalizedName(stack) + "." + variantType.getEnumConstants()[meta].getName();
     }
+
+
 }

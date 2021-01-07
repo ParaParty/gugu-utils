@@ -50,7 +50,8 @@ public class BlockSparkManaHatch extends VariantBlock<ManaHatchVariant> implemen
         setSoundType(SoundType.STONE);
         setHarvestLevel("pickaxe", 0);
         setRegistryName(RESOURCE_MANAHATCH);
-        setTranslationKey(j(GuGuUtils.MODID, NAME_MANAHATCH));
+        setUnlocalizedName(j(GuGuUtils.MODID, NAME_MANAHATCH));
+
     }
 
 
@@ -77,11 +78,9 @@ public class BlockSparkManaHatch extends VariantBlock<ManaHatchVariant> implemen
     @Override
     @Nonnull
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getRenderLayer() {
+    public BlockRenderLayer getBlockLayer() {
         return BlockRenderLayer.CUTOUT;
     }
-
-
 
     @Nullable
     @Override

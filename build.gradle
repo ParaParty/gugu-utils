@@ -11,7 +11,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
-version = '0.5.0'
+version = '0.2.1'
 group = 'com.warmthdawn.mod.gugu-utils' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'gugu-utils'
 
@@ -148,6 +148,11 @@ dependencies {
 
 }
 
+jar {
+    manifest {
+        attributes "FMLAT": "guug_at.cfg"
+    }
+}
 
 processResources {
     // this will ensure that this task is redone when the versions change.
