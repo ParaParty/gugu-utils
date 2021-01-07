@@ -42,6 +42,14 @@
 
 ### 截图
 
+![Image](https://github.com/ParaParty/gugu-utils/raw/dev/screenshots/1.png)
+![Image](https://github.com/ParaParty/gugu-utils/raw/dev/screenshots/2.png)
+![Image](https://github.com/ParaParty/gugu-utils/raw/dev/screenshots/3.png)
+![Image](https://github.com/ParaParty/gugu-utils/raw/dev/screenshots/4.png)
+![Image](https://github.com/ParaParty/gugu-utils/raw/dev/screenshots/5.png)
+![Image](https://github.com/ParaParty/gugu-utils/raw/dev/screenshots/6.png)
+![Image](https://github.com/ParaParty/gugu-utils/raw/dev/screenshots/7.png)
+![Image](https://github.com/ParaParty/gugu-utils/raw/dev/screenshots/8.png)
 
 ### 编译
 Forge Gradle 2.3版本（FG3莫名原因不支持JEIx）
