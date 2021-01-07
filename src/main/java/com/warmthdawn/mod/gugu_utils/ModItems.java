@@ -45,8 +45,6 @@ public class ModItems {
             registry.register(new ItemBlock(ModBlocks.blockEnergyOutputPort).setRegistryName(RESOURCE_ENERGYPORT_OUTPUT));
 
             if (Loads.BOTANIA) {
-                registry.register(new ItemLensOverclocking().setRegistryName(RESOURCE_LENS_OVERCLOCKING));
-                registry.register(new ItemLensTransform().setRegistryName(RESOURCE_LENS_TRANSFORM));
                 registry.register(new ItemManaBlock((BlockSparkManaHatch) ModBlocks.blockSparkManaHatch, TileSparkManaHatch.MAX_MANA).setRegistryName(RESOURCE_MANAHATCH));
             }
 
