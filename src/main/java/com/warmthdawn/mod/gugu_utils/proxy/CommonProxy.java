@@ -16,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -37,7 +38,23 @@ public class CommonProxy {
         ModItems.register(event.getRegistry());
     }
 
+    public void checkLoads() {
+        Loads.BOTANIA = Loader.isModLoaded("botania");
+        Loads.ASTRAL_SORCERY = Loader.isModLoaded("astralsorcery");
+        Loads.EMBERS = Loader.isModLoaded("embers");
+        Loads.MODULAR_MACHIENARY = Loader.isModLoaded("modularmachinery");
+        Loads.PSI = Loader.isModLoaded("psi");
+        Loads.CRAFT_TWEAKER = Loader.isModLoaded("crafttweaker");
+        Loads.THERMAL_DYNAMICS = Loader.isModLoaded("thermaldynamics");
+        Loads.APPLIED_ENERGISTICS = Loader.isModLoaded("appliedenergistics2");
+        Loads.BOTANIA_TWEAKS = Loader.isModLoaded("botania_tweaks");
+        Loads.ACTUALLY_ADDITIONS = Loader.isModLoaded("actuallyadditions");
+        Loads.NATURES_AURA = Loader.isModLoaded("naturesaura");
+        Loads.BLOOD_MAGIC = Loader.isModLoaded("bloodmagic");
+    }
+
     public void preInit(FMLPreInitializationEvent event) {
+        checkLoads();
         Messages.registerMessages(GuGuUtils.MODID);
         MinecraftForge.EVENT_BUS.register(new MiscEventHandler());
         if (Loads.MODULAR_MACHIENARY)
@@ -64,7 +81,7 @@ public class CommonProxy {
         if (Loads.CRAFT_TWEAKER)
             CraftTweakerCompact.postInit();
 
-        if(Loads.BOTANIA_TWEAKS){
+        if (Loads.BOTANIA_TWEAKS) {
             try {
                 MinecraftForge.EVENT_BUS.unregister(Class.forName("quaternary.botaniatweaks.modules.botania.handler.TNTDuplicatorDetectionWorldTickHander"));
             } catch (ClassNotFoundException e) {

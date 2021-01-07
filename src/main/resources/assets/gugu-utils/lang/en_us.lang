@@ -1,10 +1,13 @@
 item.gugu-utils.lensOverclocking.name=Overlclocking Lens
+item.gugu-utils.lensTransform.name=Transform Lens
+item.gugu-utils.lensTransform.short.name=Transform
 
 tile.gugu-utils.sparkmanahatch.input.name=Spark Mana Input Hatch
 tile.gugu-utils.sparkmanahatch.output.name=Spark Mana Output Hatch
 tile.gugu-utils.starlightinputhatch.basic.name=Basic Starlight Input Hatch
 tile.gugu-utils.starlightinputhatch.trait.name=Trait Starlight Input Hatch
 tile.gugu-utils.starlightinputhatch.brilliant.name=Brilliant Starlight Input Hatch
+
 
 tile.gugu-utils.emberinputhatch.tiny.name=Tiny Ember Input Hatch
 tile.gugu-utils.emberinputhatch.small.name=Small Ember Input Hatch
@@ -17,10 +20,11 @@ tile.gugu-utils.emberinputhatch.extreme.name=Extreme Ember Input Hatch
 
 tile.gugu-utils.environmenthatch.name=Environment Sensor
 tile.gugu-utils.aurainputhatch.name=Aura Input Hatch
+tile.gugu-utils.energyoutputport.name=Energy Output Port
 
 
 
-message.gugu-utils.botaniaaddon.manyflowers=Too many flowers, Efficiency %s;
+message.gugu-utils.botaniaaddon.manyflowers=Too many flowers, Efficiency %s%%
 
 
 message.gugu-utils.sparkmanahatch=Mana: %s/%s
@@ -63,6 +67,7 @@ tooltips.gugu-utils.environment.moonphase.5=Waxing crescent
 tooltips.gugu-utils.environment.moonphase.6=First quarter
 tooltips.gugu-utils.environment.moonphase.7=Waxing gibbouss
 
+gugu-utils.jei.category.burst_transform=Mana Burst Transform
 
 
 

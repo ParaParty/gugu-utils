@@ -36,7 +36,7 @@ public class SubTileEndoflameModified extends SubTileEndoflame {
         super.onUpdate();
 
         if (!supertile.getWorld().isRemote && (flowerNum < 0 || ticksExisted % 80 == 0)) {
-            flowerNum = Tools.getNearbyFlowers(getWorld(), getPos(), RANGE,
+            flowerNum = Tools.getNearbyFlowers(getWorld(), getPos(), RANGE + 2,
                     ste -> ste instanceof SubTileEndoflame && ((SubTileEndoflame) ste).canGeneratePassively());
             setEfficiency(Tools.getOutputEfficiency(flowerNum, MAX_FLOWER));
         }

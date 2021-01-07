@@ -1,6 +1,7 @@
 package com.warmthdawn.mod.gugu_utils.tools;
 
 import com.warmthdawn.mod.gugu_utils.GuGuUtils;
+import com.warmthdawn.mod.gugu_utils.proxy.ClientEventHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -19,6 +20,8 @@ import javax.annotation.Nullable;
 import java.awt.*;
 
 public final class RenderUtils {
+
+    public static final ResourceLocation RECIPES_UI = new ResourceLocation(GuGuUtils.MODID, "textures/gui/recipes_ui.png");
 
     public static void drawQuantity(int x, int y, String qty, FontRenderer fontRenderer) {
 
@@ -77,6 +80,136 @@ public final class RenderUtils {
         vertexBuffer.pos(xCoord + 16 - maskRight, yCoord + maskTop, zLevel).tex(uMax, vMin).endVertex();
         vertexBuffer.pos(xCoord, yCoord + maskTop, zLevel).tex(uMin, vMin).endVertex();
         tessellator.draw();
+    }
+
+    public static void renderEmberBarVertical(int x, int y, float alpha, float percentage) {
+        Minecraft mc = Minecraft.getMinecraft();
+
+        GlStateManager.color(1F, 1F, 1F, alpha);
+        mc.renderEngine.bindTexture(RECIPES_UI);
+        drawTexturedModalRect(x, y, 0, 8, 0, 5, 102);
+
+        int voffset = (ClientEventHandler.elapsedTicks % 30) * 3;
+
+        drawTexturedModalRect(x + 1, y + 1, 0, 13, 0, 3, 100);
+
+        int emberPercentage = (int) (100 * percentage);
+        if (percentage > 0 && emberPercentage == 0) {
+            emberPercentage = 1;
+        }
+        int offset = 100 - emberPercentage;
+        drawTexturedModalRect(x + 1, y + 1 + offset, 0, 16 + voffset, offset, 3, Math.min(100, emberPercentage));
+        GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) 255);
+    }
+
+    public static void renderManaBarVertical(int x, int y, int color, float alpha, int mana, int maxMana) {
+        Minecraft mc = Minecraft.getMinecraft();
+
+        GlStateManager.color(1F, 1F, 1F, alpha);
+        mc.renderEngine.bindTexture(RECIPES_UI);
+        drawTexturedModalRect(x, y, 0, 0, 0, 5, 102);
+
+        int manaPercentage = Math.max(0, (int) ((double) mana / (double) maxMana * 100));
+
+        if (manaPercentage == 0 && mana > 0)
+            manaPercentage = 1;
+
+        drawTexturedModalRect(x + 1, y + 1, 0, 5, 0, 3, 102);
+
+        Color color_ = new Color(color);
+        GL11.glColor4ub((byte) color_.getRed(), (byte) color_.getGreen(), (byte) color_.getBlue(), (byte) (255F * alpha));
+
+        manaPercentage = Math.min(100, manaPercentage);
+        int offset = 100 - manaPercentage;
+        drawTexturedModalRect(x + 1, y + 1 + offset, 0, 5, offset, 3, Math.min(100, manaPercentage));
+        GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) 255);
+    }
+
+    public static void renderItem(Minecraft mc, ItemStack item, int x, int y, @Nullable String count) {
+
+        GlStateManager.enableRescaleNormal();
+        GlStateManager.enableDepth();
+        net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
+        mc.getRenderItem().renderItemAndEffectIntoGUI(item, x, y);
+        mc.getRenderItem().renderItemOverlayIntoGUI(getFontRenderer(mc, item), item, x + 4, y, count);
+        GlStateManager.disableBlend();
+        net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
+    }
+
+    public static FontRenderer getFontRenderer(Minecraft minecraft, ItemStack ingredient) {
+        FontRenderer fontRenderer = ingredient.getItem().getFontRenderer(ingredient);
+        if (fontRenderer == null) {
+            fontRenderer = minecraft.fontRenderer;
+        }
+        return fontRenderer;
+
+    }
+
+    public static void drawTexturedModalRect(int x, int y, float z, int u, int v, int w, int h) {
+        drawTexturedModalRect(x, y, z, u, v, w, h, 1 / 256F, 1 / 256F);
+    }
+
+    public static void drawTexturedModalRect(int x, int y, float z, int u, int v, int w, int h, float f, float f1) {
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder vb = tessellator.getBuffer();
+        vb.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
+        vb.pos(x, y + h, z).tex(u * f, (v + h) * f1).endVertex();
+        vb.pos(x + w, y + h, z).tex((u + w) * f, (v + h) * f1).endVertex();
+        vb.pos(x + w, y, z).tex((u + w) * f, v * f1).endVertex();
+        vb.pos(x, y, z).tex(u * f, v * f1).endVertex();
+        tessellator.draw();
+    }
+
+    /**
+     * Draws a texture rectangle using the texture currently bound to the TextureManager
+     */
+    public static void drawTexturedModalRect(int xCoord, int yCoord, float zLevel, TextureAtlasSprite textureSprite, int widthIn, int heightIn) {
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+        bufferbuilder.pos(xCoord, yCoord + heightIn, zLevel).tex(textureSprite.getMinU(), textureSprite.getMaxV()).endVertex();
+        bufferbuilder.pos(xCoord + widthIn, yCoord + heightIn, zLevel).tex(textureSprite.getMaxU(), textureSprite.getMaxV()).endVertex();
+        bufferbuilder.pos(xCoord + widthIn, yCoord, zLevel).tex(textureSprite.getMaxU(), textureSprite.getMinV()).endVertex();
+        bufferbuilder.pos(xCoord, yCoord, zLevel).tex(textureSprite.getMinU(), textureSprite.getMinV()).endVertex();
+        tessellator.draw();
+    }
+
+    /**
+     * Draws a textured rectangle at z = 0. Args: x, y, u, v, width, height, textureWidth, textureHeight
+     */
+    public static void drawModalRectWithCustomSizedTexture(int x, int y, float u, float v, int width, int height, float textureWidth, float textureHeight) {
+        float f = 1.0F / textureWidth;
+        float f1 = 1.0F / textureHeight;
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferbuilder = tessellator.getBuffer();
+        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
+        bufferbuilder.pos(x, y + height, 0.0D).tex(u * f, (v + (float) height) * f1).endVertex();
+        bufferbuilder.pos(x + width, y + height, 0.0D).tex((u + (float) width) * f, (v + (float) height) * f1).endVertex();
+        bufferbuilder.pos(x + width, y, 0.0D).tex((u + (float) width) * f, v * f1).endVertex();
+        bufferbuilder.pos(x, y, 0.0D).tex(u * f, v * f1).endVertex();
+        tessellator.draw();
+    }
+
+    public static void drawRect(int offsetX, int offsetY, float zLevel, int width, int height) {
+        Tessellator tes = Tessellator.getInstance();
+        BufferBuilder vb = tes.getBuffer();
+        vb.begin(7, DefaultVertexFormats.POSITION_TEX);
+        vb.pos(offsetX, offsetY + height, zLevel).tex(0, 1).endVertex();
+        vb.pos(offsetX + width, offsetY + height, zLevel).tex(1, 1).endVertex();
+        vb.pos(offsetX + width, offsetY, zLevel).tex(1, 0).endVertex();
+        vb.pos(offsetX, offsetY, zLevel).tex(0, 0).endVertex();
+        tes.draw();
+    }
+
+    public static void drawRect(int offsetX, int offsetY, float zLevel, int width, int height, double u, double v, double uLength, double vLength) {
+        Tessellator tes = Tessellator.getInstance();
+        BufferBuilder vb = tes.getBuffer();
+        vb.begin(7, DefaultVertexFormats.POSITION_TEX);
+        vb.pos(offsetX, offsetY + height, zLevel).tex(u, v + vLength).endVertex();
+        vb.pos(offsetX + width, offsetY + height, zLevel).tex(u + uLength, v + vLength).endVertex();
+        vb.pos(offsetX + width, offsetY, zLevel).tex(u + uLength, v).endVertex();
+        vb.pos(offsetX, offsetY, zLevel).tex(u, v).endVertex();
+        tes.draw();
     }
 
     public static class FluidRenderer {
@@ -173,146 +306,6 @@ public final class RenderUtils {
             }
         }
     }
-
-
-    public static final ResourceLocation RECIPES_UI = new ResourceLocation(GuGuUtils.MODID, "textures/gui/recipes_ui.png");
-
-    public static void renderEmberBarVertical(int x, int y, float alpha, float percentage) {
-        Minecraft mc = Minecraft.getMinecraft();
-
-        GlStateManager.color(1F, 1F, 1F, alpha);
-        mc.renderEngine.bindTexture(RECIPES_UI);
-        drawTexturedModalRect(x, y, 0, 8, 0, 5, 102);
-
-        int voffset = (int) (mc.world.getTotalWorldTime() % 30) * 3;
-
-
-        drawTexturedModalRect(x + 1, y + 1, 0, 13, 0, 3, 100);
-
-        int manaPercentage = (int) (100 * percentage);
-        if (percentage > 0 && manaPercentage == 0) {
-            manaPercentage = 1;
-        }
-        int offset = 100 - manaPercentage;
-        drawTexturedModalRect(x + 1, y + 1 + offset, 0, 16 + voffset, offset, 3, Math.min(100, manaPercentage));
-        GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) 255);
-    }
-
-    public static void renderManaBarVertical(int x, int y, int color, float alpha, int mana, int maxMana) {
-        Minecraft mc = Minecraft.getMinecraft();
-
-        GlStateManager.color(1F, 1F, 1F, alpha);
-        mc.renderEngine.bindTexture(RECIPES_UI);
-        drawTexturedModalRect(x, y, 0, 0, 0, 5, 102);
-
-        int manaPercentage = Math.max(0, (int) ((double) mana / (double) maxMana * 100));
-
-        if (manaPercentage == 0 && mana > 0)
-            manaPercentage = 1;
-
-        drawTexturedModalRect(x + 1, y + 1, 0, 5, 0, 3, 102);
-
-        Color color_ = new Color(color);
-        GL11.glColor4ub((byte) color_.getRed(), (byte) color_.getGreen(), (byte) color_.getBlue(), (byte) (255F * alpha));
-
-        manaPercentage = Math.min(100, manaPercentage);
-        int offset = 100 - manaPercentage;
-        drawTexturedModalRect(x + 1, y + 1 + offset, 0, 5, offset, 3, Math.min(100, manaPercentage));
-        GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) 255);
-    }
-
-    public static void renderItem(Minecraft mc, ItemStack item, int x, int y, @Nullable String count) {
-
-        GlStateManager.enableRescaleNormal();
-        GlStateManager.enableDepth();
-        net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
-        mc.getRenderItem().renderItemAndEffectIntoGUI(item, x, y);
-        mc.getRenderItem().renderItemOverlayIntoGUI(getFontRenderer(mc, item), item, x + 4, y, count);
-        GlStateManager.disableBlend();
-        net.minecraft.client.renderer.RenderHelper.disableStandardItemLighting();
-    }
-
-    public static FontRenderer getFontRenderer(Minecraft minecraft, ItemStack ingredient) {
-        FontRenderer fontRenderer = ingredient.getItem().getFontRenderer(ingredient);
-        if (fontRenderer == null) {
-            fontRenderer = minecraft.fontRenderer;
-        }
-        return fontRenderer;
-
-    }
-
-    public static void drawTexturedModalRect(int x, int y, float z, int u, int v, int w, int h) {
-        drawTexturedModalRect(x, y, z, u, v, w, h, 0.00390625F, 0.00390625F);
-    }
-
-    public static void drawTexturedModalRect(int x, int y, float z, int u, int v, int w, int h, float f, float f1) {
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder vb = tessellator.getBuffer();
-        vb.begin(GL11.GL_QUADS, DefaultVertexFormats.POSITION_TEX);
-        vb.pos(x    , y + h, z).tex( u      * f, (v + h) * f1).endVertex();
-        vb.pos(x + w, y + h, z).tex((u + w) * f, (v + h) * f1).endVertex();
-        vb.pos(x + w, y    , z).tex((u + w) * f,  v      * f1).endVertex();
-        vb.pos(x    , y    , z).tex( u      * f,  v      * f1).endVertex();
-        tessellator.draw();
-    }
-
-
-    /**
-     * Draws a texture rectangle using the texture currently bound to the TextureManager
-     */
-    public static void drawTexturedModalRect(int xCoord, int yCoord, float zLevel, TextureAtlasSprite textureSprite, int widthIn, int heightIn)
-    {
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder bufferbuilder = tessellator.getBuffer();
-        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-        bufferbuilder.pos(xCoord, yCoord + heightIn, zLevel).tex(textureSprite.getMinU(), textureSprite.getMaxV()).endVertex();
-        bufferbuilder.pos(xCoord + widthIn, yCoord + heightIn, zLevel).tex(textureSprite.getMaxU(), textureSprite.getMaxV()).endVertex();
-        bufferbuilder.pos(xCoord + widthIn, yCoord, zLevel).tex(textureSprite.getMaxU(), textureSprite.getMinV()).endVertex();
-        bufferbuilder.pos(xCoord, yCoord, zLevel).tex(textureSprite.getMinU(), textureSprite.getMinV()).endVertex();
-        tessellator.draw();
-    }
-
-
-    /**
-     * Draws a textured rectangle at z = 0. Args: x, y, u, v, width, height, textureWidth, textureHeight
-     */
-    public static void drawModalRectWithCustomSizedTexture(int x, int y, float u, float v, int width, int height, float textureWidth, float textureHeight)
-    {
-        float f = 1.0F / textureWidth;
-        float f1 = 1.0F / textureHeight;
-        Tessellator tessellator = Tessellator.getInstance();
-        BufferBuilder bufferbuilder = tessellator.getBuffer();
-        bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
-        bufferbuilder.pos(x, y + height, 0.0D).tex(u * f, (v + (float)height) * f1).endVertex();
-        bufferbuilder.pos(x + width, y + height, 0.0D).tex((u + (float)width) * f, (v + (float)height) * f1).endVertex();
-        bufferbuilder.pos(x + width, y, 0.0D).tex((u + (float)width) * f, v * f1).endVertex();
-        bufferbuilder.pos(x, y, 0.0D).tex(u * f, v * f1).endVertex();
-        tessellator.draw();
-    }
-
-    public static void drawRect(int offsetX, int offsetY, float zLevel, int width, int height) {
-        Tessellator tes = Tessellator.getInstance();
-        BufferBuilder vb = tes.getBuffer();
-        vb.begin(7, DefaultVertexFormats.POSITION_TEX);
-        vb.pos(offsetX,         offsetY + height, zLevel).tex(0, 1).endVertex();
-        vb.pos(offsetX + width, offsetY + height, zLevel).tex(1, 1).endVertex();
-        vb.pos(offsetX + width, offsetY,          zLevel).tex(1, 0).endVertex();
-        vb.pos(offsetX,         offsetY,          zLevel).tex(0, 0).endVertex();
-        tes.draw();
-    }
-
-
-    public static void drawRect(int offsetX, int offsetY, float zLevel, int width, int height, double u, double v, double uLength, double vLength) {
-        Tessellator tes = Tessellator.getInstance();
-        BufferBuilder vb = tes.getBuffer();
-        vb.begin(7, DefaultVertexFormats.POSITION_TEX);
-        vb.pos(offsetX        , offsetY + height, zLevel).tex(u          , v + vLength).endVertex();
-        vb.pos(offsetX + width, offsetY + height, zLevel).tex(u + uLength, v + vLength).endVertex();
-        vb.pos(offsetX + width, offsetY         , zLevel).tex(u + uLength, v          ).endVertex();
-        vb.pos(offsetX        , offsetY         , zLevel).tex(u          , v          ).endVertex();
-        tes.draw();
-    }
-
 
 
 }

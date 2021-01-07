@@ -1,6 +1,8 @@
 package com.warmthdawn.mod.gugu_utils;
 
+import com.warmthdawn.mod.gugu_utils.botania.lens.ItemLensAddition;
 import com.warmthdawn.mod.gugu_utils.botania.lens.ItemLensOverclocking;
+import com.warmthdawn.mod.gugu_utils.botania.lens.ItemLensTransform;
 import com.warmthdawn.mod.gugu_utils.common.Loads;
 import com.warmthdawn.mod.gugu_utils.common.VariantItem;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.embers.BlockEmberInputHatch;
@@ -21,20 +23,27 @@ public class ModItems {
 
 
     @GameRegistry.ObjectHolder(STRING_RESOURCE_LENS_OVERCLOCKING)
-    public static Item lens;
+    public static Item lensOverclocking;
+    @GameRegistry.ObjectHolder(STRING_RESOURCE_LENS_TRANSFORM)
+    public static Item lensTransform;
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
-        if (Loads.BOTANIA)
-            ((ItemLensOverclocking) lens).initModel();
+        if (Loads.BOTANIA) {
+            ((ItemLensAddition) lensOverclocking).initModel();
+            ((ItemLensAddition) lensTransform).initModel();
+        }
     }
 
     public static void register(IForgeRegistry<Item> registry) {
 
         if (Loads.MODULAR_MACHIENARY) {
+            registry.register(new ItemBlock(ModBlocks.blockEnvironmentHatch).setRegistryName(RESOURCE_ENVIRONMENTHATCH));
+            registry.register(new ItemBlock(ModBlocks.blockEnergyOutputPort).setRegistryName(RESOURCE_ENERGYPORT_OUTPUT));
 
             if (Loads.BOTANIA) {
                 registry.register(new ItemLensOverclocking().setRegistryName(RESOURCE_LENS_OVERCLOCKING));
+                registry.register(new ItemLensTransform().setRegistryName(RESOURCE_LENS_TRANSFORM));
                 registry.register(new ItemManaBlock((BlockSparkManaHatch) ModBlocks.blockSparkManaHatch, TileSparkManaHatch.MAX_MANA).setRegistryName(RESOURCE_MANAHATCH));
             }
 
@@ -50,8 +59,6 @@ public class ModItems {
                 registry.register(new ItemBlock(ModBlocks.blockAuraInputHatch).setRegistryName(RESOURCE_AURAHATCH_INPUT));
             }
 
-
-            registry.register(new ItemBlock(ModBlocks.blockEnvironmentHatch).setRegistryName(RESOURCE_ENVIRONMENTHATCH));
 
         }
     }

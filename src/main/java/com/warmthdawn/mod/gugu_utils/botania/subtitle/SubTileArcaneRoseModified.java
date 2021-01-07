@@ -19,7 +19,7 @@ public class SubTileArcaneRoseModified extends SubTileGenerating {
     private static final int RANGE = 1;
     private static final int ORBS_RANGE = 2;
     private static final String TAG_FLOWER_NUM = "flowerNum";
-    private static final int MAX_FLOWER = 4;
+    private static final int MAX_FLOWER = 3;
     private int flowerNum = -1;
     private double efficiency = 1;
 

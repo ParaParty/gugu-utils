@@ -4,6 +4,7 @@ import com.google.common.base.Predicates;
 import com.warmthdawn.mod.gugu_utils.ModBlocks;
 import com.warmthdawn.mod.gugu_utils.common.IRestorableTileEntity;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.IColorableTileEntity;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.starlight.BlockStarightInputHatch;
 import com.warmthdawn.mod.gugu_utils.network.Messages;
 import com.warmthdawn.mod.gugu_utils.network.PacketMana;
 import com.warmthdawn.mod.gugu_utils.tools.CIELab;
@@ -20,6 +21,8 @@ import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.botania.api.mana.spark.ISparkAttachable;
@@ -68,6 +71,15 @@ public abstract class TileSparkManaHatch extends TileEntity implements IColorabl
         IBlockState state = world.getBlockState(this.getPos());
         world.notifyBlockUpdate(this.getPos(), state, state, 1 | 2);
         this.markDirty();
+    }
+
+    @Override
+    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
+        if (oldState.getBlock() != newState.getBlock())
+            return true;
+        if (oldState.getBlock() != ModBlocks.blockSparkManaHatch || newState.getBlock() != ModBlocks.blockSparkManaHatch)
+            return true;
+        return oldState.getValue(BlockSparkManaHatch.VARIANT) != newState.getValue(BlockSparkManaHatch.VARIANT);
     }
 
     @Override

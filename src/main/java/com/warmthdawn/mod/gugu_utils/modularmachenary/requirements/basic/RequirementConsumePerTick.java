@@ -146,6 +146,7 @@ public abstract class RequirementConsumePerTick<T, V extends IResourceToken> ext
     @Override
     public CraftCheck doIOTick(ProcessingComponent<?> component, RecipeCraftingContext context) {
 
+
         if (!isCorrectHatch(component.getComponent())) return CraftCheck.skipComponent();
         ICraftingResourceHolder<V> handler = (ICraftingResourceHolder<V>) component.getProvidedComponent();
         switch (getActionType()) {

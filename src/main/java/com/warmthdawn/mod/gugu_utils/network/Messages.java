@@ -25,5 +25,6 @@ public class Messages {
         INSTANCE.registerMessage(PacketStarlight.Handler.class, PacketStarlight.class, nextID(), Side.CLIENT);
         INSTANCE.registerMessage(PacketCollectorPostion.Handler.class, PacketCollectorPostion.class, nextID(), Side.CLIENT);
         INSTANCE.registerMessage(PacketMana.Handler.class, PacketMana.class, nextID(), Side.CLIENT);
+        INSTANCE.registerMessage(PacketParticles.Handler.class, PacketParticles.class, nextID(), Side.CLIENT);
     }
 }

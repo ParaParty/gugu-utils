@@ -4,6 +4,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.WorldInfo;
+import stanhebben.zenscript.annotations.ZenClass;
 
 import java.util.Collections;
 import java.util.List;
@@ -46,6 +47,7 @@ public class EnvWeather implements EnvironmentType {
         return "weather";
     }
 
+    @ZenClass
     public enum Weathers {
         SUNNY,
         RAINING,

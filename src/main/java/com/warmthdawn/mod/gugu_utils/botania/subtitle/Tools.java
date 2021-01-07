@@ -46,18 +46,27 @@ public final class Tools {
     }
 
     public static double getOutputEfficiency(int flowerNum, int max) {
+        if (flowerNum <= max) {
+            return 1;
+        }
         return (max + Math.log1p(flowerNum - max)) / flowerNum;
     }
 
     public static int getGenerationPeriod(double generationPerTick) {
         double minError = generationPerTick * 2 % 1;
         int minIndex = 2;
-        for (int i = 3; i < 20; i++) {
-            double error = (generationPerTick * i) % 1;
-            if (error < minError) {
-                minError = error;
+        for (int i = 2; i < 20; i++) {
+            double errorOver = (generationPerTick * i) % 1;
+            double errorBelow = 1 - errorOver;
+            if (errorOver < minError) {
+                minError = errorOver;
                 minIndex = i;
             }
+            if (errorBelow < minError) {
+                minError = errorBelow;
+                minIndex = i;
+            }
+
         }
         return minIndex;
 

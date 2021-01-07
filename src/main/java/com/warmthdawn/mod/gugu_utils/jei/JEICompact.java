@@ -5,28 +5,32 @@ import appeng.fluids.client.gui.*;
 import cofh.thermaldynamics.gui.client.GuiDuctConnection;
 import com.blamejared.ctgui.api.SlotRecipe;
 import com.blamejared.ctgui.client.gui.craftingtable.GuiCraftingTable;
+import com.warmthdawn.mod.gugu_utils.ModItems;
+import com.warmthdawn.mod.gugu_utils.botania.BotaniaCompact;
+import com.warmthdawn.mod.gugu_utils.botania.recipes.TransformRecipe;
 import com.warmthdawn.mod.gugu_utils.common.Loads;
 import com.warmthdawn.mod.gugu_utils.gugucrttool.CrtToolGui;
 import com.warmthdawn.mod.gugu_utils.gugucrttool.GhostJEIHandler;
+import com.warmthdawn.mod.gugu_utils.jei.botania.BurstTransformCategory;
+import com.warmthdawn.mod.gugu_utils.jei.botania.BurstTransformWapper;
 import com.warmthdawn.mod.gugu_utils.jei.gui.*;
 import com.warmthdawn.mod.gugu_utils.jei.ingedients.*;
 import com.warmthdawn.mod.gugu_utils.jei.renders.*;
 import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiFilter;
 import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiLaserRelayItemWhitelist;
 import de.ellpeck.actuallyadditions.mod.inventory.gui.GuiRangedCollector;
-import mezz.jei.api.*;
+import mezz.jei.api.IModPlugin;
+import mezz.jei.api.IModRegistry;
+import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.ingredients.IModIngredientRegistration;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.client.gui.inventory.GuiFurnace;
+import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 
 @JEIPlugin
 public class JEICompact implements IModPlugin {
-    @Override
-    public void registerItemSubtypes(ISubtypeRegistry subtypeRegistry) {
-
-    }
 
     @Override
     public void registerIngredients(IModIngredientRegistration registry) {
@@ -45,7 +49,8 @@ public class JEICompact implements IModPlugin {
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registry) {
-
+        if (Loads.BOTANIA)
+            registry.addRecipeCategories(new BurstTransformCategory(registry.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -82,10 +87,12 @@ public class JEICompact implements IModPlugin {
         }
 //        registry.addGhostIngredientHandler(GuiCraftingTable.class, new GenericGhostHandler<>());
 
+        if (Loads.BOTANIA) {
+            registry.handleRecipes(TransformRecipe.class, BurstTransformWapper::new, BurstTransformCategory.UID);
+            registry.addRecipes(BotaniaCompact.recipeBurstTransform, BurstTransformCategory.UID);
+            registry.addRecipeCatalyst(new ItemStack(vazkii.botania.common.block.ModBlocks.spreader), BurstTransformCategory.UID);
+            registry.addRecipeCatalyst(new ItemStack(ModItems.lensTransform), BurstTransformCategory.UID);
+        }
     }
 
-    @Override
-    public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {
-
-    }
 }

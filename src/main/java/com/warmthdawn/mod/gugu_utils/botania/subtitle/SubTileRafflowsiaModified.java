@@ -12,6 +12,7 @@ import vazkii.botania.api.subtile.ISubTileContainer;
 import vazkii.botania.api.subtile.RadiusDescriptor;
 import vazkii.botania.api.subtile.SubTileEntity;
 import vazkii.botania.api.subtile.SubTileGenerating;
+import vazkii.botania.common.block.subtile.generating.SubTileRafflowsia;
 import vazkii.botania.common.core.helper.ItemNBTHelper;
 import vazkii.botania.common.lexicon.LexiconData;
 
@@ -21,11 +22,9 @@ public class SubTileRafflowsiaModified extends SubTileGenerating {
 
     private static final String TAG_LAST_FLOWER = "lastFlower";
     private static final String TAG_LAST_FLOWER_TIMES = "lastFlowerTimes";
-
+    private static final int RANGE = 5;
     String lastFlower;
     int lastFlowerTimes;
-
-    private static final int RANGE = 5;
 
     @Override
     public void onUpdate() {
@@ -33,20 +32,20 @@ public class SubTileRafflowsiaModified extends SubTileGenerating {
 
         int mana = 6300;
 
-        if(getMaxMana() - this.mana >= mana && !supertile.getWorld().isRemote && ticksExisted % 40 == 0) {
-            for(int i = 0; i < RANGE * 2 + 1; i++)
-                for(int j = 0; j < RANGE * 2 + 1; j++)
-                    for(int k = 0; k < RANGE * 2 + 1; k++) {
+        if (getMaxMana() - this.mana >= mana && !supertile.getWorld().isRemote && ticksExisted % 40 == 0) {
+            for (int i = 0; i < RANGE * 2 + 1; i++)
+                for (int j = 0; j < RANGE * 2 + 1; j++)
+                    for (int k = 0; k < RANGE * 2 + 1; k++) {
                         BlockPos pos = supertile.getPos().add(i - RANGE, j - RANGE, k - RANGE);
 
                         TileEntity tile = supertile.getWorld().getTileEntity(pos);
-                        if(tile instanceof ISubTileContainer) {
+                        if (tile instanceof ISubTileContainer) {
                             SubTileEntity stile = ((ISubTileContainer) tile).getSubTile();
                             String name = stile.getUnlocalizedName();
 
-                            if(!(stile instanceof vazkii.botania.common.block.subtile.generating.SubTileRafflowsia)) {
+                            if (!(stile instanceof SubTileRafflowsia || stile instanceof SubTileRafflowsiaModified)) {
                                 boolean last = name.equals(lastFlower);
-                                if(last)
+                                if (last)
                                     lastFlowerTimes++;
                                 else {
                                     lastFlower = name;

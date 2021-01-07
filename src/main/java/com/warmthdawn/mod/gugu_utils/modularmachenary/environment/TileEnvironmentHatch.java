@@ -14,6 +14,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import static com.warmthdawn.mod.gugu_utils.common.Constants.STRING_RESOURCE_ENVIRONMENT;
 
@@ -45,6 +47,11 @@ public class TileEnvironmentHatch extends TileEntity implements IColorableTileEn
         if (compound.hasKey(KEY_MACHINE_COLOR))
             this.machineColor = compound.getInteger(KEY_MACHINE_COLOR);
 
+    }
+
+    @Override
+    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
+        return oldState.getBlock() != newState.getBlock();
     }
 
     @Override
@@ -99,7 +106,7 @@ public class TileEnvironmentHatch extends TileEntity implements IColorableTileEn
 
     @Override
     public boolean consume(RequirementEnvironment.RT outputToken, boolean doOperation) {
-        if( outputToken.getType().isMeet(getWorld(), getPos())){
+        if (outputToken.getType().isMeet(getWorld(), getPos())) {
             return true;
         }
         outputToken.setError("craftcheck.failure." + STRING_RESOURCE_ENVIRONMENT + "." + outputToken.getType().getName());

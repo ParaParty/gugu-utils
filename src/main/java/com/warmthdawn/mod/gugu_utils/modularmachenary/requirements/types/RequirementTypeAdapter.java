@@ -23,7 +23,7 @@ public abstract class RequirementTypeAdapter<T> extends RequirementType<T, Compo
         ComponentRequirementAdapter.PerTick<T> gererateRequirementPerTick(IOType ioType, JsonObject jsonObject);
 
         default ComponentRequirementAdapter<T> gererateRequirement(IOType ioType, JsonObject jsonObject) {
-            return null;
+            throw new UnsupportedOperationException("Pertick opeartion not support this!");
         }
     }
 

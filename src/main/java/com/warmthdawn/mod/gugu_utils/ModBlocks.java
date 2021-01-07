@@ -14,6 +14,8 @@ import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.TileSparkManaInputHat
 import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.TileSparkManaOutputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.starlight.BlockStarightInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.starlight.TileStarlightInputHatch;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.vanilla.BlockEnergyOutputPort;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.vanilla.TileEnergyOutputPort;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.BlockColors;
@@ -46,17 +48,21 @@ public class ModBlocks {
     //灵气输入仓
     @GameRegistry.ObjectHolder(STRING_RESOURCE_AURAHATCH_INPUT)
     public static GenericBlock blockAuraInputHatch;
+    //能量输出端口
+    @GameRegistry.ObjectHolder(STRING_RESOURCE_ENERGYPORT_OUTPUT)
+    public static GenericBlock blockEnergyOutputPort;
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
         if (Loads.MODULAR_MACHIENARY) {
+            blockEnvironmentHatch.initModel();
+            blockEnergyOutputPort.initModel();
             if (Loads.BOTANIA)
                 blockSparkManaHatch.initModel();
             if (Loads.ASTRAL_SORCERY)
                 blockStarightInputHatch.initModel();
             if (Loads.EMBERS)
                 blockEmberInputHatch.initModel();
-            blockEnvironmentHatch.initModel();
             if (Loads.NATURES_AURA)
                 blockAuraInputHatch.initModel();
         }
@@ -64,6 +70,10 @@ public class ModBlocks {
 
     public static void register(IForgeRegistry<Block> registry) {
         if (Loads.MODULAR_MACHIENARY) {
+            registry.register(new BlockEnvironmentHatch());
+            GameRegistry.registerTileEntity(TileEnvironmentHatch.class, RESOURCE_ENVIRONMENTHATCH);
+            registry.register(new BlockEnergyOutputPort());
+            GameRegistry.registerTileEntity(TileEnergyOutputPort.class, RESOURCE_ENERGYPORT_OUTPUT);
 
             if (Loads.BOTANIA) {
                 registry.register(new BlockSparkManaHatch());
@@ -80,9 +90,6 @@ public class ModBlocks {
                 registry.register(new BlockEmberInputHatch());
                 GameRegistry.registerTileEntity(TileEmberInputHatch.class, RESOURCE_EMBERHATCH_INPUT);
             }
-
-            registry.register(new BlockEnvironmentHatch());
-            GameRegistry.registerTileEntity(TileEnvironmentHatch.class, RESOURCE_ENVIRONMENTHATCH);
 
             if (Loads.NATURES_AURA) {
                 registry.register(new BlockAuraInputHatch());
@@ -115,7 +122,10 @@ public class ModBlocks {
             return defaultColor;
         };
 
-
+        blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockEnvironmentHatch);
+        itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockEnvironmentHatch));
+        blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockEnergyOutputPort);
+        itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockEnergyOutputPort));
         if (Loads.BOTANIA) {
             blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockSparkManaHatch);
             itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockSparkManaHatch));
@@ -129,10 +139,6 @@ public class ModBlocks {
             blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockEmberInputHatch);
             itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockEmberInputHatch));
         }
-
-        blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockEnvironmentHatch);
-        itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockEnvironmentHatch));
-
         if (Loads.NATURES_AURA) {
             blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockAuraInputHatch);
             itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockAuraInputHatch));

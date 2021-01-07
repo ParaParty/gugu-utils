@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -40,7 +41,7 @@ public class CrtToolGui extends GuiContainer {
     private static final RenderUtils.FluidRenderer FLUID_RENDERER = new RenderUtils.FluidRenderer(-1, 16, 16);
     private final DecimalFormat BUCKET_FORMATTER = new DecimalFormat("####0.###", DecimalFormatSymbols.getInstance(Locale.US));
     private WindowManager manager;
-    private ImageChoiceLabel blacklistMode;
+    private ImageChoiceLabel fluidModeBtn;
     private String hoveringFluid;
 
     public CrtToolGui(CrtToolContainer container) {
@@ -53,24 +54,24 @@ public class CrtToolGui extends GuiContainer {
     public void initGui() {
         super.initGui();
 
-        blacklistMode = new ImageChoiceLabel(mc, this)
+        fluidModeBtn = new ImageChoiceLabel(mc, this)
                 .setLayoutHint(86, 36, 20, 18)
                 .setTooltips("流体模式");
-        blacklistMode.addChoice("关", "放置物品", resource, 0, 168);
-        blacklistMode.addChoice("开", "放置流体", resource, 0, 187);
-        blacklistMode.addChoiceEvent((parent, newChoice) -> {
+        fluidModeBtn.addChoice("关", "放置物品", resource, 0, 168);
+        fluidModeBtn.addChoice("开", "放置流体", resource, 0, 187);
+        fluidModeBtn.addChoiceEvent((parent, newChoice) -> {
             if (inventorySlots instanceof CrtToolContainer) {
                 ((CrtToolContainer) inventorySlots).setFluidMode(newChoice.equals("开"));
             }
         });
 
-        blacklistMode.setCurrentChoice(((CrtToolContainer) inventorySlots).isFluidMode() ? "开" : "关");
+        fluidModeBtn.setCurrentChoice(((CrtToolContainer) inventorySlots).isFluidMode() ? "开" : "关");
 
 
         Panel toplevel = new Panel(mc, this).setLayout(new PositionalLayout()).setBackground(resource)
-                .addChildren(blacklistMode)
+                .addChildren(fluidModeBtn)
                 .addChildren(new Button(mc, this)
-                        .setLayoutHint(86, 36, 20, 18)
+                        .setLayoutHint(86, 60, 20, 18)
                         .addButtonEvent(parent ->
                                 new GuGuZsBuilder((CrtToolContainer) inventorySlots).build())
                         .setImage(resource, 20, 168, 20, 18));
@@ -128,6 +129,15 @@ public class CrtToolGui extends GuiContainer {
         super.drawScreen(mouseX, mouseY, partialTicks);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
         renderHoveredToolTip(mouseX, mouseY);
+        if (fluidModeBtn.getBounds().contains(mouseX - guiLeft, mouseY - guiTop)) {
+            List<String> tooltips = fluidModeBtn.getTooltips();
+            if (tooltips != null) {
+                this.drawHoveringText(tooltips, mouseX, mouseY, this.mc.fontRenderer);
+            }
+        }
+
+
+        net.minecraft.client.renderer.RenderHelper.enableGUIStandardItemLighting();
         if (hoveringFluid != null) {
 
             GlStateManager.disableLighting();
@@ -181,7 +191,7 @@ public class CrtToolGui extends GuiContainer {
             } else {
                 super.handleMouseClick(slot, slotId, mouseButton, type);
             }
-        }else if (valid && slot instanceof GhostAddtionalInfoSlot && slot.isEnabled()) {
+        } else if (valid && slot instanceof GhostAddtionalInfoSlot && slot.isEnabled()) {
             AdditionalInfoInventory.RecipeNecessities info = ((GhostAddtionalInfoSlot) slot).getInfo();
 
             if (info != null) {

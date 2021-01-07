@@ -31,26 +31,10 @@ public class GuGuUtils {
     public static final String NAME = "GuGu Utils";
     public static final String VERSION = "0.1";
     public static final CreativeTabs creativeTab = new CreativeTabs(GuGuUtils.MODID) {
-
-        private NonNullList<ItemStack> list;
-
         @Override
         @Nonnull
         public ItemStack getTabIconItem() {
             return new ItemStack(Items.BOOK);
-        }
-
-        @Override
-        public void displayAllRelevantItems(@Nonnull NonNullList<ItemStack> items) {
-            list = items;
-        }
-
-        private void addItem(Item item) {
-            item.getSubItems(this, list);
-        }
-
-        private void addBlock(Block block) {
-            addItem(Item.getItemFromBlock(block));
         }
     };
     private static final String PROXY_CLIENT = "com.warmthdawn.mod.gugu_utils.proxy.ClientProxy";
@@ -69,18 +53,6 @@ public class GuGuUtils {
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        Loads.BOTANIA = Loader.isModLoaded("botania");
-        Loads.ASTRAL_SORCERY = Loader.isModLoaded("astralsorcery");
-        Loads.EMBERS = Loader.isModLoaded("embers");
-        Loads.MODULAR_MACHIENARY = Loader.isModLoaded("modularmachinery");
-        Loads.PSI = Loader.isModLoaded("psi");
-        Loads.CRAFT_TWEAKER = Loader.isModLoaded("crafttweaker");
-        Loads.THERMAL_DYNAMICS = Loader.isModLoaded("thermaldynamics");
-        Loads.APPLIED_ENERGISTICS = Loader.isModLoaded("appliedenergistics2");
-        Loads.BOTANIA_TWEAKS = Loader.isModLoaded("botania_tweaks");
-        Loads.ACTUALLY_ADDITIONS = Loader.isModLoaded("actuallyadditions");
-        Loads.NATURES_AURA = Loader.isModLoaded("naturesaura");
-        Loads.BLOOD_MAGIC = Loader.isModLoaded("bloodmagic");
         logger = event.getModLog();
         proxy.preInit(event);
     }
