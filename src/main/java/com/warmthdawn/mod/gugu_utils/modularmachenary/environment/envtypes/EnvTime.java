@@ -8,8 +8,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class EnvTime implements EnvironmentType {
-    private int begin;
-    private int end;
+    private final int begin;
+    private final int end;
 
     public EnvTime(int begin, int end) {
         this.begin = begin;

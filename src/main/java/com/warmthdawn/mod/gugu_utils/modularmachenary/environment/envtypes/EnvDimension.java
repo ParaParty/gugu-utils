@@ -10,7 +10,7 @@ import net.minecraft.world.biome.Biome;
 import java.util.List;
 
 public class EnvDimension implements EnvironmentType {
-    private int[] dimensions;
+    private final int[] dimensions;
 
     public EnvDimension(int[] dimension) {
         this.dimensions = dimension;

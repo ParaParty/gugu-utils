@@ -37,7 +37,7 @@ public class TileEnergyOutputPort extends TileEntity implements ITickable, Machi
     private OutputPortState state = OutputPortState.OFF;
     private TileEntity connectedTE;
     private int outputTicks = 0;
-    private EnergyStorage storage = new EnergyStorage(this::outputEnergy);
+    private final EnergyStorage storage = new EnergyStorage(this::outputEnergy);
     private int clientCurrentRecieve = 0;
 
     @Override

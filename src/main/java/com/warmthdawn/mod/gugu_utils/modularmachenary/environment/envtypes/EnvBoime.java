@@ -11,7 +11,7 @@ import net.minecraftforge.common.BiomeManager;
 import java.util.List;
 
 public class EnvBoime implements EnvironmentType {
-    private Biome[] biomes;
+    private final Biome[] biomes;
     private String biomeType;
 
     public EnvBoime(Biome[] biomes) {

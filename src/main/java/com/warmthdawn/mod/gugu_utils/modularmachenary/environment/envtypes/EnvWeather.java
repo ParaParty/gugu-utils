@@ -15,7 +15,7 @@ public class EnvWeather implements EnvironmentType {
         return weather;
     }
 
-    private Weathers weather;
+    private final Weathers weather;
 
     public EnvWeather(Weathers weather) {
         this.weather = weather;

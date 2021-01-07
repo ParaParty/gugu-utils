@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nonnull;
 
 public class GhostAddtionalInfoSlot extends GenericSlot {
-    private AdditionalInfoInventory inventory;
+    private final AdditionalInfoInventory inventory;
 
     public GhostAddtionalInfoSlot(AdditionalInfoInventory inventory, int index, int x, int y) {
         super(new ItemStackHandler(inventory.getSlots()), index, x, y);

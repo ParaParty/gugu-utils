@@ -12,8 +12,8 @@ import java.util.function.Consumer;
 public class FluidInventory {
     @Nullable
     protected Consumer<Integer> listener;
-    private FluidStack[] fluids;
-    private int maxAmount;
+    private final FluidStack[] fluids;
+    private final int maxAmount;
     private boolean empty = true;
 
     public FluidInventory(int size, int maxAmount, @Nullable Consumer<Integer> listener) {

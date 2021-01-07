@@ -31,11 +31,11 @@ public class FluidAmountGui extends GuiContainer {
     private final FluidStack stack;
     protected GuiTextField amountField;
     protected GuiButton okButton;
-    private GuiScreen parent;
+    private final GuiScreen parent;
     private GuiButton cancelButton;
-    private GuiButton[] incrementButtons = new GuiButton[6];
+    private final GuiButton[] incrementButtons = new GuiButton[6];
     private String hoveringText;
-    private ResourceLocation background = new ResourceLocation(GuGuUtils.MODID, "textures/gui/gui_amount_specifying.png");
+    private final ResourceLocation background = new ResourceLocation(GuGuUtils.MODID, "textures/gui/gui_amount_specifying.png");
 
     public FluidAmountGui(GuiScreen parent, FluidStack stack) {
         super(new FluidAmountContainer(parent.mc.player, stack));

@@ -1,11 +1,9 @@
 package com.warmthdawn.mod.gugu_utils.crafttweaker;
 
 import com.warmthdawn.mod.gugu_utils.common.Loads;
+import com.warmthdawn.mod.gugu_utils.crafttweaker.modularmachenary.RecipePrimerExt;
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
-import hellfirepvp.modularmachinery.common.integration.crafttweaker.RecipePrimer;
-import net.minecraftforge.fml.common.Loader;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +13,7 @@ public class CraftTweakerCompact {
 
     public static void init() {
         if(Loads.MODULAR_MACHIENARY)
-            CraftTweakerAPI.registerClass(RecipePrimer.class);
+            CraftTweakerAPI.registerClass(RecipePrimerExt.class);
 
     }
 

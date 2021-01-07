@@ -9,8 +9,8 @@ import java.util.List;
 
 public class EnvAltitude implements EnvironmentType {
     public final String KEY_TOOLTIP_ALTITUDE = "tooltips.gugu-utils.environment.altitude";
-    private int begin;
-    private int end;
+    private final int begin;
+    private final int end;
 
     public EnvAltitude(int begin, int end) {
         this.begin = begin;

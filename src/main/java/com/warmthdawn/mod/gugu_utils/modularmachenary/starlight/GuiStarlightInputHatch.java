@@ -38,7 +38,7 @@ public class GuiStarlightInputHatch extends GuiContainer {
     private static final ResourceLocation background = new ResourceLocation(GuGuUtils.MODID, "textures/gui/gui_starlightinputhatch.png");
     private static final String KEY_TOOLTIP_STARLIGHT = ResourceUtils.j("tooltips", GuGuUtils.MODID, "starlight");
 
-    private TileStarlightInputHatch hatch;
+    private final TileStarlightInputHatch hatch;
 
     public GuiStarlightInputHatch(TileStarlightInputHatch tileEntity, ContainerStarlightInputHatch container) {
         super(container);

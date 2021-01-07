@@ -8,7 +8,7 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class EnvMoonPhase implements EnvironmentType {
-    private int[] phases;
+    private final int[] phases;
 
     public EnvMoonPhase(int[] phases) {
         this.phases = phases;

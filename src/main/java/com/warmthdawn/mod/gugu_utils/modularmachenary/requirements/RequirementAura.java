@@ -21,8 +21,8 @@ import static hellfirepvp.modularmachinery.common.modifier.RecipeModifier.applyM
 
 public class RequirementAura extends RequirementConsumePerTick<Integer, RequirementAura.RT> {
 
-    private int aura;
-    private boolean forceDrain;
+    private final int aura;
+    private final boolean forceDrain;
 
     public RequirementAura(int aura, int time, boolean forceDrain, IOType actionType) {
         super((RequirementTypeAdapter<Integer>) MMRequirements.REQUIREMENT_TYPE_AURA, actionType);
@@ -59,7 +59,7 @@ public class RequirementAura extends RequirementConsumePerTick<Integer, Requirem
 
     public static class RT implements IResourceToken {
         private int aura;
-        private boolean forceDrain;
+        private final boolean forceDrain;
 
         public RT(int aura, boolean forceDrain) {
             this.aura = aura;

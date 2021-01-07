@@ -14,7 +14,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class JEIComponentEmber extends ComponentRequirement.JEIComponent<IngredientEmber> {
-    private double ember;
+    private final double ember;
 
     public JEIComponentEmber(double ember) {
         this.ember = ember;

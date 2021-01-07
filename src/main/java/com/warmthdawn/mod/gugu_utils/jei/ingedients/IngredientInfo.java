@@ -6,9 +6,9 @@ import net.minecraft.util.ResourceLocation;
 import java.util.List;
 
 public class IngredientInfo {
-    private String displayName;
-    private Object value;
-    private ResourceLocation resourceLocation;
+    private final String displayName;
+    private final Object value;
+    private final ResourceLocation resourceLocation;
 
     public IngredientInfo(String displayName, Object value, ResourceLocation resourceLocation) {
         this.displayName = displayName;

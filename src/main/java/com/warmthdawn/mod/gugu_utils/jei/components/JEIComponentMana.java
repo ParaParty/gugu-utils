@@ -18,7 +18,7 @@ import java.util.List;
 public class JEIComponentMana extends ComponentRequirement.JEIComponent<IngedientMana> {
     private final int mana;
     private final boolean pertick;
-    private int totalTick;
+    private final int totalTick;
 
     public JEIComponentMana(int mana) {
         this.mana = mana;

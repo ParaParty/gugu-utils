@@ -32,13 +32,16 @@
     
 5. ##### 其他修改
     1. 添加了一个PSI术士：加速（PSI版本快乐棒）
-
+   
 
 ### 注意事项
 **因为模块化机械的相关bug，本模组无法兼容curse forge上下载的版本，
 请自行前往 Modular Machenary 的 [Jenkins](https://jenkins.hellfiredev.net/job/ModularMachinery/job/master/) 获取最新版本的模块化机械，否则该部分附属将不会被加载**
 
 模组开发中，正如名字咕咕咕~
+
+### 截图
+
 
 ### 编译
 Forge Gradle 2.3版本（FG3莫名原因不支持JEIx）

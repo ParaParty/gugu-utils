@@ -19,11 +19,11 @@ import javax.annotation.Nonnull;
 public class CrtToolContainer extends Container {
     public static final int INPUT_SLOTS = 4 * 4;
     public static final int OUTPUT_SLOTS = 3 * 3;
-    private InventoryPlayer playerInventory;
-    private ItemStackHandler items;
-    private FluidInventory fluids;
+    private final InventoryPlayer playerInventory;
+    private final ItemStackHandler items;
+    private final FluidInventory fluids;
     private boolean isFluidMode = false;
-    private boolean isGeneric = true;
+    private final boolean isGeneric = true;
 
     public CrtToolContainer(EntityPlayer player) {
         playerInventory = player.inventory;

@@ -8,7 +8,7 @@ public class IngredientStarlight extends IngredientInfo{
         return constellation;
     }
 
-    private IConstellation constellation;
+    private final IConstellation constellation;
 
     public IngredientStarlight(String displayName, Object value, ResourceLocation resourceLocation, IConstellation constellation) {
         super(displayName, value, resourceLocation);

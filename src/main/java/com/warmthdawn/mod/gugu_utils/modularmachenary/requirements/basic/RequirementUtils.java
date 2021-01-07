@@ -22,10 +22,7 @@ public final class RequirementUtils {
         if (type == IOType.INPUT && ((ICraftingResourceHolder<?>) handler).canConsume()) {
             return true;
         }
-        if (type == IOType.OUTPUT && ((ICraftingResourceHolder<?>) handler).canGenerate()) {
-            return true;
-        }
-        return false;
+        return type == IOType.OUTPUT && ((ICraftingResourceHolder<?>) handler).canGenerate();
     }
 
     public static JsonPrimitive tryGet(JsonObject requirement, String key, boolean required) {

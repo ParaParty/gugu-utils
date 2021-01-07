@@ -7,7 +7,7 @@ public class IngedientMana extends IngredientInfo {
         return ticks;
     }
 
-    private int ticks;
+    private final int ticks;
 
     public IngedientMana(String displayName, Object value, ResourceLocation resourceLocation) {
         super(displayName, value, resourceLocation);

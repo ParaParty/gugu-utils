@@ -14,9 +14,9 @@ import java.util.List;
 
 public class JEIComponentAura extends ComponentRequirement.JEIComponent<IngredientAura> {
 
-    private int aura;
-    private int totalTick;
-    private boolean force;
+    private final int aura;
+    private final int totalTick;
+    private final boolean force;
 
     public JEIComponentAura(int aura, int totalTick, boolean force) {
         this.aura = aura;

@@ -11,7 +11,7 @@ import javax.annotation.Nonnull;
 
 public class GhostFluidSlot extends GenericSlot {
 
-    private FluidInventory fluidInventory;
+    private final FluidInventory fluidInventory;
     private boolean isSizeAllowed = false;
 
     public GhostFluidSlot(FluidInventory inventory, int inventoryIndex, int x, int y, boolean isSizeAllowed) {

@@ -20,7 +20,7 @@ import java.util.List;
 
 public class RequirementEnvironment extends RequirementConsumePerTick<EnvironmentType, RequirementEnvironment.RT> {
 
-    private EnvironmentType type;
+    private final EnvironmentType type;
 
     public RequirementEnvironment(EnvironmentType type, IOType actionType) {
         super((RequirementTypeAdapter<EnvironmentType>) MMRequirements.REQUIREMENT_TYPE_ENVIRONMENT, actionType);

@@ -29,7 +29,7 @@ public class TileEmberInputHatch extends TileEntity implements IColorableTileEnt
     public static final String KEY_MACHINE_COLOR = "machine_color";
 
     protected int machineColor = hellfirepvp.modularmachinery.common.data.Config.machineColor;
-    private IEmberCapability capability;
+    private final IEmberCapability capability;
     private int emberCapacity = -1;
 
     public TileEmberInputHatch() {

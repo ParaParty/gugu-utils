@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
 
 public class ContainerStarlightInputHatch extends Container {
-    private TileStarlightInputHatch te;
+    private final TileStarlightInputHatch te;
 
     public ContainerStarlightInputHatch(IInventory playerInventory, TileStarlightInputHatch te) {
         this.te = te;

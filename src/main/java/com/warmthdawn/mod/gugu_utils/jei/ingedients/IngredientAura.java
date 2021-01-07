@@ -3,8 +3,8 @@ package com.warmthdawn.mod.gugu_utils.jei.ingedients;
 import net.minecraft.util.ResourceLocation;
 
 public class IngredientAura extends IngredientInfo {
-    private int ticks;
-    private boolean force;
+    private final int ticks;
+    private final boolean force;
 
     public IngredientAura(String displayName, Object value, ResourceLocation resourceLocation, int ticks, boolean force) {
         super(displayName, value, resourceLocation);

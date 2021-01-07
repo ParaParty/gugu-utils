@@ -6,14 +6,14 @@ import net.minecraft.client.Minecraft;
 import java.awt.*;
 
 public abstract class LayoutWapper<T extends Object> extends RecipeLayoutPart<T> {
-    private int width;
-    private int height;
-    private int paddingX;
-    private int paddingY;
-    private int horizontalGap;
-    private int maxHorizontalCount;
-    private int verticalGap;
-    private int horizontalOrder;
+    private final int width;
+    private final int height;
+    private final int paddingX;
+    private final int paddingY;
+    private final int horizontalGap;
+    private final int maxHorizontalCount;
+    private final int verticalGap;
+    private final int horizontalOrder;
 
     public LayoutWapper(Point offset, int width, int height, int paddingX, int paddingY, int horizontalGap, int verticalGap, int maxHorizontalCount, int horizontalOrder) {
         super(offset);

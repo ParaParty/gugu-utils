@@ -19,7 +19,7 @@ import java.util.List;
 
 
 public class RequirementEmber extends RequirementConsumeOnce<Double, RequirementEmber.RT> {
-    private double ember;
+    private final double ember;
 
     public RequirementEmber(double ember, IOType actionType) {
         super((RequirementTypeAdapter<Double>) MMRequirements.REQUIREMENT_TYPE_EMBER, actionType);

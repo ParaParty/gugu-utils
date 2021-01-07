@@ -19,11 +19,8 @@ import java.util.List;
 public class GuGuZsBuilder {
     private final List<ItemStack> inputItems = new ArrayList<>();
     private final List<FluidStack> inputFluids = new ArrayList<>();
-    ;
     private final List<ItemStack> outputItems = new ArrayList<>();
-    ;
     private final List<FluidStack> outputFluids = new ArrayList<>();
-    ;
 
     public GuGuZsBuilder(CrtToolContainer container) {
         for (Slot slot : container.inventorySlots) {

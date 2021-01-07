@@ -15,7 +15,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class JEIComponentEnvironment extends ComponentRequirement.JEIComponent<IngredientEnvironment> {
-    private EnvironmentType type;
+    private final EnvironmentType type;
 
     public JEIComponentEnvironment(EnvironmentType type) {
         this.type = type;
