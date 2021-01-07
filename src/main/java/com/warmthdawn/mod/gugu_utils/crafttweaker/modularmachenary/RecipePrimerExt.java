@@ -19,7 +19,6 @@ import java.util.Arrays;
 import java.util.Locale;
 
 @SuppressWarnings("unchecked")
-@ZenRegister
 @ZenExpansion("mods.modularmachinery.RecipePrimer")
 public class RecipePrimerExt {
 

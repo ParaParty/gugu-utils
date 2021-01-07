@@ -8,6 +8,7 @@ import com.warmthdawn.mod.gugu_utils.modularmachenary.environment.envtypes.Envir
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.ComponentRequirementAdapter;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.IResourceToken;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.RequirementConsumePerTick;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.types.RequirementTypeAdapter;
 import hellfirepvp.modularmachinery.common.crafting.helper.RecipeCraftingContext;
 import hellfirepvp.modularmachinery.common.crafting.requirement.type.RequirementType;
 import hellfirepvp.modularmachinery.common.machine.IOType;
@@ -22,7 +23,7 @@ public class RequirementEnvironment extends RequirementConsumePerTick<Environmen
     private EnvironmentType type;
 
     public RequirementEnvironment(EnvironmentType type, IOType actionType) {
-        super(MMRequirements.REQUIREMENT_TYPE_ENVIRONMENT, actionType);
+        super((RequirementTypeAdapter<EnvironmentType>) MMRequirements.REQUIREMENT_TYPE_ENVIRONMENT, actionType);
         this.type = type;
     }
 

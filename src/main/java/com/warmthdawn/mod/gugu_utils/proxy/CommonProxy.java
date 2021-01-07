@@ -51,14 +51,26 @@ public class CommonProxy {
         Loads.ACTUALLY_ADDITIONS = Loader.isModLoaded("actuallyadditions");
         Loads.NATURES_AURA = Loader.isModLoaded("naturesaura");
         Loads.BLOOD_MAGIC = Loader.isModLoaded("bloodmagic");
+
+        if (Loads.MODULAR_MACHIENARY) {
+            //辣鸡模块化机械
+            try {
+                Class.forName("hellfirepvp.modularmachinery.common.tiles.base.ColorableMachineTile");
+            } catch (ClassNotFoundException e) {
+                Loads.MODULAR_MACHIENARY = false;
+                GuGuUtils.logger.error("Version Of Modular Machienary is Wrong");
+            }
+        }
     }
 
     public void preInit(FMLPreInitializationEvent event) {
         checkLoads();
         Messages.registerMessages(GuGuUtils.MODID);
         MinecraftForge.EVENT_BUS.register(new MiscEventHandler());
-        if (Loads.MODULAR_MACHIENARY)
+        if (Loads.MODULAR_MACHIENARY) {
             MinecraftForge.EVENT_BUS.register(new ModularMachenaryCompact());
+            ModularMachenaryCompact.preInit();
+        }
         if (Loads.PSI)
             PsiCompact.initSpell();
         if (Loads.ASTRAL_SORCERY)
@@ -69,7 +81,8 @@ public class CommonProxy {
         NetworkRegistry.INSTANCE.registerGuiHandler(GuGuUtils.instance, new GuiHandler());
         ModIndependentGuis.init();
 
-
+        if (Loads.CRAFT_TWEAKER)
+            CraftTweakerCompact.init();
         if (Loads.BOTANIA) {
             SubtileRegisterOverride override = new SubtileRegisterOverride();
             if (override.successInject)

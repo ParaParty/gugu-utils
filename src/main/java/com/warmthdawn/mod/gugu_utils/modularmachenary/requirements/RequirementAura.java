@@ -7,6 +7,7 @@ import com.warmthdawn.mod.gugu_utils.modularmachenary.MMRequirements;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.ComponentRequirementAdapter;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.IResourceToken;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.RequirementConsumePerTick;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.types.RequirementTypeAdapter;
 import hellfirepvp.modularmachinery.common.crafting.helper.RecipeCraftingContext;
 import hellfirepvp.modularmachinery.common.crafting.requirement.type.RequirementType;
 import hellfirepvp.modularmachinery.common.machine.IOType;
@@ -24,7 +25,7 @@ public class RequirementAura extends RequirementConsumePerTick<Integer, Requirem
     private boolean forceDrain;
 
     public RequirementAura(int aura, int time, boolean forceDrain, IOType actionType) {
-        super(MMRequirements.REQUIREMENT_TYPE_AURA, actionType);
+        super((RequirementTypeAdapter<Integer>) MMRequirements.REQUIREMENT_TYPE_AURA, actionType);
         this.aura = aura;
         this.setTotalTick(time);
         this.forceDrain = forceDrain;

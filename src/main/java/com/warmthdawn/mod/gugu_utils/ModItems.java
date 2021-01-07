@@ -36,7 +36,10 @@ public class ModItems {
     }
 
     public static void register(IForgeRegistry<Item> registry) {
-
+        if (Loads.BOTANIA) {
+            registry.register(new ItemLensOverclocking().setRegistryName(RESOURCE_LENS_OVERCLOCKING));
+            registry.register(new ItemLensTransform().setRegistryName(RESOURCE_LENS_TRANSFORM));
+        }
         if (Loads.MODULAR_MACHIENARY) {
             registry.register(new ItemBlock(ModBlocks.blockEnvironmentHatch).setRegistryName(RESOURCE_ENVIRONMENTHATCH));
             registry.register(new ItemBlock(ModBlocks.blockEnergyOutputPort).setRegistryName(RESOURCE_ENERGYPORT_OUTPUT));

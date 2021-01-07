@@ -84,19 +84,18 @@ public class GenericBlock extends Block {
                 ((IRestorableTileEntity) tileEntity).readRestorableFromNBT(tagCompound);
             }
         }
-        ;
+
     }
 
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        // Only execute on the server
-        if (world.isRemote) {
-            return true;
-        }
         TileEntity te = world.getTileEntity(pos);
         if (!(te instanceof IGuiProvider)) {
             return false;
+        }
+        if (world.isRemote) {
+            return true;
         }
         player.openGui(GuGuUtils.instance, 0, world, pos.getX(), pos.getY(), pos.getZ());
         return true;

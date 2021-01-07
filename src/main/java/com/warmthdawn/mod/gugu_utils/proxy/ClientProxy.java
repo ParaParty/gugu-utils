@@ -43,9 +43,9 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void init(FMLInitializationEvent event) {
         super.init(event);
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEnergyOutputPort.class, new TESREnergyOutputPort());
 
         if (Loads.MODULAR_MACHIENARY) {
+            ClientRegistry.bindTileEntitySpecialRenderer(TileEnergyOutputPort.class, new TESREnergyOutputPort());
             ModBlocks.registerDynamicColor();
         }
 

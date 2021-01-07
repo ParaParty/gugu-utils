@@ -108,7 +108,7 @@ public class TileAuraInputHatch extends TileAuraHatch implements ITickable, Mach
         return new MachineComponent(IOType.INPUT) {
             @Override
             public ComponentType getComponentType() {
-                return MMCompoments.COMPONENT_AURA;
+                return (ComponentType) MMCompoments.COMPONENT_AURA;
             }
 
             @Override

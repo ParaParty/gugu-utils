@@ -97,10 +97,12 @@ public class MiscEventHandler {
     @SubscribeEvent
     public void onEntityJoinWorld(EntityJoinWorldEvent evt) {
         if (!evt.getWorld().isRemote) {
-            if (evt.getEntity() instanceof EntityTNTPrimed && isTNTUnethical(evt.getEntity())) {
-                evt.getEntity().getTags().add(SubTileEntropinnyumModified.TAG_UNETHICAL);
-            } else if (isShulkerFormCursedEarth(evt.getEntity())) {
-                evt.getEntity().getTags().add(SubTileShulkMeNotModified.TAG_CURSED_EARTH);
+            if (Loads.BOTANIA) {
+                if (evt.getEntity() instanceof EntityTNTPrimed && isTNTUnethical(evt.getEntity())) {
+                    evt.getEntity().getTags().add(SubTileEntropinnyumModified.TAG_UNETHICAL);
+                } else if (isShulkerFormCursedEarth(evt.getEntity())) {
+                    evt.getEntity().getTags().add(SubTileShulkMeNotModified.TAG_CURSED_EARTH);
+                }
             }
         }
 
@@ -141,7 +143,6 @@ public class MiscEventHandler {
         //盖亚受伤事件
         if (Loads.BOTANIA && playersWhoAttacked != null && playerCount != null && entity instanceof EntityDoppleganger) {
             try {
-                UUID uuid = entity.getUniqueID();
                 final List<UUID> playersWhoAttacked = (List<UUID>) this.playersWhoAttacked.get(entity);
                 final int playerCount = this.playerCount.getInt(entity);
                 int currentCount = playersWhoAttacked.size();
@@ -152,8 +153,6 @@ public class MiscEventHandler {
                             .setBaseValue(BASE_MAX_HEALTH * currentCount);
                     entity.setHealth(entity.getHealth() + BASE_MAX_HEALTH * (currentCount - playerCount));
                 }
-
-
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }

@@ -23,6 +23,7 @@ public class RequirementMana extends RequirementConsumeOnce<Integer, Requirement
 
     int _mana;
 
+    @SuppressWarnings("unchecked")
     public RequirementMana(int mana, IOType actionType) {
         super((RequirementTypeAdapter<Integer>) MMRequirements.REQUIREMENT_TYPE_MANA, actionType);
         _mana = mana;
