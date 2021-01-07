@@ -1,0 +1,44 @@
+package com.warmthdawn.mod.gugu_utils.modularmachenary.embers;
+
+import net.minecraft.util.IStringSerializable;
+
+import java.util.Locale;
+
+public enum EmbersHatchVariant implements IStringSerializable {
+    TINY,
+    SMALL,
+    MEDIUM,
+    REINFORCED,
+    BIG,
+    HUGE,
+    LUDICROUS,
+    EXTREME
+    ;
+
+    @Override
+    public String getName() {
+        return name().toLowerCase(Locale.ROOT);
+    }
+
+    public int getEmberMaxStorage() {
+        switch (this){
+            case TINY:
+            default:
+                return 400;
+            case SMALL:
+                return 800;
+            case MEDIUM:
+                return 1600;
+            case REINFORCED:
+                return 3200;
+            case BIG:
+                return 6400;
+            case HUGE:
+                return 9600;
+            case LUDICROUS:
+                return 12800;
+            case EXTREME:
+                return 16000;
+        }
+    }
+}
