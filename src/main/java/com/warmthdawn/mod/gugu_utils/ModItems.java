@@ -36,6 +36,8 @@ public class ModItems {
         if (Loads.BOTANIA) {
             ((ItemLensAddition) lensOverclocking).initModel();
             ((ItemLensAddition) lensTransform).initModel();
+        }
+        if (Loads.MODULAR_MACHIENARY) {
             ((ItemRangedConstructTool) constructionTool).initModel();
         }
     }
