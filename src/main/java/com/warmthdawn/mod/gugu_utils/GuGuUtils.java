@@ -29,7 +29,7 @@ public class GuGuUtils {
     public static final String MODID = "gugu-utils";
     public static final String DEPENDENCY = "required-after:codechickenlib@[3.2.2,);required-after:mcjtylib_ng@[3.5.4,);after:modularmachinery;";
     public static final String NAME = "GuGu Utils";
-    public static final String VERSION = "0.5.2";
+    public static final String VERSION = "0.5.3";
     public static final CreativeTabs creativeTab = new CreativeTabs(GuGuUtils.MODID) {
         @Override
         @Nonnull
