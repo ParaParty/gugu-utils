@@ -84,12 +84,12 @@ public final class RenderUtils {
 
     public static void renderEmberBarVertical(int x, int y, float alpha, float percentage) {
         Minecraft mc = Minecraft.getMinecraft();
-
+        double particalTicks = mc.getRenderPartialTicks();
         GlStateManager.color(1F, 1F, 1F, alpha);
         mc.renderEngine.bindTexture(RECIPES_UI);
         drawTexturedModalRect(x, y, 0, 8, 0, 5, 102);
 
-        int voffset = (ClientEventHandler.elapsedTicks % 30) * 3;
+        int voffset = ((int) ((ClientEventHandler.elapsedTicks + particalTicks) * 3)) % 87;
 
         drawTexturedModalRect(x + 1, y + 1, 0, 13, 0, 3, 100);
 
@@ -97,8 +97,9 @@ public final class RenderUtils {
         if (percentage > 0 && emberPercentage == 0) {
             emberPercentage = 1;
         }
+        emberPercentage = Math.min(100, emberPercentage);
         int offset = 100 - emberPercentage;
-        drawTexturedModalRect(x + 1, y + 1 + offset, 0, 16 + voffset, offset, 3, Math.min(100, emberPercentage));
+        drawTexturedModalRect(x + 1, y + 1 + offset, 0, 16 + voffset, offset, 3, emberPercentage);
         GL11.glColor4ub((byte) 255, (byte) 255, (byte) 255, (byte) 255);
     }
 
@@ -114,7 +115,7 @@ public final class RenderUtils {
         if (manaPercentage == 0 && mana > 0)
             manaPercentage = 1;
 
-        drawTexturedModalRect(x + 1, y + 1, 0, 5, 0, 3, 102);
+        drawTexturedModalRect(x + 1, y + 1, 0, 5, 0, 3, 100);
 
         Color color_ = new Color(color);
         GL11.glColor4ub((byte) color_.getRed(), (byte) color_.getGreen(), (byte) color_.getBlue(), (byte) (255F * alpha));

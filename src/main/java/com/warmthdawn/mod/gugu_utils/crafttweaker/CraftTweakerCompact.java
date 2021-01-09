@@ -11,7 +11,7 @@ public class CraftTweakerCompact {
     public static final List<IAction> LATE_ADDITIONS = new ArrayList<>();
     public static final List<IAction> LATE_REMOVALS = new ArrayList<>();
 
-    public static void init() {
+    public static void preInit() {
         if(Loads.MODULAR_MACHIENARY)
             CraftTweakerAPI.registerClass(RecipePrimerExt.class);
 

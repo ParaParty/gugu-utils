@@ -12,8 +12,9 @@ public enum EmbersHatchVariant implements IStringSerializable {
     BIG,
     HUGE,
     LUDICROUS,
-    EXTREME
-    ;
+    EXTREME;
+
+    public static final EmbersHatchVariant[] VAULES = EmbersHatchVariant.values();
 
     @Override
     public String getName() {
@@ -21,7 +22,7 @@ public enum EmbersHatchVariant implements IStringSerializable {
     }
 
     public int getEmberMaxStorage() {
-        switch (this){
+        switch (this) {
             case TINY:
             default:
                 return 400;

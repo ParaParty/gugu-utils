@@ -61,7 +61,7 @@ public class JEIComponentMana extends ComponentRequirement.JEIComponent<Ingedien
 
         public LayoutPart(Point offset) {
 //            super(offset, 5, 118, 0, 0, 16, 16, 5, 900);
-            super(offset, 5, 102, 5, 118, 0, 0, 8, 8, 3, 900);
+            super(offset, 5, 102, 5, 118, 0, 0, 8, 8, 3, 200);
         }
 
         @Override

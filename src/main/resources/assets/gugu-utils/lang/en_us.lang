@@ -1,6 +1,7 @@
 item.gugu-utils.lensOverclocking.name=Overlclocking Lens
 item.gugu-utils.lensTransform.name=Transform Lens
 item.gugu-utils.lensTransform.short.name=Transform
+item.gugu-utils.constructionranged.name=Ranged Construction Selection Tool
 
 tile.gugu-utils.sparkmanahatch.input.name=Spark Mana Input Hatch
 tile.gugu-utils.sparkmanahatch.output.name=Spark Mana Output Hatch
@@ -32,6 +33,7 @@ message.gugu-utils.starlightinputhatch.ext.basic=Same as %s
 message.gugu-utils.starlightinputhatch.ext.trait=Same as %s
 message.gugu-utils.starlightinputhatch.ext.brilliant=Four times as %s
 message.gugu-utils.starlightinputhatch=Maximum Staright: %s
+message.gugu-utils.rangedconstructtool.creative=Ranged Construction Tool, use together with default tool!
 
 
 tooltips.gugu-utils.mana_amount=Mana: %s Mana

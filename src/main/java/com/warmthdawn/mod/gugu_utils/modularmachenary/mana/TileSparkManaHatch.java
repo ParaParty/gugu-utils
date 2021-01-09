@@ -4,7 +4,6 @@ import com.google.common.base.Predicates;
 import com.warmthdawn.mod.gugu_utils.ModBlocks;
 import com.warmthdawn.mod.gugu_utils.common.IRestorableTileEntity;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.IColorableTileEntity;
-import com.warmthdawn.mod.gugu_utils.modularmachenary.starlight.BlockStarightInputHatch;
 import com.warmthdawn.mod.gugu_utils.network.Messages;
 import com.warmthdawn.mod.gugu_utils.network.PacketMana;
 import com.warmthdawn.mod.gugu_utils.tools.CIELab;
@@ -132,7 +131,7 @@ public abstract class TileSparkManaHatch extends TileEntity implements IColorabl
         // client. In contrast getUpdatePacket() is called when the tile entity
         // itself wants to sync to the client. In many cases you want to send
         // over the same information in getUpdateTag() as in getUpdatePacket().
-        return writeNetworkNBT(new NBTTagCompound());
+        return writeNetworkNBT(super.getUpdateTag());
     }
 
     @Override

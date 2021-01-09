@@ -1,5 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.jei.renders;
 
+import codechicken.lib.render.state.GlStateTracker;
 import com.google.common.collect.Lists;
 import com.warmthdawn.mod.gugu_utils.ModBlocks;
 import com.warmthdawn.mod.gugu_utils.jei.ingedients.IngredientStarlight;
@@ -38,18 +39,21 @@ public class RendererStarlight implements IIngredientRenderer<IngredientStarligh
 
     @Override
     public void render(Minecraft minecraft, int offsetX, int offsetY, @Nullable IngredientStarlight ingredient) {
-        GL11.glPushAttrib(GL11.GL_ALL_ATTRIB_BITS);
-        GL11.glColor4f(1F, 1F, 1F, 1F);
-        GL11.glDisable(GL11.GL_DEPTH_TEST);
-        GL11.glEnable(GL11.GL_BLEND);
-        drawInfoStar(offsetX + 8, offsetY + 8, 10, 16, minecraft.getRenderPartialTicks());
-        GL11.glDisable(GL11.GL_BLEND);
-        GL11.glPopAttrib();
+        GlStateTracker.pushState();
+        GlStateManager.pushAttrib();
         GlStateManager.color(1F, 1F, 1F, 1F);
-
+        GlStateManager.disableDepth();
+        GlStateManager.enableBlend();
+        drawInfoStar(offsetX + 8, offsetY + 8, 10, 16, minecraft.getRenderPartialTicks());
+        GlStateManager.disableBlend();
+        GlStateManager.enableDepth();
+        GlStateManager.popAttrib();
+        GlStateManager.color(1F, 1F, 1F, 1F);
 
         if (ingredient != null && ingredient.getConstellation() != null) {
             IConstellation focus = ingredient.getConstellation();
+            GlStateManager.pushAttrib();
+            GlStateManager.disableDepth();
             GlStateManager.disableAlpha();
             RenderConstellation.renderConstellationIntoGUI(new Color(0xEEEEEE), focus,
                     offsetX - 15, offsetY - 12, 0,
@@ -60,7 +64,12 @@ public class RendererStarlight implements IIngredientRenderer<IngredientStarligh
                         }
                     }, true, false);
             GlStateManager.enableAlpha();
+            GlStateManager.enableDepth();
+            GlStateManager.popAttrib();
         }
+
+        GlStateTracker.pushState();
+        GlStateManager.color(1F, 1F, 1F, 1F);
     }
 
 

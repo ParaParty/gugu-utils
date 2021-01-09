@@ -75,14 +75,14 @@ public class CommonProxy {
             PsiCompact.initSpell();
         if (Loads.ASTRAL_SORCERY)
             MinecraftForge.EVENT_BUS.register(new StarlightHandler());
+        if (Loads.CRAFT_TWEAKER)
+            CraftTweakerCompact.preInit();
     }
 
     public void init(FMLInitializationEvent event) {
         NetworkRegistry.INSTANCE.registerGuiHandler(GuGuUtils.instance, new GuiHandler());
         ModIndependentGuis.init();
 
-        if (Loads.CRAFT_TWEAKER)
-            CraftTweakerCompact.init();
         if (Loads.BOTANIA) {
             SubtileRegisterOverride override = new SubtileRegisterOverride();
             if (override.successInject)

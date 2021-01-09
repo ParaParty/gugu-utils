@@ -3,13 +3,11 @@ package com.warmthdawn.mod.gugu_utils.jei.components;
 import com.warmthdawn.mod.gugu_utils.jei.LayoutWapper;
 import com.warmthdawn.mod.gugu_utils.jei.ingedients.IngredientStarlight;
 import com.warmthdawn.mod.gugu_utils.jei.renders.RendererStarlight;
-import hellfirepvp.astralsorcery.client.util.RenderConstellation;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import hellfirepvp.modularmachinery.common.crafting.helper.ComponentRequirement;
 import hellfirepvp.modularmachinery.common.integration.recipe.RecipeLayoutPart;
 import mezz.jei.api.ingredients.IIngredientRenderer;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.ResourceLocation;
 
 import java.awt.*;
@@ -37,7 +35,7 @@ public class JEIComponentStarlight extends ComponentRequirement.JEIComponent<Ing
 
     @Override
     public RecipeLayoutPart<IngredientStarlight> getLayoutPart(Point offset) {
-        return new LayoutPart(offset);
+        return new LayoutPart(offset, constellation != null);
     }
 
     @Override
@@ -47,9 +45,9 @@ public class JEIComponentStarlight extends ComponentRequirement.JEIComponent<Ing
 
     public static class LayoutPart extends LayoutWapper<IngredientStarlight> {
 
-        public LayoutPart(Point offset) {
+        public LayoutPart(Point offset, boolean showConstellation) {
 //            super(new Point(offset.x, offset.y - 32), 16, 80, 0, 32, 16, 16, 1, 100000);
-            super(offset, 16, 16, 16, 80, 0, 16, 8, 8, 2, 100000);
+            super(offset, 16, 16, 24, 80, 8, 16, 8, 8, 1, 80);
         }
 
         @Override

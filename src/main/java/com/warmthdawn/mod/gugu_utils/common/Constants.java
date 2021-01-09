@@ -66,4 +66,11 @@ public class Constants {
     public static final ResourceLocation RESOURCE_LENS_TRANSFORM = new ResourceLocation(GuGuUtils.MODID, NAME_LENS_TRANSFORM);
     public static final String STRING_RESOURCE_LENS_TRANSFORM = GuGuUtils.MODID + ":" + NAME_LENS_TRANSFORM;
 
+
+    //物品
+    public static final String NAME_RANGED_CONSTRUCTION_TOOL = "constructionranged";
+    public static final ResourceLocation RESOURCE_RANGED_CONSTRUCTION_TOOL = new ResourceLocation(GuGuUtils.MODID, NAME_RANGED_CONSTRUCTION_TOOL);
+    public static final String STRING_RANGED_CONSTRUCTION_TOOL = GuGuUtils.MODID + ":" + NAME_RANGED_CONSTRUCTION_TOOL;
+
+
 }

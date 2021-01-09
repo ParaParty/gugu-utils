@@ -17,7 +17,6 @@ public class ClientEventHandler {
 
         elapsedTicks++;
 
-
     }
 
 

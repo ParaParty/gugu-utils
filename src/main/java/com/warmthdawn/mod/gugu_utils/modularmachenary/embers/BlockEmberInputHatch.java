@@ -73,6 +73,11 @@ public class BlockEmberInputHatch extends VariantBlock<EmbersHatchVariant> imple
             double emberCapacity = tagCompound.getDouble("emberCapacity");
             DecimalFormat emberFormat = Embers.proxy.getDecimalFormat("embers.decimal_format.ember");
             addInformationLocalized(tooltip, emberFormat.format(ember), emberFormat.format(emberCapacity));
+        } else if (stack.getMetadata() < EmbersHatchVariant.VAULES.length) {
+            EmbersHatchVariant variant = EmbersHatchVariant.VAULES[stack.getMetadata()];
+            double emberCapacity = variant.getEmberMaxStorage();
+            DecimalFormat emberFormat = Embers.proxy.getDecimalFormat("embers.decimal_format.ember");
+            addInformationLocalized(tooltip, emberFormat.format(0), emberFormat.format(emberCapacity));
         }
     }
 

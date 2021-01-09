@@ -1,12 +1,17 @@
 package com.warmthdawn.mod.gugu_utils.proxy;
 
 import WayofTime.bloodmagic.core.RegistrarBloodMagic;
+import com.warmthdawn.mod.gugu_utils.GuGuUtils;
 import com.warmthdawn.mod.gugu_utils.botania.subtitle.SubTileEntropinnyumModified;
 import com.warmthdawn.mod.gugu_utils.botania.subtitle.SubTileShulkMeNotModified;
 import com.warmthdawn.mod.gugu_utils.common.Loads;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.tools.ItemRangedConstructTool;
+import com.warmthdawn.mod.gugu_utils.tools.RenderTools;
+import hellfirepvp.modularmachinery.common.selection.PlayerStructureSelectionHelper;
 import net.minecraft.block.BlockRailDetector;
 import net.minecraft.block.BlockSlime;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -14,15 +19,19 @@ import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.entity.monster.EntityShulker;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityPiston;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import vazkii.botania.common.entity.EntityDoppleganger;
 
 import java.lang.reflect.Field;
@@ -30,6 +39,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class MiscEventHandler {
     public static final Set<UUID> playersWithBMFlight = new HashSet<>();
@@ -156,6 +166,40 @@ public class MiscEventHandler {
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
+        }
+
+    }
+
+    @SubscribeEvent
+    @SideOnly(Side.CLIENT)
+    public void onRenderLast(RenderWorldLastEvent event) {
+        if (Minecraft.getMinecraft().player == null) return;
+
+        ItemStack held = Minecraft.getMinecraft().player.getHeldItemMainhand();
+        if (held.isEmpty()) {
+            held = Minecraft.getMinecraft().player.getHeldItemOffhand();
+        }
+        if (!held.isEmpty() && held.getItem() instanceof ItemRangedConstructTool) {
+            BlockPos firstBind = ItemRangedConstructTool.getNbtPos(held);
+            if (firstBind.getY() >= 0) {
+                RenderTools.renderBlockOutline(firstBind, event.getPartialTicks());
+            } else {
+
+                PlayerStructureSelectionHelper.StructureSelection sel = PlayerStructureSelectionHelper.clientSelection;
+                if (sel != null) {
+                    List<BlockPos> toRender = sel.getSelectedPositions().stream()
+                            .filter((pos) -> pos.distanceSq(Minecraft.getMinecraft().player.getPosition()) <= 1024)
+                            .collect(Collectors.toList());
+//                RenderingUtils.drawWhiteOutlineCubes(toRender, event.getPartialTicks());
+                    if (GuGuUtils.proxy.getClientPlayer().isSneaking()) {
+                        RenderTools.renderBlocksOutline(toRender, event.getPartialTicks(), true);
+                    } else {
+                        RenderTools.renderBlocksOutline(toRender, event.getPartialTicks());
+                    }
+
+                }
+            }
+
         }
 
     }

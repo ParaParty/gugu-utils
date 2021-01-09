@@ -48,7 +48,7 @@ public class JEIComponentEnvironment extends ComponentRequirement.JEIComponent<I
     public static class LayoutPart extends LayoutWapper<IngredientEnvironment> {
 
         public LayoutPart(Point offset) {
-            super(offset, 16, 16, 0, 0, 4, 4, 3, 200);
+            super(offset, 16, 16, 0, 0, 4, 4, 3, 50);
         }
 
         @Override

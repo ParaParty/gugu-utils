@@ -46,7 +46,7 @@ public class JEIComponentAura extends ComponentRequirement.JEIComponent<Ingredie
 
     public static class LayoutPart extends LayoutWapper<IngredientAura> {
         public LayoutPart(Point offset) {
-            super(offset, 6, 80, 6, 100, 0, 10, 8, 4, 2, 100);
+            super(offset, 6, 80, 6, 100, 0, 10, 8, 4, 2, 200);
         }
 
         @Override

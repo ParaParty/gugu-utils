@@ -10,6 +10,7 @@ import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.BlockSparkManaHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.ItemManaBlock;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.TileSparkManaHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.starlight.BlockStarightInputHatch;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.tools.ItemRangedConstructTool;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -27,15 +28,20 @@ public class ModItems {
     @GameRegistry.ObjectHolder(STRING_RESOURCE_LENS_TRANSFORM)
     public static Item lensTransform;
 
+    @GameRegistry.ObjectHolder(STRING_RANGED_CONSTRUCTION_TOOL)
+    public static Item constructionTool;
+
     @SideOnly(Side.CLIENT)
     public static void initModels() {
         if (Loads.BOTANIA) {
             ((ItemLensAddition) lensOverclocking).initModel();
             ((ItemLensAddition) lensTransform).initModel();
+            ((ItemRangedConstructTool) constructionTool).initModel();
         }
     }
 
     public static void register(IForgeRegistry<Item> registry) {
+
         if (Loads.BOTANIA) {
             registry.register(new ItemLensOverclocking().setRegistryName(RESOURCE_LENS_OVERCLOCKING));
             registry.register(new ItemLensTransform().setRegistryName(RESOURCE_LENS_TRANSFORM));
@@ -44,6 +50,7 @@ public class ModItems {
             registry.register(new ItemBlock(ModBlocks.blockEnvironmentHatch).setRegistryName(RESOURCE_ENVIRONMENTHATCH));
             registry.register(new ItemBlock(ModBlocks.blockEnergyOutputPort).setRegistryName(RESOURCE_ENERGYPORT_OUTPUT));
 
+            registry.register(new ItemRangedConstructTool().setRegistryName(RESOURCE_RANGED_CONSTRUCTION_TOOL));
             if (Loads.BOTANIA) {
                 registry.register(new ItemManaBlock((BlockSparkManaHatch) ModBlocks.blockSparkManaHatch, TileSparkManaHatch.MAX_MANA).setRegistryName(RESOURCE_MANAHATCH));
             }

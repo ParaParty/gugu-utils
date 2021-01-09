@@ -1,6 +1,7 @@
 item.gugu-utils.lensOverclocking.name=魔力透镜： 超频
 item.gugu-utils.lensTransform.name=魔力透镜： 转变
 item.gugu-utils.lensTransform.short.name=转变
+item.gugu-utils.constructionranged.name=范围建造选择工具
 
 tile.gugu-utils.sparkmanahatch.input.name=火花魔力输入仓
 tile.gugu-utils.sparkmanahatch.output.name=火花魔力输出仓
@@ -31,6 +32,7 @@ message.gugu-utils.starlightinputhatch.ext.basic=相当于 %s 的容量
 message.gugu-utils.starlightinputhatch.ext.trait=相当于 %s 的容量
 message.gugu-utils.starlightinputhatch.ext.brilliant=四倍于 %s 的容量
 message.gugu-utils.starlightinputhatch=最大星能: %s
+message.gugu-utils.rangedconstructtool.creative=范围建造工具，配合默认工具使用
 
 
 

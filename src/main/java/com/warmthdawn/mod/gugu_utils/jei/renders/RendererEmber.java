@@ -7,6 +7,7 @@ import com.warmthdawn.mod.gugu_utils.modularmachenary.embers.EmbersHatchVariant;
 import com.warmthdawn.mod.gugu_utils.tools.RenderUtils;
 import mezz.jei.api.ingredients.IIngredientRenderer;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
@@ -38,7 +39,11 @@ public class RendererEmber implements IIngredientRenderer<IngredientEmber> {
     public void render(Minecraft minecraft, int xPosition, int yPosition, @Nullable IngredientEmber ingredient) {
         int maxEmber = Math.max(800, getHatchLevel((double) ingredient.getValue()).getEmberMaxStorage());
 
+        GlStateManager.pushMatrix();
+        GlStateManager.enableAlpha();
         RenderUtils.renderEmberBarVertical(xPosition, yPosition, 0.7f, (float) (double) ingredient.getValue() / maxEmber);
+        GlStateManager.disableAlpha();
+        GlStateManager.popMatrix();
     }
 
     @Override

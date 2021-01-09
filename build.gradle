@@ -11,7 +11,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
-version = '0.2.1'
+version = '0.5.2'
 group = 'com.warmthdawn.mod.gugu-utils' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'gugu-utils'
 
@@ -102,7 +102,7 @@ dependencies {
     runtime "curse.maven:guideapi-${guideapi_version}"
 
 //    deobfCompile "curse.maven:embersrekindled-${embers_version}"
-    deobfProvided "curse.maven:embersrekindled-${embers_version}"
+    deobfCompile "curse.maven:embersrekindled-${embers_version}"
     deobfCompile "curse.maven:bloodmagic-${bloodmagic_version_curse}"
 
 
