@@ -9,20 +9,13 @@
     "updateUrl": "",
     "authorList": [
       "WarmthDawn",
-      "yuedu233_"
+      "yuedu233_",
+      "Month_Hare"
     ],
-    "credits": "The Forge and FML guys, for making this example",
+    "credits": "The Forge and FML guys",
     "logoFile": "",
     "screenshots": [],
     "dependencies": [
-      "botania",
-      "psi",
-      "babules",
-      "autoreglib",
-      "crafttweaker",
-      "mtlib",
-      "embers",
-      "modularmachinery"
     ]
   }
 ]

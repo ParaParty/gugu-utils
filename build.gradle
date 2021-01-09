@@ -8,12 +8,21 @@ buildscript {
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
-//Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+// 只需要编辑下面的东西即可，上部的代码是 Forge 设置所添加并必须的。
 
 
-version = '0.5.3'
+// 模组的基本信息，包括版本，包名等
+
+
+
+version = mod_version
 group = 'com.warmthdawn.mod.gugu-utils' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'gugu-utils'
+
+def build_number = getBuildNumber()
+version += ".b" + build_number
+
+
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
@@ -30,6 +39,10 @@ minecraft {
     // Use non-default mappings at your own risk. they may not always work.
     // simply re-run your setup task after changing the mappings to update your workspace.
     mappings = mcp_mappings
+
+    // 将代码中的所有 @VERSION@ 字段替换为 version 变量
+    replaceIn "GuGuUtils.java"
+    replace "@VERSION@", project.version
 //    useDepAts = true
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
@@ -145,7 +158,6 @@ dependencies {
     }
 
 
-
 }
 
 jar {
@@ -170,5 +182,22 @@ processResources {
     // copy everything else except the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
+    }
+}
+
+def getBuildNumber() {
+    def versionFile = file('version.properties')
+    if (versionFile.canRead()) {
+        def Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionFile))
+        def buildNumber = versionProps['BUILD_NUMBER'].toInteger()
+        def runTasks = gradle.startParameter.taskNames        //仅在assembleRelease任务是增加版本号
+        if ('build' in runTasks) {
+            versionProps['BUILD_NUMBER'] = (++versionCode).toString()
+            versionProps.store(versionFile.newWriter(), null)
+        }
+        return buildNumber
+    } else {
+        throw new GradleException("Could not find version.properties!")
     }
 }
