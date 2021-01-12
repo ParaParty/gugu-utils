@@ -20,7 +20,7 @@ group = 'com.warmthdawn.mod.gugu-utils' // http://maven.apache.org/guides/mini/g
 archivesBaseName = 'gugu-utils'
 
 def build_number = getBuildNumber()
-version += ".b" + build_number
+version += "." + build_number
 
 
 
@@ -195,7 +195,7 @@ def getBuildNumber() {
         def buildNumber = versionProps['BUILD_NUMBER'].toInteger()
         def runTasks = gradle.startParameter.taskNames        //仅在assembleRelease任务是增加版本号
         if ('build' in runTasks) {
-            versionProps['BUILD_NUMBER'] = (++versionCode).toString()
+            versionProps['BUILD_NUMBER'] = (++buildNumber).toString()
             versionProps.store(versionFile.newWriter(), null)
         }
         return buildNumber
