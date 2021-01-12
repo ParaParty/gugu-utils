@@ -174,7 +174,7 @@ public class TileEnergyOutputPort extends TileEntity implements ITickable, Machi
 
     @NotNull
     public EnumFacing getFacing() {
-        return EnumFacing.getFront(this.getBlockMetadata() & 7);
+        return EnumFacing.byIndex(this.getBlockMetadata() & 7);
     }
 
     @Override
@@ -196,7 +196,7 @@ public class TileEnergyOutputPort extends TileEntity implements ITickable, Machi
                     posEnd.getY() + rand.nextDouble() * 0.5 + 0.25,
                     posEnd.getZ() + rand.nextDouble() * 0.5 + 0.25);
             Vec3d dir = end.subtract(start);
-            double length = dir.lengthVector();
+            double length = dir.length();
             float speed = rand.nextFloat() * 0.2f + 0.4f;
             float scale = rand.nextFloat() * 0.4f + 0.5f;
             if (length > 0) {

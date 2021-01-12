@@ -1,5 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.botania.subtitle;
 
+import com.warmthdawn.mod.gugu_utils.config.TweaksConfig;
 import net.minecraft.block.BlockRailDetector;
 import net.minecraft.block.BlockSlime;
 import net.minecraft.block.state.IBlockState;
@@ -85,7 +86,7 @@ public class SubTileEntropinnyumModified extends SubTileGenerating {
 
     @Override
     public int getMaxMana() {
-        return 10000;
+        return TweaksConfig.ENTROPINNYUM_GENERATING;
     }
 
     @Override

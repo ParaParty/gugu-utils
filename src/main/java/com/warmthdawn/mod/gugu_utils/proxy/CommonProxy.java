@@ -5,9 +5,15 @@ import com.warmthdawn.mod.gugu_utils.GuGuUtils;
 import com.warmthdawn.mod.gugu_utils.ModBlocks;
 import com.warmthdawn.mod.gugu_utils.ModItems;
 import com.warmthdawn.mod.gugu_utils.botania.SubtileRegisterOverride;
-import com.warmthdawn.mod.gugu_utils.common.Loads;
+import com.warmthdawn.mod.gugu_utils.common.Enables;
+import com.warmthdawn.mod.gugu_utils.config.TweaksConfig;
 import com.warmthdawn.mod.gugu_utils.crafttweaker.CraftTweakerCompact;
 import com.warmthdawn.mod.gugu_utils.gui.ModIndependentGuis;
+import com.warmthdawn.mod.gugu_utils.handler.GuiHandler;
+import com.warmthdawn.mod.gugu_utils.handler.MiscEventHandler;
+import com.warmthdawn.mod.gugu_utils.handler.StarlightHandler;
+import com.warmthdawn.mod.gugu_utils.handler.tweaks.EntropinnyumTNTHandler;
+import com.warmthdawn.mod.gugu_utils.handler.tweaks.GaiaHandler;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.ModularMachenaryCompact;
 import com.warmthdawn.mod.gugu_utils.network.Messages;
 import com.warmthdawn.mod.gugu_utils.psi.PsiCompact;
@@ -16,7 +22,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -38,44 +43,28 @@ public class CommonProxy {
         ModItems.register(event.getRegistry());
     }
 
-    public void checkLoads() {
-        Loads.BOTANIA = Loader.isModLoaded("botania");
-        Loads.ASTRAL_SORCERY = Loader.isModLoaded("astralsorcery");
-        Loads.EMBERS = Loader.isModLoaded("embers");
-        Loads.MODULAR_MACHIENARY = Loader.isModLoaded("modularmachinery");
-        Loads.PSI = Loader.isModLoaded("psi");
-        Loads.CRAFT_TWEAKER = Loader.isModLoaded("crafttweaker");
-        Loads.THERMAL_DYNAMICS = Loader.isModLoaded("thermaldynamics");
-        Loads.APPLIED_ENERGISTICS = Loader.isModLoaded("appliedenergistics2");
-        Loads.BOTANIA_TWEAKS = Loader.isModLoaded("botania_tweaks");
-        Loads.ACTUALLY_ADDITIONS = Loader.isModLoaded("actuallyadditions");
-        Loads.NATURES_AURA = Loader.isModLoaded("naturesaura");
-        Loads.BLOOD_MAGIC = Loader.isModLoaded("bloodmagic");
-
-        if (Loads.MODULAR_MACHIENARY) {
-            //辣鸡模块化机械
-            try {
-                Class.forName("hellfirepvp.modularmachinery.common.tiles.base.ColorableMachineTile");
-            } catch (ClassNotFoundException e) {
-                Loads.MODULAR_MACHIENARY = false;
-                GuGuUtils.logger.error("Version Of Modular Machienary is Wrong");
-            }
-        }
-    }
 
     public void preInit(FMLPreInitializationEvent event) {
-        checkLoads();
+        Enables.init();
         Messages.registerMessages(GuGuUtils.MODID);
         MinecraftForge.EVENT_BUS.register(new MiscEventHandler());
-        if (Loads.MODULAR_MACHIENARY) {
+        if (Enables.BOTANIA) {
+            if (TweaksConfig.TWEAKS_GAIA) {
+                MinecraftForge.EVENT_BUS.register(new GaiaHandler());
+            }
+            if (TweaksConfig.ENTROPINNYUM_NOT_ACCEPT_COPY_TNT) {
+                MinecraftForge.EVENT_BUS.register(new EntropinnyumTNTHandler());
+            }
+        }
+        if (Enables.MODULAR_MACHIENARY) {
             MinecraftForge.EVENT_BUS.register(new ModularMachenaryCompact());
             ModularMachenaryCompact.preInit();
         }
-        if (Loads.PSI)
+        if (Enables.PSI)
             PsiCompact.initSpell();
-        if (Loads.ASTRAL_SORCERY)
+        if (Enables.ASTRAL_SORCERY)
             MinecraftForge.EVENT_BUS.register(new StarlightHandler());
-        if (Loads.CRAFT_TWEAKER)
+        if (Enables.CRAFT_TWEAKER)
             CraftTweakerCompact.preInit();
     }
 
@@ -83,7 +72,7 @@ public class CommonProxy {
         NetworkRegistry.INSTANCE.registerGuiHandler(GuGuUtils.instance, new GuiHandler());
         ModIndependentGuis.init();
 
-        if (Loads.BOTANIA) {
+        if (Enables.BOTANIA) {
             SubtileRegisterOverride override = new SubtileRegisterOverride();
             if (override.successInject)
                 override.reRegisterSubtile();
@@ -91,10 +80,10 @@ public class CommonProxy {
     }
 
     public void postInit(FMLPostInitializationEvent event) {
-        if (Loads.CRAFT_TWEAKER)
+        if (Enables.CRAFT_TWEAKER)
             CraftTweakerCompact.postInit();
 
-        if (Loads.BOTANIA_TWEAKS) {
+        if (Enables.BOTANIA_TWEAKS && Enables.BOTANIA && TweaksConfig.ENTROPINNYUM_NOT_ACCEPT_COPY_TNT) {
             try {
                 MinecraftForge.EVENT_BUS.unregister(Class.forName("quaternary.botaniatweaks.modules.botania.handler.TNTDuplicatorDetectionWorldTickHander"));
             } catch (ClassNotFoundException e) {

@@ -36,7 +36,7 @@ public class BlockEnvironmentHatch extends GenericBlock implements ITileEntityPr
         setSoundType(SoundType.STONE);
         setHarvestLevel("pickaxe", 0);
         setRegistryName(RESOURCE_ENVIRONMENTHATCH);
-        setUnlocalizedName(j(GuGuUtils.MODID, NAME_ENVIRONMENTHATCH));
+        setTranslationKey(j(GuGuUtils.MODID, NAME_ENVIRONMENTHATCH));
     }
 
 
@@ -49,7 +49,7 @@ public class BlockEnvironmentHatch extends GenericBlock implements ITileEntityPr
     @Override
     @Nonnull
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 

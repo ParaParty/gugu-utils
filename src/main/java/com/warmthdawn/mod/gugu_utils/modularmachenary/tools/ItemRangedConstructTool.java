@@ -35,7 +35,7 @@ public class ItemRangedConstructTool extends Item {
     public ItemRangedConstructTool() {
 
         setCreativeTab(GuGuUtils.creativeTab);
-        setUnlocalizedName(j(GuGuUtils.MODID, NAME_RANGED_CONSTRUCTION_TOOL));
+        setTranslationKey(j(GuGuUtils.MODID, NAME_RANGED_CONSTRUCTION_TOOL));
     }
 
     public static BlockPos getNbtPos(ItemStack stack) {

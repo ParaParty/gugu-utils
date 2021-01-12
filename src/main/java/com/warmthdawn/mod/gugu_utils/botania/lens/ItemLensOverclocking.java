@@ -22,7 +22,7 @@ public class ItemLensOverclocking extends ItemLensAddition {
     public ItemLensOverclocking() {
         super();
         setCreativeTab(GuGuUtils.creativeTab);
-        setUnlocalizedName(j(GuGuUtils.MODID, NAME_LENS_OVERCLOCKING));
+        setTranslationKey(j(GuGuUtils.MODID, NAME_LENS_OVERCLOCKING));
     }
 
     @Override

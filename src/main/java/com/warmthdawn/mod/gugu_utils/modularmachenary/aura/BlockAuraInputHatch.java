@@ -27,7 +27,7 @@ public class BlockAuraInputHatch extends GenericBlock {
         setSoundType(SoundType.STONE);
         setHarvestLevel("pickaxe", 1);
         setRegistryName(RESOURCE_AURAHATCH_INPUT);
-        setUnlocalizedName(j(GuGuUtils.MODID, NAME_AURAHATCH_INPUT));
+        setTranslationKey(j(GuGuUtils.MODID, NAME_AURAHATCH_INPUT));
     }
 
     @Override
@@ -39,7 +39,7 @@ public class BlockAuraInputHatch extends GenericBlock {
     @Override
     @Nonnull
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.TRANSLUCENT;
     }
 

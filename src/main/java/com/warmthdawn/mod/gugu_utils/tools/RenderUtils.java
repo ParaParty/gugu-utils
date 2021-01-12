@@ -1,7 +1,7 @@
 package com.warmthdawn.mod.gugu_utils.tools;
 
 import com.warmthdawn.mod.gugu_utils.GuGuUtils;
-import com.warmthdawn.mod.gugu_utils.proxy.ClientEventHandler;
+import com.warmthdawn.mod.gugu_utils.handler.ClientEventHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.BufferBuilder;

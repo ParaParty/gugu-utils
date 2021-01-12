@@ -1,4 +1,4 @@
-package com.warmthdawn.mod.gugu_utils.proxy;
+package com.warmthdawn.mod.gugu_utils.handler;
 
 import com.warmthdawn.mod.gugu_utils.common.IGuiProvider;
 import com.warmthdawn.mod.gugu_utils.gui.ModIndependentGuis;

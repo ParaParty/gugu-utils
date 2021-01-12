@@ -86,7 +86,7 @@ public class RendererStarlight implements IIngredientRenderer<IngredientStarligh
             StarlightHatchVariant levelSelected = StarlightHatchVariant.values()[((int) indexSel)];
             int max = levelSelected.getStarlightMaxStorage();
             Item i = Item.getItemFromBlock(ModBlocks.blockStarightInputHatch);
-            String locTier = i.getUnlocalizedName(new ItemStack(i, 1, levelSelected.ordinal()));
+            String locTier = i.getTranslationKey(new ItemStack(i, 1, levelSelected.ordinal()));
             locTier = I18n.format(locTier + ".name");
             String displReq = "  " + getDescriptionFromStarlightAmount(locTier, (int) ingredient.getValue(), max);
             String dsc = I18n.format("astralsorcery.journal.recipe.amt.desc");

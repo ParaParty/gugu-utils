@@ -1,6 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.network;
 
-import com.warmthdawn.mod.gugu_utils.common.Loads;
+import com.warmthdawn.mod.gugu_utils.common.Enables;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,9 +22,9 @@ public class Messages {
 
 
         // Client side
-        if (Loads.ASTRAL_SORCERY)
+        if (Enables.ASTRAL_SORCERY)
             INSTANCE.registerMessage(PacketStarlight.Handler.class, PacketStarlight.class, nextID(), Side.CLIENT);
-        if (Loads.BOTANIA) {
+        if (Enables.BOTANIA) {
             INSTANCE.registerMessage(PacketCollectorPostion.Handler.class, PacketCollectorPostion.class, nextID(), Side.CLIENT);
             INSTANCE.registerMessage(PacketMana.Handler.class, PacketMana.class, nextID(), Side.CLIENT);
         }

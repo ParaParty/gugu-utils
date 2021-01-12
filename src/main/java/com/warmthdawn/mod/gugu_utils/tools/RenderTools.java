@@ -1,6 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.tools;
 
-import com.warmthdawn.mod.gugu_utils.proxy.ClientEventHandler;
+import com.warmthdawn.mod.gugu_utils.handler.ClientEventHandler;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;

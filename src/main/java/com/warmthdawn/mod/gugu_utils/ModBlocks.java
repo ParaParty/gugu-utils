@@ -1,7 +1,7 @@
 package com.warmthdawn.mod.gugu_utils;
 
 import com.warmthdawn.mod.gugu_utils.common.GenericBlock;
-import com.warmthdawn.mod.gugu_utils.common.Loads;
+import com.warmthdawn.mod.gugu_utils.common.Enables;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.IColorableTileEntity;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.aura.BlockAuraInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.aura.TileAuraInputHatch;
@@ -54,44 +54,44 @@ public class ModBlocks {
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
-        if (Loads.MODULAR_MACHIENARY) {
+        if (Enables.MODULAR_MACHIENARY) {
             blockEnvironmentHatch.initModel();
             blockEnergyOutputPort.initModel();
-            if (Loads.BOTANIA)
+            if (Enables.BOTANIA)
                 blockSparkManaHatch.initModel();
-            if (Loads.ASTRAL_SORCERY)
+            if (Enables.ASTRAL_SORCERY)
                 blockStarightInputHatch.initModel();
-            if (Loads.EMBERS)
+            if (Enables.EMBERS)
                 blockEmberInputHatch.initModel();
-            if (Loads.NATURES_AURA)
+            if (Enables.NATURES_AURA)
                 blockAuraInputHatch.initModel();
         }
     }
 
     public static void register(IForgeRegistry<Block> registry) {
-        if (Loads.MODULAR_MACHIENARY) {
+        if (Enables.MODULAR_MACHIENARY) {
             registry.register(new BlockEnvironmentHatch());
             GameRegistry.registerTileEntity(TileEnvironmentHatch.class, RESOURCE_ENVIRONMENTHATCH);
             registry.register(new BlockEnergyOutputPort());
             GameRegistry.registerTileEntity(TileEnergyOutputPort.class, RESOURCE_ENERGYPORT_OUTPUT);
 
-            if (Loads.BOTANIA) {
+            if (Enables.BOTANIA) {
                 registry.register(new BlockSparkManaHatch());
                 GameRegistry.registerTileEntity(TileSparkManaInputHatch.class, RESOURCE_TILE_MANAHATCH_INPUT);
                 GameRegistry.registerTileEntity(TileSparkManaOutputHatch.class, RESOURCE_TILE_MANAHATCH_OUTPUT);
             }
 
-            if (Loads.ASTRAL_SORCERY) {
+            if (Enables.ASTRAL_SORCERY) {
                 registry.register(new BlockStarightInputHatch());
                 GameRegistry.registerTileEntity(TileStarlightInputHatch.class, RESOURCE_STARLIGHTHATCH_INPUT);
             }
 
-            if (Loads.EMBERS) {
+            if (Enables.EMBERS) {
                 registry.register(new BlockEmberInputHatch());
                 GameRegistry.registerTileEntity(TileEmberInputHatch.class, RESOURCE_EMBERHATCH_INPUT);
             }
 
-            if (Loads.NATURES_AURA) {
+            if (Enables.NATURES_AURA) {
                 registry.register(new BlockAuraInputHatch());
                 GameRegistry.registerTileEntity(TileAuraInputHatch.class, RESOURCE_AURAHATCH_INPUT);
             }
@@ -126,20 +126,20 @@ public class ModBlocks {
         itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockEnvironmentHatch));
         blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockEnergyOutputPort);
         itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockEnergyOutputPort));
-        if (Loads.BOTANIA) {
+        if (Enables.BOTANIA) {
             blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockSparkManaHatch);
             itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockSparkManaHatch));
         }
-        if (Loads.ASTRAL_SORCERY) {
+        if (Enables.ASTRAL_SORCERY) {
             blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockStarightInputHatch);
             itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockStarightInputHatch));
 
         }
-        if (Loads.EMBERS) {
+        if (Enables.EMBERS) {
             blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockEmberInputHatch);
             itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockEmberInputHatch));
         }
-        if (Loads.NATURES_AURA) {
+        if (Enables.NATURES_AURA) {
             blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockAuraInputHatch);
             itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockAuraInputHatch));
         }

@@ -8,7 +8,7 @@ import com.blamejared.ctgui.client.gui.craftingtable.GuiCraftingTable;
 import com.warmthdawn.mod.gugu_utils.ModItems;
 import com.warmthdawn.mod.gugu_utils.botania.BotaniaCompact;
 import com.warmthdawn.mod.gugu_utils.botania.recipes.TransformRecipe;
-import com.warmthdawn.mod.gugu_utils.common.Loads;
+import com.warmthdawn.mod.gugu_utils.common.Enables;
 import com.warmthdawn.mod.gugu_utils.gugucrttool.CrtToolGui;
 import com.warmthdawn.mod.gugu_utils.gugucrttool.GhostJEIHandler;
 import com.warmthdawn.mod.gugu_utils.jei.botania.BurstTransformCategory;
@@ -34,35 +34,35 @@ public class JEICompact implements IModPlugin {
 
     @Override
     public void registerIngredients(IModIngredientRegistration registry) {
-        if (Loads.BOTANIA)
+        if (Enables.BOTANIA)
             registry.register(() -> IngedientMana.class, new ArrayList<>(), new InfoHelper<>(), RendererMana.INSTANCE);
-        if (Loads.ASTRAL_SORCERY)
+        if (Enables.ASTRAL_SORCERY)
             registry.register(() -> IngredientStarlight.class, new ArrayList<>(), new InfoHelper<>(), RendererStarlight.INSTANCE);
-        if (Loads.EMBERS)
+        if (Enables.EMBERS)
             registry.register(() -> IngredientEmber.class, new ArrayList<>(), new InfoHelper<>(), RendererEmber.INSTANCE);
         registry.register(() -> IngredientEnvironment.class, new ArrayList<>(), new InfoHelper<>(), RendererEnvironment.INSTANCE);
 
-        if (Loads.NATURES_AURA)
+        if (Enables.NATURES_AURA)
             registry.register(() -> IngredientAura.class, new ArrayList<>(), new InfoHelper<>(), RendererAura.INSTANCE);
     }
 
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registry) {
-        if (Loads.BOTANIA)
+        if (Enables.BOTANIA)
             registry.addRecipeCategories(new BurstTransformCategory(registry.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
     public void register(IModRegistry registry) {
         registry.addGhostIngredientHandler(CrtToolGui.class, new GhostJEIHandler());
-        if (Loads.CRAFT_TWEAKER) {
+        if (Enables.CRAFT_TWEAKER) {
             registry.addGhostIngredientHandler(GuiCraftingTable.class, new GenericGhostHandler<>(SlotRecipe.class));
             registry.addGhostIngredientHandler(GuiFurnace.class, new GenericGhostHandler<>(SlotRecipe.class));
         }
-        if (Loads.THERMAL_DYNAMICS)
+        if (Enables.THERMAL_DYNAMICS)
             registry.addGhostIngredientHandler(GuiDuctConnection.class, new GenericGhostHandler<>(cofh.thermaldynamics.gui.slot.SlotFilter.class));
-        if (Loads.APPLIED_ENERGISTICS) {
+        if (Enables.APPLIED_ENERGISTICS) {
             registry.addGhostIngredientHandler(GuiPatternTerm.class, new AEPatternGhostHandler());
             registry.addGhostIngredientHandler(GuiLevelEmitter.class, new AEGenericGhostHandler<>());
             registry.addGhostIngredientHandler(GuiStorageBus.class, new AEGenericGhostHandler<>());
@@ -80,14 +80,14 @@ public class JEICompact implements IModPlugin {
 
         }
 
-        if (Loads.ACTUALLY_ADDITIONS) {
+        if (Enables.ACTUALLY_ADDITIONS) {
             registry.addGhostIngredientHandler(GuiLaserRelayItemWhitelist.class, new AAFilterGhostHandler<>());
             registry.addGhostIngredientHandler(GuiFilter.class, new AAFilterGhostHandler<>());
             registry.addGhostIngredientHandler(GuiRangedCollector.class, new AAFilterGhostHandler<>());
         }
 //        registry.addGhostIngredientHandler(GuiCraftingTable.class, new GenericGhostHandler<>());
 
-        if (Loads.BOTANIA) {
+        if (Enables.BOTANIA) {
             registry.handleRecipes(TransformRecipe.class, BurstTransformWapper::new, BurstTransformCategory.UID);
             registry.addRecipes(BotaniaCompact.recipeBurstTransform, BurstTransformCategory.UID);
             registry.addRecipeCatalyst(new ItemStack(vazkii.botania.common.block.ModBlocks.spreader), BurstTransformCategory.UID);
