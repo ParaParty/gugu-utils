@@ -3,6 +3,8 @@ package com.warmthdawn.mod.gugu_utils;
 import com.warmthdawn.mod.gugu_utils.common.GenericBlock;
 import com.warmthdawn.mod.gugu_utils.common.Enables;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.IColorableTileEntity;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.aspect.BlockAspectInputHatch;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.aspect.TileAspectInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.aura.BlockAuraInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.aura.TileAuraInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.embers.BlockEmberInputHatch;
@@ -51,6 +53,9 @@ public class ModBlocks {
     //能量输出端口
     @GameRegistry.ObjectHolder(STRING_RESOURCE_ENERGYPORT_OUTPUT)
     public static GenericBlock blockEnergyOutputPort;
+    //源质输入仓
+    @GameRegistry.ObjectHolder(STRING_RESOURCE_ASPECTHATCH_INPUT)
+    public static GenericBlock blockAspectInputHatch;
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
@@ -65,6 +70,8 @@ public class ModBlocks {
                 blockEmberInputHatch.initModel();
             if (Enables.NATURES_AURA)
                 blockAuraInputHatch.initModel();
+            if(Enables.THAUMCRAFT)
+                blockAspectInputHatch.initModel();
         }
     }
 
@@ -94,6 +101,11 @@ public class ModBlocks {
             if (Enables.NATURES_AURA) {
                 registry.register(new BlockAuraInputHatch());
                 GameRegistry.registerTileEntity(TileAuraInputHatch.class, RESOURCE_AURAHATCH_INPUT);
+            }
+
+            if(Enables.THAUMCRAFT){
+                registry.register(new BlockAspectInputHatch());
+                GameRegistry.registerTileEntity(TileAspectInputHatch.class, RESOURCE_ASPECTHATCH_INPUT);
             }
         }
     }
@@ -142,6 +154,10 @@ public class ModBlocks {
         if (Enables.NATURES_AURA) {
             blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockAuraInputHatch);
             itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockAuraInputHatch));
+        }
+        if (Enables.THAUMCRAFT) {
+            blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockAspectInputHatch);
+            itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockAspectInputHatch));
         }
     }
 

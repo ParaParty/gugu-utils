@@ -44,6 +44,9 @@ public class JEICompact implements IModPlugin {
 
         if (Enables.NATURES_AURA)
             registry.register(() -> IngredientAura.class, new ArrayList<>(), new InfoHelper<>(), RendererAura.INSTANCE);
+        if(Enables.THAUMCRAFT){
+            registry.register(() -> IngredientAspect.class, new ArrayList<>(), new InfoHelper<>(), RendererAspect.INSTANCE);
+        }
     }
 
 

@@ -11,5 +11,9 @@ public interface ICraftingResourceHolder<V> {
 
     String getOutputProblem(V checkToken);
 
+    void startCrafting(V outputToken);
+    void finishCrafting(V outputToken);
+
+
 
 }

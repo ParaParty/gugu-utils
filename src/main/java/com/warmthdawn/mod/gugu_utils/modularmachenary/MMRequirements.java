@@ -15,6 +15,7 @@ public class MMRequirements {
     public static Object REQUIREMENT_TYPE_STARLIGHT;
     public static Object REQUIREMENT_TYPE_EMBER;
     public static Object REQUIREMENT_TYPE_AURA;
+    public static Object REQUIREMENT_TYPE_ASPECT;
 
     public static void preInit() {
         REQUIREMENT_TYPE_ENVIRONMENT = new RequirementTypeEnvironment().setRegistryName(RESOURCE_ENVIRONMENT);
@@ -28,6 +29,8 @@ public class MMRequirements {
             REQUIREMENT_TYPE_EMBER = new RequirementTypeEmber().setRegistryName(RESOURCE_EMBER);
         if (Enables.NATURES_AURA)
             REQUIREMENT_TYPE_AURA = new RequirementTypeAura().setRegistryName(RESOURCE_AURA);
+        if (Enables.THAUMCRAFT)
+            REQUIREMENT_TYPE_ASPECT = new RequirementTypeAspect().setRegistryName(RESOURCE_ASPECT);
     }
 
 
@@ -44,6 +47,8 @@ public class MMRequirements {
             registry.register((IForgeRegistryEntry) REQUIREMENT_TYPE_EMBER);
         if (Enables.NATURES_AURA)
             registry.register((IForgeRegistryEntry) REQUIREMENT_TYPE_AURA);
+        if (Enables.THAUMCRAFT)
+            registry.register((IForgeRegistryEntry) REQUIREMENT_TYPE_ASPECT);
 
 
     }

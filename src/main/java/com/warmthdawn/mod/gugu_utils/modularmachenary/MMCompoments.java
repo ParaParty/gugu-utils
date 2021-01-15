@@ -7,7 +7,6 @@ import crafttweaker.annotations.ModOnly;
 import hellfirepvp.modularmachinery.common.crafting.ComponentType;
 import net.minecraftforge.registries.IForgeRegistry;
 
-@ModOnly("modularmachinery")
 public class MMCompoments {
 
 
@@ -16,6 +15,7 @@ public class MMCompoments {
     public static Object COMPONENT_STARLIGHT;
     public static Object COMPONENT_EMBER;
     public static Object COMPONENT_AURA;
+    public static Object COMPONENT_ASPECT;
 
     public static void preInit() {
         COMPONENT_ENVIRONMENT = new ComponentEnvironment().setRegistryName(Constants.RESOURCE_ENVIRONMENT);
@@ -27,6 +27,8 @@ public class MMCompoments {
             COMPONENT_EMBER = new ComponentEmber().setRegistryName(Constants.RESOURCE_EMBER);
         if (Enables.NATURES_AURA)
             COMPONENT_AURA = new ComponentAura().setRegistryName(Constants.RESOURCE_AURA);
+        if (Enables.THAUMCRAFT)
+            COMPONENT_ASPECT = new ComponentAspect().setRegistryName(Constants.RESOURCE_ASPECT);
     }
 
     public static void initComponents(IForgeRegistry<ComponentType> registry) {
@@ -39,6 +41,8 @@ public class MMCompoments {
             registry.register((ComponentType) COMPONENT_EMBER);
         if (Enables.NATURES_AURA)
             registry.register((ComponentType) COMPONENT_AURA);
+        if (Enables.THAUMCRAFT)
+            registry.register((ComponentType) COMPONENT_ASPECT);
     }
 
 

@@ -3,6 +3,7 @@ package com.warmthdawn.mod.gugu_utils.modularmachenary.mana;
 import com.google.common.base.Predicates;
 import com.warmthdawn.mod.gugu_utils.ModBlocks;
 import com.warmthdawn.mod.gugu_utils.common.IRestorableTileEntity;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.CommonMMTile;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.IColorableTileEntity;
 import com.warmthdawn.mod.gugu_utils.network.Messages;
 import com.warmthdawn.mod.gugu_utils.network.PacketMana;
@@ -34,13 +35,9 @@ import java.util.List;
 
 import static com.warmthdawn.mod.gugu_utils.common.Constants.NAME_MANA;
 
-public abstract class TileSparkManaHatch extends TileEntity implements IColorableTileEntity, IRestorableTileEntity, ISparkAttachable {
+public abstract class TileSparkManaHatch extends CommonMMTile implements IRestorableTileEntity, ISparkAttachable {
 
-    public static final String KEY_MACHINE_COLOR = "machine_color";
     public static final int MAX_MANA = 1000000;
-//    protected static final String KEY_KNOWN_MANA = "knownMana";
-
-    protected int machineColor = hellfirepvp.modularmachinery.common.data.Config.machineColor;
     protected int mana;
     protected int knownMana = -1;
     protected int hudColor = -1;//= 0x4444FF;
@@ -56,21 +53,6 @@ public abstract class TileSparkManaHatch extends TileEntity implements IColorabl
         return Math.sqrt(Math.pow(Math.abs(b[0] - a[0]), 2) + Math.pow(Math.abs(b[1] - a[1]), 2) + Math.pow(Math.abs(b[2] - a[2]), 2)) / 173.2;
     }
 
-
-    @Override
-    public int getMachineColor() {
-        return this.machineColor;
-    }
-
-    @Override
-    public void setMachineColor(int newColor) {
-        this.machineColor = newColor;
-
-        //同步
-        IBlockState state = world.getBlockState(this.getPos());
-        world.notifyBlockUpdate(this.getPos(), state, state, 1 | 2);
-        this.markDirty();
-    }
 
     @Override
     public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
@@ -90,65 +72,7 @@ public abstract class TileSparkManaHatch extends TileEntity implements IColorabl
     @Override
     public NBTTagCompound writeRestorableToNBT(NBTTagCompound compound) {
         compound.setInteger(NAME_MANA, mana);
-
         return compound;
-    }
-
-    @Override
-    public void readFromNBT(NBTTagCompound compound) {
-        super.readFromNBT(compound);
-        readRestorableFromNBT(compound);
-        readNetworkNBT(compound);
-    }
-
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-        super.writeToNBT(compound);
-        writeRestorableToNBT(compound);
-        writeNetworkNBT(compound);
-        return compound;
-    }
-
-    public NBTTagCompound writeNetworkNBT(NBTTagCompound compound) {
-        compound.setInteger(KEY_MACHINE_COLOR, this.getMachineColor());
-        return compound;
-    }
-
-    public void readNetworkNBT(NBTTagCompound compound) {
-
-        if (compound.hasKey(KEY_MACHINE_COLOR)) {
-            this.machineColor = compound.getInteger(KEY_MACHINE_COLOR);
-            this.hudColor = -1;
-        }
-
-//        if (compound.hasKey(KEY_KNOWN_MANA))
-//            knownMana = compound.getInteger(KEY_KNOWN_MANA);
-    }
-
-    @Override
-    public NBTTagCompound getUpdateTag() {
-        // getUpdateTag() is called whenever the chunkdata is sent to the
-        // client. In contrast getUpdatePacket() is called when the tile entity
-        // itself wants to sync to the client. In many cases you want to send
-        // over the same information in getUpdateTag() as in getUpdatePacket().
-        return writeNetworkNBT(super.getUpdateTag());
-    }
-
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        // Prepare a packet for syncing our TE to the client. Since we only have to sync the stack
-        // and that's all we have we just write our entire NBT here. If you have a complex
-        // tile entity that doesn't need to have all information on the client you can write
-        // a more optimal NBT here.
-        NBTTagCompound nbtTag = new NBTTagCompound();
-        this.writeNetworkNBT(nbtTag);
-        return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
-        // Here we get the packet from the server and read it into our client side tile entity
-        this.readNetworkNBT(packet.getNbtCompound());
     }
 
     @Override

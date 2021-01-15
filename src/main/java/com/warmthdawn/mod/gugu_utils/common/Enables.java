@@ -17,6 +17,7 @@ public final class Enables {
     public static boolean PSI = false;
     public static boolean CRAFT_TWEAKER = false;
     public static boolean THERMAL_DYNAMICS = false;
+    public static boolean THAUMCRAFT = false;
 
 
     public static void init() {
@@ -32,7 +33,7 @@ public final class Enables {
         Enables.ACTUALLY_ADDITIONS = Loader.isModLoaded("actuallyadditions");
         Enables.NATURES_AURA = PluginsConfig.ENABLE_NATURES_AURA_SUPPORT && Loader.isModLoaded("naturesaura");
         Enables.BLOOD_MAGIC = PluginsConfig.ENABLE_BLOOD_MAGIC_SUPPORT && Loader.isModLoaded("bloodmagic");
-
+        Enables.THAUMCRAFT = PluginsConfig.ENABLE_THAUMCRAFT_SUPPORT && Loader.isModLoaded("thaumcraft");
         if (Enables.MODULAR_MACHIENARY) {
             //辣鸡模块化机械
             try {

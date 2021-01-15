@@ -4,6 +4,7 @@ public class CraftingResourceHolder<T extends IResourceToken> implements ICrafti
 
     public final IConsumable<T> consumable;
     public final IGeneratable<T> generatable;
+    private ICraftNotifier<T> notifier;
 
     public CraftingResourceHolder(IConsumable<T> consumable, IGeneratable<T> generatable) {
         this.consumable = consumable;
@@ -18,6 +19,11 @@ public class CraftingResourceHolder<T extends IResourceToken> implements ICrafti
     public CraftingResourceHolder(IGeneratable<T> generatable) {
         this.consumable = null;
         this.generatable = generatable;
+    }
+
+    public CraftingResourceHolder<T> setNotify(ICraftNotifier<T> notifier) {
+        this.notifier = notifier;
+        return this;
     }
 
     @Override
@@ -60,5 +66,19 @@ public class CraftingResourceHolder<T extends IResourceToken> implements ICrafti
             return checkToken.getError();
         }
         return "craftcheck.failure." + checkToken.getKey() + ".output.space";
+    }
+
+    @Override
+    public void startCrafting(T outputToken) {
+        if (this.notifier != null) {
+            notifier.startCrafting(outputToken);
+        }
+    }
+
+    @Override
+    public void finishCrafting(T outputToken) {
+        if (this.notifier != null) {
+            notifier.finishCrafting(outputToken);
+        }
     }
 }

@@ -1,6 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.modularmachenary.vanilla;
 
-import com.warmthdawn.mod.gugu_utils.modularmachenary.IColorableTileEntity;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.CommonMMTile;
 import com.warmthdawn.mod.gugu_utils.network.Messages;
 import com.warmthdawn.mod.gugu_utils.network.PacketParticles;
 import hellfirepvp.modularmachinery.common.machine.IOType;
@@ -16,7 +16,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.energy.CapabilityEnergy;
 import net.minecraftforge.energy.IEnergyStorage;
@@ -28,66 +27,18 @@ import java.awt.*;
 import java.util.Random;
 import java.util.function.Function;
 
-public class TileEnergyOutputPort extends TileEntity implements ITickable, MachineComponentTile, IColorableTileEntity {
+public class TileEnergyOutputPort extends CommonMMTile implements ITickable, MachineComponentTile {
     public static final String TAG_STATE = "state";
-    public static final String KEY_MACHINE_COLOR = "machine_color";
     public static final String TAG_ENERGY_RECIEVE = "energy_recieve";
     private final Random rand = new Random();
-    protected int machineColor = hellfirepvp.modularmachinery.common.data.Config.machineColor;
     private OutputPortState state = OutputPortState.OFF;
     private TileEntity connectedTE;
     private int outputTicks = 0;
     private final EnergyStorage storage = new EnergyStorage(this::outputEnergy);
     private int clientCurrentRecieve = 0;
 
-    @Override
-    public int getMachineColor() {
-        return this.machineColor;
-    }
-
-    @Override
-    public void setMachineColor(int newColor) {
-        this.machineColor = newColor;
-        //同步
-        IBlockState state = world.getBlockState(this.getPos());
-        world.notifyBlockUpdate(this.getPos(), state, state, 1 | 2);
-        this.markDirty();
-    }
-
     public TileEntity getConnectedTE() {
         return connectedTE;
-    }
-
-    @Override
-    public NBTTagCompound getUpdateTag() {
-        NBTTagCompound nbtTag = super.getUpdateTag();
-        writeToNBT(nbtTag);
-        nbtTag.setInteger(TAG_ENERGY_RECIEVE, getEnergyProducing());
-        return nbtTag;
-    }
-
-    @Override
-    public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate) {
-        return oldState.getBlock() != newSate.getBlock();
-    }
-
-    @Nullable
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        return new SPacketUpdateTileEntity(pos, 1, getUpdateTag());
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
-        int stateIndex = packet.getNbtCompound().getInteger(TAG_STATE);
-        if (world.isRemote && stateIndex != state.ordinal()) {
-            state = OutputPortState.VALUES[stateIndex];
-            world.markBlockRangeForRenderUpdate(pos, pos);
-        }
-        if (packet.getNbtCompound().hasKey(KEY_MACHINE_COLOR))
-            this.machineColor = packet.getNbtCompound().getInteger(KEY_MACHINE_COLOR);
-        if (world.isRemote && packet.getNbtCompound().hasKey(TAG_ENERGY_RECIEVE))
-            this.clientCurrentRecieve = packet.getNbtCompound().getInteger(TAG_ENERGY_RECIEVE);
     }
 
     public OutputPortState getState() {
@@ -104,20 +55,29 @@ public class TileEnergyOutputPort extends TileEntity implements ITickable, Machi
     }
 
     @Override
-    public void readFromNBT(NBTTagCompound compound) {
-        super.readFromNBT(compound);
+    public void readNBT(NBTTagCompound compound) {
+        super.readNBT(compound);
         if (compound.hasKey(TAG_STATE))
             state = OutputPortState.VALUES[compound.getInteger(TAG_STATE)];
-        if (compound.hasKey(KEY_MACHINE_COLOR))
-            this.machineColor = compound.getInteger(KEY_MACHINE_COLOR);
+        if (world.isRemote && compound.hasKey(TAG_ENERGY_RECIEVE))
+            this.clientCurrentRecieve = compound.getInteger(TAG_ENERGY_RECIEVE);
     }
 
     @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-        super.writeToNBT(compound);
-        compound.setInteger(KEY_MACHINE_COLOR, this.getMachineColor());
+    public void writeNBT(NBTTagCompound compound) {
+        super.writeNBT(compound);
         compound.setInteger(TAG_STATE, state.ordinal());
-        return compound;
+        compound.setInteger(TAG_ENERGY_RECIEVE, getEnergyProducing());
+    }
+
+    @Override
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
+        super.onDataPacket(net, packet);
+        NBTTagCompound compound = packet.getNbtCompound();
+        int stateIndex = compound.getInteger(TAG_STATE);
+        if (world.isRemote && stateIndex != state.ordinal()) {
+            world.markBlockRangeForRenderUpdate(pos, pos);
+        }
     }
 
     @Override
@@ -214,6 +174,7 @@ public class TileEnergyOutputPort extends TileEntity implements ITickable, Machi
             }
 
             if (this.getEnergyProducing() != clientCurrentRecieve) {
+                this.clientCurrentRecieve = this.getEnergyProducing();
                 this.markDirty();
             }
 

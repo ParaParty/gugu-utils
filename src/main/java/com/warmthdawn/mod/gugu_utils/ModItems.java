@@ -73,7 +73,9 @@ public class ModItems {
             if (Enables.NATURES_AURA) {
                 registry.register(new ItemBlock(ModBlocks.blockAuraInputHatch).setRegistryName(RESOURCE_AURAHATCH_INPUT));
             }
-
+            if (Enables.THAUMCRAFT) {
+                registry.register(new ItemBlock(ModBlocks.blockAspectInputHatch).setRegistryName(RESOURCE_ASPECTHATCH_INPUT));
+            }
 
         }
     }

@@ -22,6 +22,7 @@ tile.gugu-utils.emberinputhatch.extreme.name=Extreme Ember Input Hatch
 tile.gugu-utils.environmenthatch.name=Environment Sensor
 tile.gugu-utils.aurainputhatch.name=Aura Input Hatch
 tile.gugu-utils.energyoutputport.name=Energy Output Port
+tile.gugu-utils.aspectinputhatch.name=Aspect Input Hatch
 
 
 
@@ -92,6 +93,8 @@ craftcheck.failure.gugu-utils:environment.biomes=Biomes are incorrect!
 craftcheck.failure.gugu-utils:environment.time=Not in the correct time!
 craftcheck.failure.gugu-utils:environment.weather=Not in the correct weather!
 craftcheck.failure.gugu-utils:environment.moonphase=Not have the correct moon phase!
+
+craftcheck.message.gugu-utils:aspect.consuming=Pumping Essentia!
 
 psi.spellpiece.trickAccelerate=Trick: Accelerate
 psi.spellpiece.trickAccelerate.desc=Accelerate

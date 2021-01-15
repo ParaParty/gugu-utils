@@ -1,5 +1,7 @@
 buildscript {
     repositories {
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven{ url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
         jcenter()
         maven { url = "https://files.minecraftforge.net/maven" }
     }
@@ -14,14 +16,12 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 // 模组的基本信息，包括版本，包名等
 
 
-
 version = mod_version
 group = 'com.warmthdawn.mod.gugu-utils' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'gugu-utils'
 
 def build_number = getBuildNumber()
 version += "." + build_number
-
 
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
@@ -49,6 +49,8 @@ minecraft {
 
 
 repositories {
+    maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    maven{ url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
     maven {
         name = "blamejared"
         url = "https://maven.blamejared.com"
@@ -90,8 +92,7 @@ repositories {
 dependencies {
     implementation "org.jetbrains:annotations:20.1.0"
 
-    compileOnly "mezz.jei:jei_${mc_version}:${jei_version}:api"
-    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+    deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}"
     deobfCompile "com.github.mcjty:mcjtylib:${mc_short}-${mcjtylib_version}"
     deobfCompile "hellfirepvp.modularmachinery:modularmachinery:${mc_version}-${modularmachinery_version}"
 
@@ -113,26 +114,7 @@ dependencies {
     deobfCompile "curse.maven:guideapi-${guideapi_version}"
     deobfCompile "curse.maven:embersrekindled-${embers_version}"
     deobfCompile "curse.maven:bloodmagic-${bloodmagic_version_curse}"
-
-
-//    deobfProvided("cofh:RedstoneFlux:${mc_short}-${redstoneflux_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfProvided("cofh:CoFHCore:${mc_version}-${cofhcore_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfProvided("cofh:ThermalFoundation:${mc_version}-${thermalfoundation_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfProvided("cofh:ThermalDynamics:${mc_version}-${thermaldynamics_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfProvided("cofh:CoFHWorld:${mc_version}-${cofhworld_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfProvided("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
+    deobfCompile "curse.maven:thaumcraft-${thaumcraft_version}"
 
     deobfCompile("cofh:RedstoneFlux:${mc_short}-${redstoneflux_version}:universal") {
         exclude group: "mezz.jei"
@@ -190,12 +172,18 @@ runClient {
 def getBuildNumber() {
     def versionFile = file('version.properties')
     if (versionFile.canRead()) {
-        def Properties versionProps = new Properties()
+        Properties versionProps = new Properties()
         versionProps.load(new FileInputStream(versionFile))
-        def buildNumber = versionProps['BUILD_NUMBER'].toInteger()
+        def buildNumber = versionProps['BUILD_NUMBER']
+        def savedVersion = versionProps['SAVED_VERSION']
         def runTasks = gradle.startParameter.taskNames        //仅在assembleRelease任务是增加版本号
         if ('build' in runTasks) {
             versionProps['BUILD_NUMBER'] = (++buildNumber).toString()
+            versionProps.store(versionFile.newWriter(), null)
+        }
+        if (savedVersion != project.version) {
+            versionProps['SAVED_VERSION'] = project.version.toString()
+            versionProps['BUILD_NUMBER'] = (buildNumber = 1).toString()
             versionProps.store(versionFile.newWriter(), null)
         }
         return buildNumber

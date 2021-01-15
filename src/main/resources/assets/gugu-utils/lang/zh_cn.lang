@@ -21,6 +21,7 @@ tile.gugu-utils.emberinputhatch.extreme.name=极限灰烬能量输入仓
 tile.gugu-utils.environmenthatch.name=环境传感器
 tile.gugu-utils.aurainputhatch.name=灵气输入仓
 tile.gugu-utils.energyoutputport.name=能源输出端口
+tile.gugu-utils.aspectinputhatch.name=源质输入仓
 
 
 
@@ -90,6 +91,9 @@ craftcheck.failure.gugu-utils:environment.biomes=无法在当前生物群系工�
 craftcheck.failure.gugu-utils:environment.time=当前时间段无法工作!
 craftcheck.failure.gugu-utils:environment.weather=机器需要在正确的天气下!
 craftcheck.failure.gugu-utils:environment.moonphase=今晚的月相不满足工作条件!
+
+craftcheck.message.gugu-utils:aspect.consuming=正在抽取源质!
+
 
 psi.spellpiece.trickAccelerate=启动式：加速
 psi.spellpiece.trickAccelerate.desc=PSI版快乐棒，你值得拥有
