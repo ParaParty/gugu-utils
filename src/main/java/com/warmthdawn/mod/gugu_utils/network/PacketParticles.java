@@ -9,6 +9,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.awt.*;
 
@@ -60,6 +62,7 @@ public class PacketParticles implements IMessage {
             return null;
         }
 
+        @SideOnly(Side.CLIENT)
         private void handle(PacketParticles message, MessageContext ctx) {
             EntityPlayer player = GuGuUtils.proxy.getClientPlayer();
             ParticleEnergyBall effect = new ParticleEnergyBall(

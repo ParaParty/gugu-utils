@@ -3,6 +3,8 @@ package com.warmthdawn.mod.gugu_utils;
 import com.warmthdawn.mod.gugu_utils.command.GuGuCraftCommand;
 import com.warmthdawn.mod.gugu_utils.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -15,17 +17,20 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = GuGuUtils.MODID, name = GuGuUtils.NAME, version = GuGuUtils.VERSION, dependencies = GuGuUtils.DEPENDENCY)
 public class GuGuUtils {
     public static final String MODID = "gugu-utils";
-    public static final String DEPENDENCY = "required-after:codechickenlib@[3.2.2,);required-after:mcjtylib_ng@[3.5.4,);after:modularmachinery;";
+    public static final String DEPENDENCY = "required-after:forge@[14.23.5.2847,);required-after:codechickenlib@[3.2.2,);required-after:mcjtylib_ng@[3.5.4,);after:modularmachinery;";
     public static final String NAME = "GuGu Utils";
     public static final String VERSION = "@VERSION@";
-//    public static final CreativeTabs creativeTab = new CreativeTabs(GuGuUtils.MODID) {
-//        @Override
-//        public ItemStack createIcon() {
-//            return new ItemStack(Items.BOOK);
-//        }
-//    };
+    public static final CreativeTabs creativeTab = new CreativeTabs(GuGuUtils.MODID) {
+        @Override
+        public ItemStack createIcon() {
+            return new ItemStack(Items.BOOK);
+        }
 
-    public static final CreativeTabs creativeTab = CreativeTabs.MISC;
+        @Override
+        public String getTranslationKey() {
+            return super.getTranslationKey();
+        }
+    };
     private static final String PROXY_CLIENT = "com.warmthdawn.mod.gugu_utils.proxy.ClientProxy";
     private static final String PROXY_SERVER = "com.warmthdawn.mod.gugu_utils.proxy.ServerProxy";
 
