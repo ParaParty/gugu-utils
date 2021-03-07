@@ -1,7 +1,5 @@
 buildscript {
     repositories {
-        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/' }
-        maven{ url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
         jcenter()
         maven { url = "https://files.minecraftforge.net/maven" }
     }
@@ -49,8 +47,6 @@ minecraft {
 
 
 repositories {
-    maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
-    maven{ url 'http://maven.aliyun.com/nexus/content/repositories/jcenter'}
     maven {
         name = "blamejared"
         url = "https://maven.blamejared.com"
@@ -106,34 +102,17 @@ dependencies {
 
     deobfCompile "vazkii.patchouli:Patchouli:${patchouli_version}"
 
-    deobfCompile("appeng:appliedenergistics2:${ae2_version}") {
-        exclude group: "mezz.jei"
-    }
     deobfCompile "de.ellpeck.naturesaura:NaturesAura:${naturesaura_version}"
-    deobfCompile "de.ellpeck.actuallyadditions:ActuallyAdditions:${mc_version}-${actuallyadditions_version}"
     deobfCompile "curse.maven:guideapi-${guideapi_version}"
     deobfCompile "curse.maven:embersrekindled-${embers_version}"
     deobfCompile "curse.maven:bloodmagic-${bloodmagic_version_curse}"
     deobfCompile "curse.maven:thaumcraft-${thaumcraft_version}"
 
-    deobfCompile("cofh:RedstoneFlux:${mc_short}-${redstoneflux_version}:universal") {
-        exclude group: "mezz.jei"
-    }
-    deobfCompile("cofh:CoFHCore:${mc_version}-${cofhcore_version}:universal") {
-        exclude group: "mezz.jei"
-    }
-    deobfCompile("cofh:ThermalFoundation:${mc_version}-${thermalfoundation_version}:universal") {
-        exclude group: "mezz.jei"
-    }
-    deobfCompile("cofh:ThermalDynamics:${mc_version}-${thermaldynamics_version}:universal") {
-        exclude group: "mezz.jei"
-    }
-    deobfCompile("cofh:CoFHWorld:${mc_version}-${cofhworld_version}:universal") {
-        exclude group: "mezz.jei"
-    }
     deobfCompile("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal") {
         exclude group: "mezz.jei"
     }
+
+
 
 
 }
