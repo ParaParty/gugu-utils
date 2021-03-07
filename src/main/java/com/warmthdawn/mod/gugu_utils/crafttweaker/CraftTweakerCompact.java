@@ -1,6 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.crafttweaker;
 
-import com.warmthdawn.mod.gugu_utils.common.Loads;
+import com.warmthdawn.mod.gugu_utils.common.Enables;
 import com.warmthdawn.mod.gugu_utils.crafttweaker.modularmachenary.RecipePrimerExt;
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
@@ -11,8 +11,8 @@ public class CraftTweakerCompact {
     public static final List<IAction> LATE_ADDITIONS = new ArrayList<>();
     public static final List<IAction> LATE_REMOVALS = new ArrayList<>();
 
-    public static void init() {
-        if(Loads.MODULAR_MACHIENARY)
+    public static void preInit() {
+        if(Enables.MODULAR_MACHIENARY)
             CraftTweakerAPI.registerClass(RecipePrimerExt.class);
 
     }

@@ -29,6 +29,7 @@ import static com.warmthdawn.mod.gugu_utils.tools.ResourceUtils.j;
 
 public class BlockEmberInputHatch extends VariantBlock<EmbersHatchVariant> implements ITileEntityProvider {
     public static final PropertyEnum<EmbersHatchVariant> VARIANT = PropertyEnum.create("variant", EmbersHatchVariant.class);
+    private static final String KEY_EMBER_TOOLTIP = "embers.tooltip.item.ember";
 
     public BlockEmberInputHatch() {
         super(Material.ROCK, EmbersHatchVariant.class);
@@ -37,7 +38,7 @@ public class BlockEmberInputHatch extends VariantBlock<EmbersHatchVariant> imple
         setSoundType(SoundType.STONE);
         setHarvestLevel("pickaxe", 0);
         setRegistryName(RESOURCE_EMBERHATCH_INPUT);
-        setUnlocalizedName(j(GuGuUtils.MODID, NAME_EMBERHATCH_INPUT));
+        setTranslationKey(j(GuGuUtils.MODID, NAME_EMBERHATCH_INPUT));
     }
 
     @Override
@@ -54,9 +55,10 @@ public class BlockEmberInputHatch extends VariantBlock<EmbersHatchVariant> imple
     @Override
     @Nonnull
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
+
 
     @Nullable
     @Override
@@ -72,7 +74,12 @@ public class BlockEmberInputHatch extends VariantBlock<EmbersHatchVariant> imple
             double ember = tagCompound.getDouble("ember");
             double emberCapacity = tagCompound.getDouble("emberCapacity");
             DecimalFormat emberFormat = Embers.proxy.getDecimalFormat("embers.decimal_format.ember");
-            addInformationLocalized(tooltip, emberFormat.format(ember), emberFormat.format(emberCapacity));
+            addInformationLocalized(tooltip, KEY_EMBER_TOOLTIP, emberFormat.format(ember), emberFormat.format(emberCapacity));
+        } else if (stack.getMetadata() < EmbersHatchVariant.VAULES.length) {
+            EmbersHatchVariant variant = EmbersHatchVariant.VAULES[stack.getMetadata()];
+            double emberCapacity = variant.getEmberMaxStorage();
+            DecimalFormat emberFormat = Embers.proxy.getDecimalFormat("embers.decimal_format.ember");
+            addInformationLocalized(tooltip, KEY_EMBER_TOOLTIP, emberFormat.format(0), emberFormat.format(emberCapacity));
         }
     }
 

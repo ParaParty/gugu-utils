@@ -1,5 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.botania.subtitle;
 
+import com.warmthdawn.mod.gugu_utils.config.TweaksConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.nbt.NBTTagCompound;
@@ -8,7 +9,6 @@ import vazkii.botania.common.block.subtile.generating.SubTileEndoflame;
 public class SubTileEndoflameModified extends SubTileEndoflame {
 
     private static final String TAG_FLOWER_NUM = "flowerNum";
-    private static final int MAX_FLOWER = 5;
     private static final int RANGE = 3;
     private int flowerNum = -1;
     private double efficiency = 1;
@@ -38,7 +38,7 @@ public class SubTileEndoflameModified extends SubTileEndoflame {
         if (!supertile.getWorld().isRemote && (flowerNum < 0 || ticksExisted % 80 == 0)) {
             flowerNum = Tools.getNearbyFlowers(getWorld(), getPos(), RANGE + 2,
                     ste -> ste instanceof SubTileEndoflame && ((SubTileEndoflame) ste).canGeneratePassively());
-            setEfficiency(Tools.getOutputEfficiency(flowerNum, MAX_FLOWER));
+            setEfficiency(Tools.getOutputEfficiency(flowerNum, TweaksConfig.ENDOFLAME_MAX_FLOWERS));
         }
     }
 
@@ -56,7 +56,7 @@ public class SubTileEndoflameModified extends SubTileEndoflame {
     @Override
     public void renderHUD(Minecraft mc, ScaledResolution res) {
         super.renderHUD(mc, res);
-        Tools.renderTooManyFlowers(mc, res, flowerNum, MAX_FLOWER);
+        Tools.renderTooManyFlowers(mc, res, flowerNum, TweaksConfig.ENDOFLAME_MAX_FLOWERS);
     }
 
 

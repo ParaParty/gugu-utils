@@ -4,7 +4,6 @@ import com.warmthdawn.mod.gugu_utils.GuGuUtils;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.environment.envtypes.*;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.*;
 import crafttweaker.CraftTweakerAPI;
-import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.world.IBiome;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationRegistry;
@@ -14,6 +13,7 @@ import hellfirepvp.modularmachinery.common.machine.IOType;
 import net.minecraft.world.biome.Biome;
 import stanhebben.zenscript.annotations.ZenExpansion;
 import stanhebben.zenscript.annotations.ZenMethod;
+import thaumcraft.api.aspects.Aspect;
 
 import java.util.Arrays;
 import java.util.Locale;
@@ -103,13 +103,19 @@ public class RecipePrimerExt {
         return primer;
     }
 
+//    @ZenMethod
+//    public static RecipePrimer addStarlightOutput(RecipePrimer primer, int starlight, String constellationName) {
+//        IConstellation constellation = ConstellationRegistry.getConstellationByName(constellationName);
+//        if (constellation == null) {
+//            GuGuUtils.logger.warn("Couldn't find constellation " + constellationName);
+//        }
+//        primer.appendComponent(new RequirementStarlight(starlight, constellation, IOType.OUTPUT));
+//        return primer;
+//    }
+
     @ZenMethod
-    public static RecipePrimer addStarlightOutput(RecipePrimer primer, int starlight, String constellationName) {
-        IConstellation constellation = ConstellationRegistry.getConstellationByName(constellationName);
-        if (constellation == null) {
-            GuGuUtils.logger.warn("Couldn't find constellation " + constellationName);
-        }
-        primer.appendComponent(new RequirementStarlight(starlight, constellation, IOType.OUTPUT));
+    public static RecipePrimer addStarlightInput(RecipePrimer primer, int starlight) {
+        primer.appendComponent(new RequirementStarlight(starlight, null, IOType.INPUT));
         return primer;
     }
 
@@ -169,5 +175,17 @@ public class RecipePrimerExt {
         return primer;
     }
 
+    //----------------------------------------------------------------------------------------------
+    // aspect
+    //----------------------------------------------------------------------------------------------
+    @ZenMethod
+    public static RecipePrimer addAspcetInput(RecipePrimer primer, int amount, String aspectTag) {
+        Aspect aspect = Aspect.getAspect(aspectTag);
+        if (aspect == null) {
+            GuGuUtils.logger.warn("Couldn't find aspect " + aspectTag);
+        }
+        primer.appendComponent(new RequirementAspect(amount, aspect, IOType.INPUT));
+        return primer;
+    }
 
 }

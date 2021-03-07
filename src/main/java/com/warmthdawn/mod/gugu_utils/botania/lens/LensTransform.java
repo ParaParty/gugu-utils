@@ -62,7 +62,7 @@ public class LensTransform extends Lens {
                             int maxStack = recipe.getOutput().getMaxStackSize();
                             while (outputCount > 0) {
                                 ItemStack out = recipe.getOutput().copy();
-                                out.setCount(Math.max(maxStack, outputCount));
+                                out.setCount(Math.min(maxStack, outputCount));
                                 entity.world.spawnEntity(
                                         new EntityItem(entity.world, entity.posX, entity.posY, entity.posZ,
                                                 out));

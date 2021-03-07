@@ -1,6 +1,8 @@
 item.gugu-utils.lensOverclocking.name=魔力透镜： 超频
 item.gugu-utils.lensTransform.name=魔力透镜： 转变
 item.gugu-utils.lensTransform.short.name=转变
+item.gugu-utils.constructionranged.name=范围建造选择工具
+
 
 tile.gugu-utils.sparkmanahatch.input.name=火花魔力输入仓
 tile.gugu-utils.sparkmanahatch.output.name=火花魔力输出仓
@@ -20,6 +22,7 @@ tile.gugu-utils.emberinputhatch.extreme.name=极限灰烬能量输入仓
 tile.gugu-utils.environmenthatch.name=环境传感器
 tile.gugu-utils.aurainputhatch.name=灵气输入仓
 tile.gugu-utils.energyoutputport.name=能源输出端口
+tile.gugu-utils.aspectinputhatch.name=源质输入仓
 
 
 
@@ -31,6 +34,7 @@ message.gugu-utils.starlightinputhatch.ext.basic=相当于 %s 的容量
 message.gugu-utils.starlightinputhatch.ext.trait=相当于 %s 的容量
 message.gugu-utils.starlightinputhatch.ext.brilliant=四倍于 %s 的容量
 message.gugu-utils.starlightinputhatch=最大星能: %s
+message.gugu-utils.rangedconstructtool.creative=范围建造工具，配合默认工具使用
 
 
 
@@ -88,6 +92,9 @@ craftcheck.failure.gugu-utils:environment.biomes=无法在当前生物群系工�
 craftcheck.failure.gugu-utils:environment.time=当前时间段无法工作!
 craftcheck.failure.gugu-utils:environment.weather=机器需要在正确的天气下!
 craftcheck.failure.gugu-utils:environment.moonphase=今晚的月相不满足工作条件!
+
+craftcheck.message.gugu-utils:aspect.consuming=正在抽取源质!
+
 
 psi.spellpiece.trickAccelerate=启动式：加速
 psi.spellpiece.trickAccelerate.desc=PSI版快乐棒，你值得拥有

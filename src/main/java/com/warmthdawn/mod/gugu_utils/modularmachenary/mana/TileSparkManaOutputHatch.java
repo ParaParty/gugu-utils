@@ -1,6 +1,7 @@
 package com.warmthdawn.mod.gugu_utils.modularmachenary.mana;
 
 import com.warmthdawn.mod.gugu_utils.modularmachenary.MMCompoments;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.components.GenericMachineCompoment;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.RequirementMana;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.CraftingResourceHolder;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.IGeneratable;
@@ -60,17 +61,7 @@ public class TileSparkManaOutputHatch extends TileSparkManaHatch
     @Nullable
     @Override
     public MachineComponent provideComponent() {
-        return new MachineComponent(IOType.INPUT) {
-            @Override
-            public ComponentType getComponentType() {
-                return (ComponentType) MMCompoments.COMPONENT_MANA;
-            }
-
-            @Override
-            public Object getContainerProvider() {
-                return new CraftingResourceHolder<>(TileSparkManaOutputHatch.this);
-            }
-        };
+        return new GenericMachineCompoment<>(this, (ComponentType) MMCompoments.COMPONENT_MANA);
     }
 
     @Override
@@ -177,8 +168,8 @@ public class TileSparkManaOutputHatch extends TileSparkManaHatch
     }
 
     @Override
-    public void readNetworkNBT(NBTTagCompound compound) {
-        super.readNetworkNBT(compound);
+    public void readNBT(NBTTagCompound compound) {
+        super.readNBT(compound);
         int x = compound.getInteger(TAG_COLLECTOR_X);
         int y = compound.getInteger(TAG_COLLECTOR_Y);
         int z = compound.getInteger(TAG_COLLECTOR_Z);
@@ -187,8 +178,8 @@ public class TileSparkManaOutputHatch extends TileSparkManaHatch
 
 
     @Override
-    public NBTTagCompound writeNetworkNBT(NBTTagCompound compound) {
-        super.writeNetworkNBT(compound);
+    public void writeNBT(NBTTagCompound compound) {
+        super.writeNBT(compound);
         int x = getLinkedCollector() == null ? 0 : getLinkedCollector().getPos().getX();
         int y = getLinkedCollector() == null ? -1 : getLinkedCollector().getPos().getY();
         int z = getLinkedCollector() == null ? 0 : getLinkedCollector().getPos().getZ();
@@ -197,7 +188,6 @@ public class TileSparkManaOutputHatch extends TileSparkManaHatch
         compound.setInteger(TAG_COLLECTOR_Y, y);
         compound.setInteger(TAG_COLLECTOR_Z, z);
 
-        return compound;
     }
 
     public boolean isValidBinding() {

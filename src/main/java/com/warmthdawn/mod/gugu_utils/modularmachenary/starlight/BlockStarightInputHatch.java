@@ -37,7 +37,7 @@ public class BlockStarightInputHatch extends VariantBlock<StarlightHatchVariant>
         setSoundType(SoundType.STONE);
         setHarvestLevel("pickaxe", 0);
         setRegistryName(RESOURCE_STARLIGHTHATCH_INPUT);
-        setUnlocalizedName(j(GuGuUtils.MODID, NAME_STARLIGHTHATCH_INPUT));
+        setTranslationKey(j(GuGuUtils.MODID, NAME_STARLIGHTHATCH_INPUT));
 
     }
 
@@ -50,7 +50,7 @@ public class BlockStarightInputHatch extends VariantBlock<StarlightHatchVariant>
     @Override
     @Nonnull
     @SideOnly(Side.CLIENT)
-    public BlockRenderLayer getBlockLayer() {
+    public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 

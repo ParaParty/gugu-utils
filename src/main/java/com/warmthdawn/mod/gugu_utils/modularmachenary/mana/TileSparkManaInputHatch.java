@@ -1,6 +1,7 @@
 package com.warmthdawn.mod.gugu_utils.modularmachenary.mana;
 
 import com.warmthdawn.mod.gugu_utils.modularmachenary.MMCompoments;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.components.GenericMachineCompoment;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.RequirementMana;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.CraftingResourceHolder;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.IConsumable;
@@ -23,17 +24,7 @@ public class TileSparkManaInputHatch extends TileSparkManaHatch
     @Nullable
     @Override
     public MachineComponent provideComponent() {
-        return new MachineComponent(IOType.INPUT) {
-            @Override
-            public ComponentType getComponentType() {
-                return (ComponentType) MMCompoments.COMPONENT_MANA;
-            }
-
-            @Override
-            public Object getContainerProvider() {
-                return new CraftingResourceHolder<>(TileSparkManaInputHatch.this);
-            }
-        };
+        return new GenericMachineCompoment<>(this, (ComponentType) MMCompoments.COMPONENT_MANA);
     }
 
     @Override

@@ -1,8 +1,8 @@
 package com.warmthdawn.mod.gugu_utils.modularmachenary.aura;
 
 import com.warmthdawn.mod.gugu_utils.modularmachenary.MMCompoments;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.components.GenericMachineCompoment;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.RequirementAura;
-import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.CraftingResourceHolder;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.IConsumable;
 import de.ellpeck.naturesaura.api.NaturesAuraAPI;
 import de.ellpeck.naturesaura.api.aura.chunk.IAuraChunk;
@@ -10,7 +10,6 @@ import de.ellpeck.naturesaura.api.aura.type.IAuraType;
 import de.ellpeck.naturesaura.packet.PacketHandler;
 import de.ellpeck.naturesaura.packet.PacketParticleStream;
 import hellfirepvp.modularmachinery.common.crafting.ComponentType;
-import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.tiles.base.MachineComponentTile;
 import net.minecraft.server.management.PlayerChunkMapEntry;
@@ -105,16 +104,6 @@ public class TileAuraInputHatch extends TileAuraHatch implements ITickable, Mach
     @Nullable
     @Override
     public MachineComponent provideComponent() {
-        return new MachineComponent(IOType.INPUT) {
-            @Override
-            public ComponentType getComponentType() {
-                return (ComponentType) MMCompoments.COMPONENT_AURA;
-            }
-
-            @Override
-            public Object getContainerProvider() {
-                return new CraftingResourceHolder<>(TileAuraInputHatch.this);
-            }
-        };
+        return new GenericMachineCompoment<>(this, (ComponentType) MMCompoments.COMPONENT_AURA);
     }
 }

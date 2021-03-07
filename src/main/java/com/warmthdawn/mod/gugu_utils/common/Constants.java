@@ -29,6 +29,9 @@ public class Constants {
     public static final ResourceLocation RESOURCE_AURA = new ResourceLocation(GuGuUtils.MODID, "aura");
     public static final String STRING_RESOURCE_AURA = GuGuUtils.MODID + ":" + "aura";
 
+    public static final ResourceLocation RESOURCE_ASPECT = new ResourceLocation(GuGuUtils.MODID, "aspect");
+    public static final String STRING_RESOURCE_ASPECT = GuGuUtils.MODID + ":" + "aspect";
+
     //方块相关
     public static final String NAME_MANAHATCH = "sparkmanahatch";
     public static final ResourceLocation RESOURCE_MANAHATCH = new ResourceLocation(GuGuUtils.MODID, NAME_MANAHATCH);
@@ -56,14 +59,23 @@ public class Constants {
     public static final ResourceLocation RESOURCE_ENERGYPORT_OUTPUT = new ResourceLocation(GuGuUtils.MODID, NAME_ENERGYPORT_OUTPUT);
     public static final String STRING_RESOURCE_ENERGYPORT_OUTPUT = GuGuUtils.MODID + ":" + NAME_ENERGYPORT_OUTPUT;
 
+
+    public static final String NAME_ASPECTHATCH_INPUT = "aspectinputhatch";
+    public static final ResourceLocation RESOURCE_ASPECTHATCH_INPUT = new ResourceLocation(GuGuUtils.MODID, NAME_ASPECTHATCH_INPUT);
+    public static final String STRING_RESOURCE_ASPECTHATCH_INPUT = GuGuUtils.MODID + ":" + NAME_ASPECTHATCH_INPUT;
+
     //物品
     public static final String NAME_LENS_OVERCLOCKING = "lensOverclocking";
     public static final ResourceLocation RESOURCE_LENS_OVERCLOCKING = new ResourceLocation(GuGuUtils.MODID, NAME_LENS_OVERCLOCKING);
     public static final String STRING_RESOURCE_LENS_OVERCLOCKING = GuGuUtils.MODID + ":" + NAME_LENS_OVERCLOCKING;
 
-
     public static final String NAME_LENS_TRANSFORM = "lensTransform";
     public static final ResourceLocation RESOURCE_LENS_TRANSFORM = new ResourceLocation(GuGuUtils.MODID, NAME_LENS_TRANSFORM);
     public static final String STRING_RESOURCE_LENS_TRANSFORM = GuGuUtils.MODID + ":" + NAME_LENS_TRANSFORM;
+
+    public static final String NAME_RANGED_CONSTRUCTION_TOOL = "constructionranged";
+    public static final ResourceLocation RESOURCE_RANGED_CONSTRUCTION_TOOL = new ResourceLocation(GuGuUtils.MODID, NAME_RANGED_CONSTRUCTION_TOOL);
+    public static final String STRING_RANGED_CONSTRUCTION_TOOL = GuGuUtils.MODID + ":" + NAME_RANGED_CONSTRUCTION_TOOL;
+
 
 }

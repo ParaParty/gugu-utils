@@ -3,7 +3,6 @@ package com.warmthdawn.mod.gugu_utils.modularmachenary.starlight;
 import com.warmthdawn.mod.gugu_utils.GuGuUtils;
 import com.warmthdawn.mod.gugu_utils.tools.RenderUtils;
 import com.warmthdawn.mod.gugu_utils.tools.ResourceUtils;
-import crafttweaker.annotations.ModOnly;
 import hellfirepvp.astralsorcery.client.ClientScheduler;
 import hellfirepvp.astralsorcery.client.sky.RenderAstralSkybox;
 import hellfirepvp.astralsorcery.client.util.Blending;
@@ -19,9 +18,6 @@ import hellfirepvp.astralsorcery.common.data.research.ResearchManager;
 import hellfirepvp.astralsorcery.common.util.data.Tuple;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
@@ -80,6 +76,8 @@ public class GuiStarlightInputHatch extends GuiContainer {
             int has = hatch.getClientStarlightStored();
             if (has < req) {
                 int max = hatch.getMaxStarlightStorage();
+                req = Math.min(max, req);
+                has = Math.min(max, has);
                 float percReq = (float) (req - has) / (float) max;
                 int from = (int) (165 * percFilled);
                 int to = (int) (165 * percReq);

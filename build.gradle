@@ -8,12 +8,19 @@ buildscript {
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
-//Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
+// 只需要编辑下面的东西即可，上部的代码是 Forge 设置所添加并必须的。
 
 
-version = '0.2.1'
+// 模组的基本信息，包括版本，包名等
+
+
+version = mod_version
 group = 'com.warmthdawn.mod.gugu-utils' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'gugu-utils'
+
+def build_number = getBuildNumber()
+version += "." + build_number
+
 
 sourceCompatibility = targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 compileJava {
@@ -30,6 +37,10 @@ minecraft {
     // Use non-default mappings at your own risk. they may not always work.
     // simply re-run your setup task after changing the mappings to update your workspace.
     mappings = mcp_mappings
+
+    // 将代码中的所有 @VERSION@ 字段替换为 version 变量
+    replaceIn "GuGuUtils.java"
+    replace "@VERSION@", project.version
 //    useDepAts = true
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
@@ -75,11 +86,10 @@ repositories {
 }
 
 dependencies {
-
-    compileOnly "mezz.jei:jei_${mc_version}:${jei_version}:api"
-    runtime "mezz.jei:jei_${mc_version}:${jei_version}"
-    deobfCompile "com.github.mcjty:mcjtylib:${mc_short}-${mcjtylib_version}"
     implementation "org.jetbrains:annotations:20.1.0"
+
+    deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}"
+    deobfCompile "com.github.mcjty:mcjtylib:${mc_short}-${mcjtylib_version}"
     deobfCompile "hellfirepvp.modularmachinery:modularmachinery:${mc_version}-${modularmachinery_version}"
 
     deobfCompile "vazkii.botania:Botania:${botania_version}"
@@ -92,61 +102,21 @@ dependencies {
 
     deobfCompile "vazkii.patchouli:Patchouli:${patchouli_version}"
 
-    deobfCompile("appeng:appliedenergistics2:${ae2_version}") {
-        exclude group: "mezz.jei"
-    }
     deobfCompile "de.ellpeck.naturesaura:NaturesAura:${naturesaura_version}"
-    deobfCompile "de.ellpeck.actuallyadditions:ActuallyAdditions:${mc_version}-${actuallyadditions_version}"
-//    deobfCompile "com.wayoftime.bloodmagic:BloodMagic:BloodMagic-${mc_version}-${bloodmagic_version}"
-
-    runtime "curse.maven:guideapi-${guideapi_version}"
-
-//    deobfCompile "curse.maven:embersrekindled-${embers_version}"
-    deobfProvided "curse.maven:embersrekindled-${embers_version}"
+    deobfCompile "curse.maven:guideapi-${guideapi_version}"
+    deobfCompile "curse.maven:embersrekindled-${embers_version}"
     deobfCompile "curse.maven:bloodmagic-${bloodmagic_version_curse}"
+    deobfCompile "curse.maven:thaumcraft-${thaumcraft_version}"
 
-
-//    deobfProvided("cofh:RedstoneFlux:${mc_short}-${redstoneflux_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfProvided("cofh:CoFHCore:${mc_version}-${cofhcore_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfProvided("cofh:ThermalFoundation:${mc_version}-${thermalfoundation_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfProvided("cofh:ThermalDynamics:${mc_version}-${thermaldynamics_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfProvided("cofh:CoFHWorld:${mc_version}-${cofhworld_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-//    deobfProvided("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal") {
-//        exclude group: "mezz.jei"
-//    }
-
-    deobfCompile("cofh:RedstoneFlux:${mc_short}-${redstoneflux_version}:universal") {
-        exclude group: "mezz.jei"
-    }
-    deobfCompile("cofh:CoFHCore:${mc_version}-${cofhcore_version}:universal") {
-        exclude group: "mezz.jei"
-    }
-    deobfCompile("cofh:ThermalFoundation:${mc_version}-${thermalfoundation_version}:universal") {
-        exclude group: "mezz.jei"
-    }
-    deobfCompile("cofh:ThermalDynamics:${mc_version}-${thermaldynamics_version}:universal") {
-        exclude group: "mezz.jei"
-    }
-    deobfCompile("cofh:CoFHWorld:${mc_version}-${cofhworld_version}:universal") {
-        exclude group: "mezz.jei"
-    }
     deobfCompile("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal") {
         exclude group: "mezz.jei"
     }
 
 
 
+
 }
+
 
 jar {
     manifest {
@@ -170,5 +140,33 @@ processResources {
     // copy everything else except the mcmod.info
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
+    }
+}
+
+runClient {
+    args '--username', 'WarmthDawn'
+    jvmArgs '-Xms4G', '-Xmx4G'
+}
+
+def getBuildNumber() {
+    def versionFile = file('version.properties')
+    if (versionFile.canRead()) {
+        Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionFile))
+        def buildNumber = versionProps['BUILD_NUMBER']
+        def savedVersion = versionProps['SAVED_VERSION']
+        def runTasks = gradle.startParameter.taskNames        //仅在assembleRelease任务是增加版本号
+        if ('build' in runTasks) {
+            versionProps['BUILD_NUMBER'] = (++buildNumber).toString()
+            versionProps.store(versionFile.newWriter(), null)
+        }
+        if (savedVersion != project.version) {
+            versionProps['SAVED_VERSION'] = project.version.toString()
+            versionProps['BUILD_NUMBER'] = (buildNumber = 1).toString()
+            versionProps.store(versionFile.newWriter(), null)
+        }
+        return buildNumber
+    } else {
+        throw new GradleException("Could not find version.properties!")
     }
 }

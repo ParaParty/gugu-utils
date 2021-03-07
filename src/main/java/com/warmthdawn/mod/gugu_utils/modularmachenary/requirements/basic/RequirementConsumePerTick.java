@@ -16,8 +16,9 @@ import javax.annotation.Nonnull;
 import java.util.List;
 
 public abstract class RequirementConsumePerTick<T, V extends IResourceToken> extends ComponentRequirementAdapter.PerTick<T> {
-    V checkToken;
-    V perTickToken;
+    protected V checkToken;
+
+    protected V perTickToken;
     private int totalTick;
 
     public RequirementConsumePerTick(RequirementTypeAdapter<T> requirementType, IOType actionType) {
@@ -56,6 +57,10 @@ public abstract class RequirementConsumePerTick<T, V extends IResourceToken> ext
 
     protected String getMiscProblem() {
         return "craftcheck.failure.misc";
+    }
+
+    public V getPerTickToken() {
+        return perTickToken;
     }
 
     @SuppressWarnings("unchecked")

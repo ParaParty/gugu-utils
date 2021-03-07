@@ -2,8 +2,10 @@ package com.warmthdawn.mod.gugu_utils.modularmachenary.embers;
 
 import com.warmthdawn.mod.gugu_utils.ModBlocks;
 import com.warmthdawn.mod.gugu_utils.common.IRestorableTileEntity;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.CommonMMTile;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.IColorableTileEntity;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.MMCompoments;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.components.GenericMachineCompoment;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.RequirementEmber;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.CraftingResourceHolder;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.IConsumable;
@@ -25,10 +27,8 @@ import teamroots.embers.api.capabilities.EmbersCapabilities;
 import teamroots.embers.api.power.IEmberCapability;
 import teamroots.embers.power.DefaultEmberCapability;
 
-public class TileEmberInputHatch extends TileEntity implements IColorableTileEntity, IRestorableTileEntity, IConsumable<RequirementEmber.RT>, MachineComponentTile {
-    public static final String KEY_MACHINE_COLOR = "machine_color";
+public class TileEmberInputHatch extends CommonMMTile implements IRestorableTileEntity, IConsumable<RequirementEmber.RT>, MachineComponentTile {
 
-    protected int machineColor = hellfirepvp.modularmachinery.common.data.Config.machineColor;
     private final IEmberCapability capability;
     private int emberCapacity = -1;
 
@@ -55,21 +55,6 @@ public class TileEmberInputHatch extends TileEntity implements IColorableTileEnt
     }
 
     @Override
-    public int getMachineColor() {
-        return this.machineColor;
-    }
-
-    @Override
-    public void setMachineColor(int newColor) {
-        this.machineColor = newColor;
-        //同步
-        IBlockState state = world.getBlockState(this.getPos());
-        world.notifyBlockUpdate(this.getPos(), state, state, 1 | 2);
-        this.markDirty();
-    }
-
-
-    @Override
     public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
         if (oldState.getBlock() != newState.getBlock())
             return true;
@@ -90,64 +75,11 @@ public class TileEmberInputHatch extends TileEntity implements IColorableTileEnt
         return compound;
     }
 
-    @Override
-    public void readFromNBT(NBTTagCompound compound) {
-        super.readFromNBT(compound);
-        readRestorableFromNBT(compound);
-        if (compound.hasKey(KEY_MACHINE_COLOR))
-            this.machineColor = compound.getInteger(KEY_MACHINE_COLOR);
-
-    }
-
-    @Override
-    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-        super.writeToNBT(compound);
-        writeRestorableToNBT(compound);
-        compound.setInteger(KEY_MACHINE_COLOR, this.getMachineColor());
-        return compound;
-    }
-
-    @Override
-    public NBTTagCompound getUpdateTag() {
-        // getUpdateTag() is called whenever the chunkdata is sent to the
-        // client. In contrast getUpdatePacket() is called when the tile entity
-        // itself wants to sync to the client. In many cases you want to send
-        // over the same information in getUpdateTag() as in getUpdatePacket().
-        return writeToNBT(new NBTTagCompound());
-    }
-
-    @Override
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        // Prepare a packet for syncing our TE to the client. Since we only have to sync the stack
-        // and that's all we have we just write our entire NBT here. If you have a complex
-        // tile entity that doesn't need to have all information on the client you can write
-        // a more optimal NBT here.
-        NBTTagCompound nbtTag = new NBTTagCompound();
-        this.writeToNBT(nbtTag);
-        return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
-        // Here we get the packet from the server and read it into our client side tile entity
-        this.readFromNBT(packet.getNbtCompound());
-    }
-
 
     @org.jetbrains.annotations.Nullable
     @Override
     public MachineComponent provideComponent() {
-        return new MachineComponent(IOType.INPUT) {
-            @Override
-            public ComponentType getComponentType() {
-                return (ComponentType) MMCompoments.COMPONENT_EMBER;
-            }
-
-            @Override
-            public Object getContainerProvider() {
-                return new CraftingResourceHolder<>(TileEmberInputHatch.this);
-            }
-        };
+        return new GenericMachineCompoment<>(this, (ComponentType) MMCompoments.COMPONENT_EMBER);
     }
 
     @Override

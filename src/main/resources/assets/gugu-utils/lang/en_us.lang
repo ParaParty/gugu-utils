@@ -1,6 +1,9 @@
 item.gugu-utils.lensOverclocking.name=Overlclocking Lens
 item.gugu-utils.lensTransform.name=Transform Lens
 item.gugu-utils.lensTransform.short.name=Transform
+item.gugu-utils.constructionranged.name=Ranged Construction Selection Tool
+itemGroup.gugu-utils=GuGu Utils
+
 
 tile.gugu-utils.sparkmanahatch.input.name=Spark Mana Input Hatch
 tile.gugu-utils.sparkmanahatch.output.name=Spark Mana Output Hatch
@@ -21,6 +24,7 @@ tile.gugu-utils.emberinputhatch.extreme.name=Extreme Ember Input Hatch
 tile.gugu-utils.environmenthatch.name=Environment Sensor
 tile.gugu-utils.aurainputhatch.name=Aura Input Hatch
 tile.gugu-utils.energyoutputport.name=Energy Output Port
+tile.gugu-utils.aspectinputhatch.name=Aspect Input Hatch
 
 
 
@@ -32,6 +36,7 @@ message.gugu-utils.starlightinputhatch.ext.basic=Same as %s
 message.gugu-utils.starlightinputhatch.ext.trait=Same as %s
 message.gugu-utils.starlightinputhatch.ext.brilliant=Four times as %s
 message.gugu-utils.starlightinputhatch=Maximum Staright: %s
+message.gugu-utils.rangedconstructtool.creative=Ranged Construction Tool, use together with default tool!
 
 
 tooltips.gugu-utils.mana_amount=Mana: %s Mana
@@ -90,6 +95,8 @@ craftcheck.failure.gugu-utils:environment.biomes=Biomes are incorrect!
 craftcheck.failure.gugu-utils:environment.time=Not in the correct time!
 craftcheck.failure.gugu-utils:environment.weather=Not in the correct weather!
 craftcheck.failure.gugu-utils:environment.moonphase=Not have the correct moon phase!
+
+craftcheck.message.gugu-utils:aspect.consuming=Pumping Essentia!
 
 psi.spellpiece.trickAccelerate=Trick: Accelerate
 psi.spellpiece.trickAccelerate.desc=Accelerate

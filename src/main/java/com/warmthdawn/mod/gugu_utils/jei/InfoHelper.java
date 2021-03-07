@@ -41,12 +41,12 @@ public class InfoHelper<T extends IngredientInfo> implements IIngredientHelper<T
 
     @Override
     public String getDisplayModId(T ingredient) {
-        return ingredient.getResource().getResourceDomain();
+        return ingredient.getResource().getNamespace();
     }
 
     @Override
     public String getResourceId(T ingredient) {
-        return ingredient.getResource().getResourcePath();
+        return ingredient.getResource().getPath();
     }
 
     @Override

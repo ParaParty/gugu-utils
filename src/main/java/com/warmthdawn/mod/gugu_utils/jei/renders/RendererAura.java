@@ -25,7 +25,7 @@ public class RendererAura implements IIngredientRenderer<IngredientAura> {
 
     @Override
     public void render(Minecraft minecraft, int xPosition, int yPosition, @Nullable IngredientAura ingredient) {
-        renderAuraBar(minecraft, xPosition, yPosition, (int) ingredient.getValue() * ingredient.getTicks(), TileAuraHatch.MAX_AURA);
+        renderAuraBar(minecraft, xPosition, yPosition, (int) ingredient.getValue() * ingredient.getTicks(), TileAuraHatch.MAX_AURA / 3);
     }
 
     private void renderAuraBar(Minecraft mc, int offX, int offY, int totalAmount, int max) {
@@ -41,8 +41,8 @@ public class RendererAura implements IIngredientRenderer<IngredientAura> {
             tHeight = 80;
         }
         int offset = 80 - tHeight;
-        RenderUtils.drawTexturedModalRect(offX, offY, 0, 0, 102, 6, offset);
-        RenderUtils.drawTexturedModalRect(offX, offY + offset, 0, 6, 102 + offset, 6, tHeight);
+        RenderUtils.drawTexturedModalRect(offX, offY, 0, 0, 104, 6, offset);
+        RenderUtils.drawTexturedModalRect(offX, offY + offset, 0, 6, 104 + offset, 6, tHeight);
         int color = 0x53a008;
         if (totalPercentage > 1F)
             mc.fontRenderer.drawString("+", offX + 4, offY - 0.5F, color, true);
