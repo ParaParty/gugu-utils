@@ -1,6 +1,7 @@
 buildscript {
     repositories {
-        jcenter()
+        maven { url = "https://maven.aliyun.com/repository/public" }
+        mavenCentral()
         maven { url = "https://files.minecraftforge.net/maven" }
     }
     dependencies {
@@ -41,8 +42,12 @@ minecraft {
     // 将代码中的所有 @VERSION@ 字段替换为 version 变量
     replaceIn "GuGuUtils.java"
     replace "@VERSION@", project.version
+
+    coreMod = mod_core_plugin
+    clientJvmArgs += "-Dfml.coreMods.load=${mod_core_plugin}"
+    serverJvmArgs += "-Dfml.coreMods.load=${mod_core_plugin}"
 //    useDepAts = true
-    // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+     makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
 
@@ -88,6 +93,7 @@ repositories {
 dependencies {
     implementation "org.jetbrains:annotations:20.1.0"
 
+
     deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}"
     deobfCompile "com.github.mcjty:mcjtylib:${mc_short}-${mcjtylib_version}"
     deobfCompile "hellfirepvp.modularmachinery:modularmachinery:${mc_version}-${modularmachinery_version}"
@@ -118,9 +124,13 @@ dependencies {
 }
 
 
+
 jar {
     manifest {
         attributes "FMLAT": "guug_at.cfg"
+        attributes "FMLCorePluginContainsFMLMod": "true"
+        attributes "ForceLoadAsMod": "true"
+        attributes "FMLCorePlugin": mod_core_plugin
     }
 }
 
