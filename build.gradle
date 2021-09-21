@@ -47,7 +47,7 @@ minecraft {
     clientJvmArgs += "-Dfml.coreMods.load=${mod_core_plugin}"
     serverJvmArgs += "-Dfml.coreMods.load=${mod_core_plugin}"
 //    useDepAts = true
-     makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
+//    makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
 
@@ -163,7 +163,7 @@ def getBuildNumber() {
     if (versionFile.canRead()) {
         Properties versionProps = new Properties()
         versionProps.load(new FileInputStream(versionFile))
-        def buildNumber = versionProps['BUILD_NUMBER']
+        def buildNumber = versionProps['BUILD_NUMBER'].toInteger()
         def savedVersion = versionProps['SAVED_VERSION']
         def runTasks = gradle.startParameter.taskNames        //仅在assembleRelease任务是增加版本号
         if ('build' in runTasks) {
