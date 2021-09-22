@@ -7,6 +7,10 @@ itemGroup.gugu-utils=GuGu Utils
 
 tile.gugu-utils.sparkmanahatch.input.name=Spark Mana Input Hatch
 tile.gugu-utils.sparkmanahatch.output.name=Spark Mana Output Hatch
+
+tile.gugu-utils.pressurehatch.input.name=Compressed Air Input Valve
+tile.gugu-utils.pressurehatch.output.name=Compressed Air Output Valve
+
 tile.gugu-utils.starlightinputhatch.basic.name=Basic Starlight Input Hatch
 tile.gugu-utils.starlightinputhatch.trait.name=Trait Starlight Input Hatch
 tile.gugu-utils.starlightinputhatch.brilliant.name=Brilliant Starlight Input Hatch

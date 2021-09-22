@@ -64,6 +64,13 @@ public class Constants {
     public static final ResourceLocation RESOURCE_ASPECTHATCH_INPUT = new ResourceLocation(GuGuUtils.MODID, NAME_ASPECTHATCH_INPUT);
     public static final String STRING_RESOURCE_ASPECTHATCH_INPUT = GuGuUtils.MODID + ":" + NAME_ASPECTHATCH_INPUT;
 
+
+    public static final String NAME_PRESSUREHATCH = "pressurehatch";
+    public static final ResourceLocation RESOURCE_PRESSUREHATCH = new ResourceLocation(GuGuUtils.MODID, NAME_PRESSUREHATCH);
+    public static final String STRING_RESOURCE_PRESSUREHATCH = GuGuUtils.MODID + ":" + NAME_PRESSUREHATCH;
+    public static final ResourceLocation RESOURCE_TILE_PRESSUREHATCH_OUTPUT = new ResourceLocation(GuGuUtils.MODID, NAME_PRESSUREHATCH + "_output");
+    public static final ResourceLocation RESOURCE_TILE_PRESSUREHATCH_INPUT = new ResourceLocation(GuGuUtils.MODID, NAME_PRESSUREHATCH + "_input");
+
     //物品
     public static final String NAME_LENS_OVERCLOCKING = "lensOverclocking";
     public static final ResourceLocation RESOURCE_LENS_OVERCLOCKING = new ResourceLocation(GuGuUtils.MODID, NAME_LENS_OVERCLOCKING);

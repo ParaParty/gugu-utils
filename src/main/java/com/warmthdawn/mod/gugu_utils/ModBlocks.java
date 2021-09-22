@@ -14,6 +14,7 @@ import com.warmthdawn.mod.gugu_utils.modularmachenary.environment.TileEnvironmen
 import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.BlockSparkManaHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.TileSparkManaInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.TileSparkManaOutputHatch;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.pressure.BlockPressureHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.starlight.BlockStarightInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.starlight.TileStarlightInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.vanilla.BlockEnergyOutputPort;
@@ -56,6 +57,9 @@ public class ModBlocks {
     //源质输入仓
     @GameRegistry.ObjectHolder(STRING_RESOURCE_ASPECTHATCH_INPUT)
     public static GenericBlock blockAspectInputHatch;
+    //气压输入输出仓
+    @GameRegistry.ObjectHolder(STRING_RESOURCE_PRESSUREHATCH)
+    public static GenericBlock blockPressureHatch;
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
@@ -72,6 +76,8 @@ public class ModBlocks {
                 blockAuraInputHatch.initModel();
             if(Enables.THAUMCRAFT)
                 blockAspectInputHatch.initModel();
+            if(Enables.PNEUMATICCRAFT)
+                blockPressureHatch.initModel();
         }
     }
 
@@ -106,6 +112,11 @@ public class ModBlocks {
             if(Enables.THAUMCRAFT){
                 registry.register(new BlockAspectInputHatch());
                 GameRegistry.registerTileEntity(TileAspectInputHatch.class, RESOURCE_ASPECTHATCH_INPUT);
+            }
+
+            if(Enables.PNEUMATICCRAFT){
+                registry.register(new BlockPressureHatch());
+//                GameRegistry.registerTileEntity(TileAspectInputHatch.class, RESOURCE_ASPECTHATCH_INPUT);
             }
         }
     }
@@ -158,6 +169,10 @@ public class ModBlocks {
         if (Enables.THAUMCRAFT) {
             blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockAspectInputHatch);
             itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockAspectInputHatch));
+        }
+        if (Enables.PNEUMATICCRAFT) {
+            blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockPressureHatch);
+            itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockPressureHatch));
         }
     }
 

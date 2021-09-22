@@ -18,7 +18,7 @@ public final class Enables {
     public static boolean CRAFT_TWEAKER = false;
     public static boolean THERMAL_DYNAMICS = false;
     public static boolean THAUMCRAFT = false;
-
+    public static boolean PNEUMATICCRAFT = false;
 
     public static void init() {
         Enables.BOTANIA = PluginsConfig.ENABLE_BOTANIA_SUPPORT && Loader.isModLoaded("botania");
@@ -34,14 +34,6 @@ public final class Enables {
         Enables.NATURES_AURA = PluginsConfig.ENABLE_NATURES_AURA_SUPPORT && Loader.isModLoaded("naturesaura");
         Enables.BLOOD_MAGIC = PluginsConfig.ENABLE_BLOOD_MAGIC_SUPPORT && Loader.isModLoaded("bloodmagic");
         Enables.THAUMCRAFT = PluginsConfig.ENABLE_THAUMCRAFT_SUPPORT && Loader.isModLoaded("thaumcraft");
-        if (Enables.MODULAR_MACHIENARY) {
-            //辣鸡模块化机械
-            try {
-                Class.forName("hellfirepvp.modularmachinery.common.tiles.base.ColorableMachineTile");
-            } catch (ClassNotFoundException e) {
-                Enables.MODULAR_MACHIENARY = false;
-                GuGuUtils.logger.error("Version Of Modular Machienary is Wrong");
-            }
-        }
+        Enables.PNEUMATICCRAFT = PluginsConfig.ENABLE_PNEUMATICCRAFT_SUPPORT && Loader.isModLoaded("pneumaticcraft");
     }
 }

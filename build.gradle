@@ -105,10 +105,9 @@ dependencies {
     deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:${mc_short}-${crafttweaker_version}"
     deobfCompile "com.blamejared:MTLib:${mtlib_version}"
     deobfCompile "hellfirepvp.astralsorcery:astralsorcery:${mc_version}-${astralsorcery_version}"
-
     deobfCompile "vazkii.patchouli:Patchouli:${patchouli_version}"
-
     deobfCompile "de.ellpeck.naturesaura:NaturesAura:${naturesaura_version}"
+    deobfCompile "me.desht.pneumaticcraft:pneumaticcraft-repressurized:${pneumaticcraft_repressurized_version}"
     deobfCompile "curse.maven:guideapi-${guideapi_version}"
     deobfCompile "curse.maven:embersrekindled-${embers_version}"
     deobfCompile "curse.maven:bloodmagic-${bloodmagic_version_curse}"
