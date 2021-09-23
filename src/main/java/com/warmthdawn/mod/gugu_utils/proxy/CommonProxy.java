@@ -15,8 +15,13 @@ import com.warmthdawn.mod.gugu_utils.handler.StarlightHandler;
 import com.warmthdawn.mod.gugu_utils.handler.tweaks.EntropinnyumTNTHandler;
 import com.warmthdawn.mod.gugu_utils.handler.tweaks.GaiaHandler;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.ModularMachenaryCompact;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.pressure.IUpgradeAcceptorWrapper;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.pressure.TilePressureInputHatch;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.pressure.TilePressureOutputHatch;
 import com.warmthdawn.mod.gugu_utils.network.Messages;
 import com.warmthdawn.mod.gugu_utils.psi.PsiCompact;
+import me.desht.pneumaticcraft.api.PneumaticRegistry;
+import me.desht.pneumaticcraft.api.item.IUpgradeAcceptor;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -89,6 +94,11 @@ public class CommonProxy {
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
+        }
+
+        if (Enables.PNEUMATICCRAFT) {
+            PneumaticRegistry.getInstance().getItemRegistry().registerUpgradeAcceptor(new IUpgradeAcceptorWrapper(new TilePressureInputHatch()));
+            PneumaticRegistry.getInstance().getItemRegistry().registerUpgradeAcceptor(new IUpgradeAcceptorWrapper(new TilePressureOutputHatch()));
         }
 
     }

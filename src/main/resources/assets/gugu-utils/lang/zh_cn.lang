@@ -39,6 +39,7 @@ message.gugu-utils.starlightinputhatch.ext.trait=相当于 %s 的容量
 message.gugu-utils.starlightinputhatch.ext.brilliant=四倍于 %s 的容量
 message.gugu-utils.starlightinputhatch=最大星能: %s
 message.gugu-utils.rangedconstructtool.creative=范围建造工具，配合默认工具使用
+itemGroup.gugu-utils=咕咕工具
 
 
 
@@ -73,6 +74,11 @@ tooltips.gugu-utils.environment.moonphase.5=娥眉月
 tooltips.gugu-utils.environment.moonphase.6=上弦月
 tooltips.gugu-utils.environment.moonphase.7=盈凸月
 
+tooltips.gugu-utils.gas_amount=空气: %s mL
+tooltips.gugu-utils.gas_amount.tick=空气: %s mL/t
+tooltips.gugu-utils.gas_amount.total=总计: %s mL
+tooltips.gugu-utils.pressure=工作气压: %s bar
+
 gugu-utils.jei.category.burst_transform=魔力脉冲转换
 
 
@@ -80,25 +86,28 @@ component.missing.gugu-utils:mana.input=缺少魔力输入仓！
 component.missing.gugu-utils:mana.output=缺少魔力输出仓！
 component.missing.gugu-utils:starlight.input=缺少星辉输入仓！
 component.missing.gugu-utils:environment.input=缺少环境传感器！
-component.missing.gugu-utils:aura.input=缺少灵气输入仓!
-
+component.missing.gugu-utils:aura.input=缺少灵气输入仓！
+component.missing.gugu-utils:pressurehatch.input=缺少压缩空气输入阀门！
+component.missing.gugu-utils:pressurehatch.output=缺少压缩空气输出阀门！、
 
 craftcheck.failure.gugu-utils:mana.input=缺少魔力输入！
 craftcheck.failure.gugu-utils:mana.output.space=没有足够的空间用于魔力输出！
 craftcheck.failure.gugu-utils:starlight.input=输入星能不足！
 craftcheck.failure.gugu-utils:starlight.input.wrong_constellation=输入星能的星座不正确！
-craftcheck.failure.gugu-utils:ember.input=余烬能量不足!
-craftcheck.failure.gugu-utils:aura.input=输入灵气不足!
+craftcheck.failure.gugu-utils:ember.input=余烬能量不足！
+craftcheck.failure.gugu-utils:aura.input=输入灵气不足！
+craftcheck.failure.gugu-utils:compressed_air.input=缺少压缩空气输入！
+craftcheck.failure.gugu-utils:compressed_air.input.not_enough_pressure=气压不足！
+craftcheck.failure.gugu-utils:compressed_air.input.not_enough_vacuum=不够真空！
 
-craftcheck.failure.gugu-utils:environment.altitude=无法在当前海拔下工作!
-craftcheck.failure.gugu-utils:environment.dimensions=无法在当前维度下工作!
-craftcheck.failure.gugu-utils:environment.biomes=无法在当前生物群系工作!
-craftcheck.failure.gugu-utils:environment.time=当前时间段无法工作!
-craftcheck.failure.gugu-utils:environment.weather=机器需要在正确的天气下!
-craftcheck.failure.gugu-utils:environment.moonphase=今晚的月相不满足工作条件!
+craftcheck.failure.gugu-utils:environment.altitude=无法在当前海拔下工作！
+craftcheck.failure.gugu-utils:environment.dimensions=无法在当前维度下工作！
+craftcheck.failure.gugu-utils:environment.biomes=无法在当前生物群系工作！
+craftcheck.failure.gugu-utils:environment.time=当前时间段无法工作！
+craftcheck.failure.gugu-utils:environment.weather=机器需要在正确的天气下！
+craftcheck.failure.gugu-utils:environment.moonphase=今晚的月相不满足工作条件！
 
-craftcheck.message.gugu-utils:aspect.consuming=正在抽取源质!
-
+craftcheck.message.gugu-utils:aspect.consuming=正在抽取源质！
 
 psi.spellpiece.trickAccelerate=启动式：加速
 psi.spellpiece.trickAccelerate.desc=PSI版快乐棒，你值得拥有
@@ -107,3 +116,6 @@ psi.spellpiece.trickAccelerate.desc=PSI版快乐棒，你值得拥有
 gui.gugu-utils.crttools.fluid.title=流体数量设定
 gui.gugu-utils.crttools.fluid.ok=确定
 gui.gugu-utils.crttools.fluid.cancel=取消
+
+gui.tab.info.tile.gugu-utils.pressurehatch.output=§0这个方块用来从模块化机械输出压缩空气
+gui.tab.info.tile.gugu-utils.pressurehatch.input=§0这个方块用来从模块化机械输入压缩空气

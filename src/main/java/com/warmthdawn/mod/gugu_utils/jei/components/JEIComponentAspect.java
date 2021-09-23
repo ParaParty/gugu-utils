@@ -46,7 +46,7 @@ public class JEIComponentAspect extends ComponentRequirement.JEIComponent<Ingred
 
     public static class LayoutPart extends LayoutWapper<IngredientAspect> {
         public LayoutPart(Point offset) {
-            super(offset, 16, 16, 16, 16, 0, 0, 1, 1, 3, 60);
+            super(offset, 16, 16, 18, 18, 1, 1, 1, 1, 3, 60);
         }
 
         @Override

@@ -32,6 +32,11 @@ public class Constants {
     public static final ResourceLocation RESOURCE_ASPECT = new ResourceLocation(GuGuUtils.MODID, "aspect");
     public static final String STRING_RESOURCE_ASPECT = GuGuUtils.MODID + ":" + "aspect";
 
+    public static final ResourceLocation RESOURCE_COMPRESSED_AIR = new ResourceLocation(GuGuUtils.MODID , "compressed_air");
+    public static final ResourceLocation RESOURCE_COMPRESSED_AIR_PER_TICK = new ResourceLocation(GuGuUtils.MODID , "compressed_air_pertick");
+    public static final String STRING_RESOURCE_COMPRESSED_AIR = GuGuUtils.MODID + ":" + "compressed_air";
+
+
     //方块相关
     public static final String NAME_MANAHATCH = "sparkmanahatch";
     public static final ResourceLocation RESOURCE_MANAHATCH = new ResourceLocation(GuGuUtils.MODID, NAME_MANAHATCH);

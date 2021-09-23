@@ -76,6 +76,11 @@ tooltips.gugu-utils.environment.moonphase.5=Waxing crescent
 tooltips.gugu-utils.environment.moonphase.6=First quarter
 tooltips.gugu-utils.environment.moonphase.7=Waxing gibbouss
 
+tooltips.gugu-utils.gas_amount=Air: %s mL
+tooltips.gugu-utils.gas_amount.tick=Air: %s mL/t
+tooltips.gugu-utils.gas_amount.total=Total: %s mL
+tooltips.gugu-utils.pressure=Working pressure: %s bar
+
 gugu-utils.jei.category.burst_transform=Mana Burst Transform
 
 
@@ -85,6 +90,8 @@ component.missing.gugu-utils:mana.output=No Mana Output Hatch found!
 component.missing.gugu-utils:starlight.input=No Starlight Input Hatch found!
 component.missing.gugu-utils:environment.input=No Environment Sensor found!
 component.missing.gugu-utils:aura.input=No Aura Input Hatch found!
+component.missing.gugu-utils:pressurehatch.input=No Compressed Air Input Valve found!
+component.missing.gugu-utils:pressurehatch.output=No Compressed Air Output Valve found!
 
 craftcheck.failure.gugu-utils:mana.input=Missing mana input!
 craftcheck.failure.gugu-utils:mana.output.space=Not enough space for mana output!
@@ -92,6 +99,9 @@ craftcheck.failure.gugu-utils:starlight.input=Missing starlight input!
 craftcheck.failure.gugu-utils:starlight.input.wrong_constellation=Starlight did not belong to the correct constellation!
 craftcheck.failure.gugu-utils:ember.input=Missing ember input!
 craftcheck.failure.gugu-utils:aura.input=Missing aura input!
+craftcheck.failure.gugu-utils:compressed_air.input=Missing compressed air input!
+craftcheck.failure.gugu-utils:compressed_air.input.not_enough_pressure=Not enough pressure!
+craftcheck.failure.gugu-utils:compressed_air.input.not_enough_vacuum=Not enough vacuum!
 
 craftcheck.failure.gugu-utils:environment.altitude=Altitude is incorrect!
 craftcheck.failure.gugu-utils:environment.dimensions=Dimensions are incorrect!
@@ -109,3 +119,6 @@ psi.spellpiece.trickAccelerate.desc=Accelerate
 gui.gugu-utils.crttools.fluid.title=Fluid Amount Setting
 gui.gugu-utils.crttools.fluid.ok=OK
 gui.gugu-utils.crttools.fluid.cancel=Cancel
+
+gui.tab.info.tile.gugu-utils.pressurehatch.output=§0This block is used to output compressed air form a modular machinery.
+gui.tab.info.tile.gugu-utils.pressurehatch.input=§0This block is used to input compressed air to a modular machinery.

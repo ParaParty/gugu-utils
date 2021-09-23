@@ -10,6 +10,7 @@ import com.warmthdawn.mod.gugu_utils.jei.botania.BurstTransformCategory;
 import com.warmthdawn.mod.gugu_utils.jei.botania.BurstTransformWapper;
 import com.warmthdawn.mod.gugu_utils.jei.ingedients.*;
 import com.warmthdawn.mod.gugu_utils.jei.renders.*;
+import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
@@ -21,11 +22,12 @@ import java.util.ArrayList;
 
 @JEIPlugin
 public class JEICompact implements IModPlugin {
+    private static IGuiHelper guiHelper;
 
     @Override
     public void registerIngredients(IModIngredientRegistration registry) {
         if (Enables.BOTANIA)
-            registry.register(() -> IngedientMana.class, new ArrayList<>(), new InfoHelper<>(), RendererMana.INSTANCE);
+            registry.register(() -> IngredientMana.class, new ArrayList<>(), new InfoHelper<>(), RendererMana.INSTANCE);
         if (Enables.ASTRAL_SORCERY)
             registry.register(() -> IngredientStarlight.class, new ArrayList<>(), new InfoHelper<>(), RendererStarlight.INSTANCE);
         if (Enables.EMBERS)
@@ -36,6 +38,9 @@ public class JEICompact implements IModPlugin {
             registry.register(() -> IngredientAura.class, new ArrayList<>(), new InfoHelper<>(), RendererAura.INSTANCE);
         if(Enables.THAUMCRAFT){
             registry.register(() -> IngredientAspect.class, new ArrayList<>(), new InfoHelper<>(), RendererAspect.INSTANCE);
+        }
+        if(Enables.PNEUMATICCRAFT){
+            registry.register(() -> IngredientCompressedAir.class, new ArrayList<>(), new InfoHelper<>(), RendererCompressedAir.INSTANCE);
         }
     }
 
@@ -48,6 +53,7 @@ public class JEICompact implements IModPlugin {
 
     @Override
     public void register(IModRegistry registry) {
+        guiHelper = registry.getJeiHelpers().getGuiHelper();
         registry.addGhostIngredientHandler(CrtToolGui.class, new GhostJEIHandler());
 
         if (Enables.BOTANIA) {

@@ -15,10 +15,14 @@ import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.BlockSparkManaHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.TileSparkManaInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.TileSparkManaOutputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.pressure.BlockPressureHatch;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.pressure.TilePressureInputHatch;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.pressure.TilePressureOutputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.starlight.BlockStarightInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.starlight.TileStarlightInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.vanilla.BlockEnergyOutputPort;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.vanilla.TileEnergyOutputPort;
+import me.desht.pneumaticcraft.api.PneumaticRegistry;
+import me.desht.pneumaticcraft.api.item.IUpgradeAcceptor;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.BlockColors;
@@ -116,7 +120,8 @@ public class ModBlocks {
 
             if(Enables.PNEUMATICCRAFT){
                 registry.register(new BlockPressureHatch());
-//                GameRegistry.registerTileEntity(TileAspectInputHatch.class, RESOURCE_ASPECTHATCH_INPUT);
+                GameRegistry.registerTileEntity(TilePressureOutputHatch.class, RESOURCE_TILE_PRESSUREHATCH_INPUT);
+                GameRegistry.registerTileEntity(TilePressureInputHatch.class, RESOURCE_TILE_PRESSUREHATCH_OUTPUT);
             }
         }
     }

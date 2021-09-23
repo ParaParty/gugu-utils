@@ -26,19 +26,7 @@ public final class RequirementUtils {
     }
 
     public static JsonPrimitive tryGet(JsonObject requirement, String key, boolean required) {
-        if (!requirement.has(key)) {
-            if (required) {
-                String val = "UNKNOWN";
-                StackTraceElement[] elements = new Throwable().getStackTrace();
-                if (elements.length > 1) {
-                    val = elements[1].getClassName().substring("RequirementType".length());
-                }
-                String msg = String.format("The ComponentType '%s' expects an '%s' entry!", val, key);
-                throw new JsonParseException(msg);
-            } else {
-                return null;
-            }
-        }
+        if (checkRequirement(requirement, key, required)) return null;
         if (!requirement.get(key).isJsonPrimitive()) {
             String msg = String.format("The requirement %s 's format is incorrect!", key);
             throw new JsonParseException(msg);
@@ -46,7 +34,7 @@ public final class RequirementUtils {
         return requirement.getAsJsonPrimitive(key);
     }
 
-    public static JsonArray tryGetArr(JsonObject requirement, String key, boolean required) {
+    private static boolean checkRequirement(JsonObject requirement, String key, boolean required) {
         if (!requirement.has(key)) {
             if (required) {
                 String val = "UNKNOWN";
@@ -57,9 +45,15 @@ public final class RequirementUtils {
                 String msg = String.format("The ComponentType '%s' expects an '%s' entry!", val, key);
                 throw new JsonParseException(msg);
             } else {
-                return null;
+                return true;
             }
         }
+        return false;
+    }
+
+
+    public static JsonArray tryGetArr(JsonObject requirement, String key, boolean required) {
+        if (checkRequirement(requirement, key, required)) return null;
         if (!requirement.get(key).isJsonArray()) {
             String msg = String.format("The requirement %s 's format is incorrect!", key);
             throw new JsonParseException(msg);

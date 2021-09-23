@@ -1,8 +1,7 @@
 package com.warmthdawn.mod.gugu_utils.jei.renders;
 
 import com.google.common.collect.Lists;
-import com.warmthdawn.mod.gugu_utils.jei.ingedients.IngedientMana;
-import com.warmthdawn.mod.gugu_utils.jei.ingedients.IngredientInfo;
+import com.warmthdawn.mod.gugu_utils.jei.ingedients.IngredientMana;
 import mezz.jei.api.ingredients.IIngredientRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -20,7 +19,7 @@ import java.util.List;
 import static com.warmthdawn.mod.gugu_utils.tools.RenderUtils.renderItem;
 import static com.warmthdawn.mod.gugu_utils.tools.RenderUtils.renderManaBarVertical;
 
-public class RendererMana implements IIngredientRenderer<IngedientMana> {
+public class RendererMana implements IIngredientRenderer<IngredientMana> {
     public static final RendererMana INSTANCE = new RendererMana();
     public static final String KEY_MANA_AMOUNT = "tooltips.gugu-utils.mana_amount";
     public static final String KEY_MANA_AMOUNT_TICK = "tooltips.gugu-utils.mana_amount.tick";
@@ -43,7 +42,7 @@ public class RendererMana implements IIngredientRenderer<IngedientMana> {
 
     @Override
     @NotNull
-    public List<String> getTooltip(Minecraft minecraft, IngedientMana ingredient, ITooltipFlag tooltipFlag) {
+    public List<String> getTooltip(Minecraft minecraft, IngredientMana ingredient, ITooltipFlag tooltipFlag) {
         List<String> result = Lists.newArrayList();
         if (!(ingredient.getValue() instanceof Number)) {
             result.add("Mana");
@@ -64,7 +63,7 @@ public class RendererMana implements IIngredientRenderer<IngedientMana> {
     }
 
     @Override
-    public void render(Minecraft minecraft, int xPosition, int yPosition, @Nullable IngedientMana ingredient) {
+    public void render(Minecraft minecraft, int xPosition, int yPosition, @Nullable IngredientMana ingredient) {
         xPosition += offsetX;
         yPosition += offsetY;
 

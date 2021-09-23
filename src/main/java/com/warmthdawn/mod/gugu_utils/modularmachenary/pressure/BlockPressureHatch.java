@@ -1,11 +1,14 @@
 package com.warmthdawn.mod.gugu_utils.modularmachenary.pressure;
 
 import com.warmthdawn.mod.gugu_utils.GuGuUtils;
+import com.warmthdawn.mod.gugu_utils.common.IGuiProvider;
 import com.warmthdawn.mod.gugu_utils.common.VariantBlock;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.ManaHatchVariant;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.TileSparkManaHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.TileSparkManaInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.TileSparkManaOutputHatch;
+import me.desht.pneumaticcraft.common.tileentity.TileEntityBase;
+import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -21,6 +24,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -36,7 +40,7 @@ import static com.warmthdawn.mod.gugu_utils.tools.ResourceUtils.TOOLTIP_PREFIX;
 import static com.warmthdawn.mod.gugu_utils.tools.ResourceUtils.j;
 
 
-public class BlockPressureHatch extends VariantBlock<PressureHatchVariant> {
+public class BlockPressureHatch extends VariantBlock<PressureHatchVariant> implements ITileEntityProvider {
 
     public static final PropertyEnum<PressureHatchVariant> VARIANT = PropertyEnum.create("variant", PressureHatchVariant.class);
 
@@ -70,21 +74,42 @@ public class BlockPressureHatch extends VariantBlock<PressureHatchVariant> {
     }
 
     @Override
+    public void onNeighborChange(IBlockAccess world, BlockPos pos, BlockPos tilePos) {
+        if (world instanceof World && !((World) world).isRemote) {
+            TileEntity te = world.getTileEntity(pos);
+            if (te instanceof TileEntityBase) {
+                ((TileEntityBase) te).onNeighborTileUpdate();
+            }
+        }
+    }
+
+    @Override
+    public void neighborChanged(IBlockState state, World world, BlockPos pos, Block block, BlockPos fromPos) {
+        if (!world.isRemote) {
+            TileEntity te = world.getTileEntity(pos);
+            if (te instanceof TileEntityBase) {
+                ((TileEntityBase) te).onNeighborBlockUpdate();
+            }
+        }
+    }
+
+
+    @Override
     @Nonnull
     @SideOnly(Side.CLIENT)
     public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT;
     }
 
-//    @Nullable
-//    @Override
-//    public TileEntity createNewTileEntity(World world, int meta) {
-//        if (meta == PressureHatchVariant.OUTPUT.ordinal()) {
-//            return new TileSparkManaOutputHatch();
-//        } else {
-//            return new TileSparkManaInputHatch();
-//        }
-//    }
+    @Nullable
+    @Override
+    public TileEntity createNewTileEntity(World world, int meta) {
+        if (meta == PressureHatchVariant.OUTPUT.ordinal()) {
+            return new TilePressureOutputHatch();
+        } else {
+            return new TilePressureInputHatch();
+        }
+    }
 
     @Override
     @SideOnly(Side.CLIENT)

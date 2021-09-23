@@ -17,6 +17,10 @@ public class MMRequirements {
     public static Object REQUIREMENT_TYPE_AURA;
     public static Object REQUIREMENT_TYPE_ASPECT;
 
+
+    public static Object REQUIREMENT_TYPE_COMPRESSED_AIR;
+    public static Object REQUIREMENT_TYPE_COMPRESSED_AIR_PER_TICK;
+
     public static void preInit() {
         REQUIREMENT_TYPE_ENVIRONMENT = new RequirementTypeEnvironment().setRegistryName(RESOURCE_ENVIRONMENT);
         if (Enables.BOTANIA) {
@@ -31,6 +35,11 @@ public class MMRequirements {
             REQUIREMENT_TYPE_AURA = new RequirementTypeAura().setRegistryName(RESOURCE_AURA);
         if (Enables.THAUMCRAFT)
             REQUIREMENT_TYPE_ASPECT = new RequirementTypeAspect().setRegistryName(RESOURCE_ASPECT);
+
+        if(Enables.PNEUMATICCRAFT) {
+            REQUIREMENT_TYPE_COMPRESSED_AIR = new RequirementTypeCompressedAir().setRegistryName(RESOURCE_COMPRESSED_AIR);
+            REQUIREMENT_TYPE_COMPRESSED_AIR_PER_TICK = new RequirementTypeCompressedAirPerTick().setRegistryName(RESOURCE_COMPRESSED_AIR_PER_TICK);
+        }
     }
 
 
@@ -50,6 +59,10 @@ public class MMRequirements {
         if (Enables.THAUMCRAFT)
             registry.register((IForgeRegistryEntry) REQUIREMENT_TYPE_ASPECT);
 
+        if(Enables.PNEUMATICCRAFT) {
+            registry.register((IForgeRegistryEntry) REQUIREMENT_TYPE_COMPRESSED_AIR);
+            registry.register((IForgeRegistryEntry) REQUIREMENT_TYPE_COMPRESSED_AIR_PER_TICK);
+        }
 
     }
 }
