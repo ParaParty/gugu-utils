@@ -93,8 +93,10 @@ public class TileAuraInputHatch extends TileAuraHatch implements ITickable, Mach
     public boolean consume(RequirementAura.RT outputToken, boolean doOperation) {
         int consume = this.container.drainAura(outputToken.getAura(), !doOperation);
         outputToken.setAura(outputToken.getAura() - consume);
-        if (doOperation || outputToken.isForceDrain() && outputToken.getAura() > 0) {
-            this.drainAuraForce(outputToken.getAura());
+        if (outputToken.isForceDrain() && outputToken.getAura() > 0) {
+            if(doOperation) {
+                this.drainAuraForce(outputToken.getAura());
+            }
             consume += outputToken.getAura();
             outputToken.setAura(0);
         }

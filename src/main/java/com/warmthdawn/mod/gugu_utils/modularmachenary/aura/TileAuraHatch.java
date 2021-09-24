@@ -12,6 +12,7 @@ import javax.annotation.Nullable;
 
 public class TileAuraHatch extends CommonMMTile {
     public static final int MAX_AURA = 500000;
+
     protected BasicAuraContainer container = new BasicAuraContainer(null, MAX_AURA);
 
     @Override
