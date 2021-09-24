@@ -4,6 +4,7 @@ import com.warmthdawn.mod.gugu_utils.GuGuUtils;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.environment.envtypes.*;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.*;
 import crafttweaker.CraftTweakerAPI;
+import crafttweaker.annotations.ZenDoc;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.world.IBiome;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationRegistry;
@@ -18,7 +19,6 @@ import thaumcraft.api.aspects.Aspect;
 import java.util.Arrays;
 import java.util.Locale;
 
-@SuppressWarnings("unchecked")
 @ZenExpansion("mods.modularmachinery.RecipePrimer")
 public class RecipePrimerExt {
 
@@ -187,5 +187,30 @@ public class RecipePrimerExt {
         primer.appendComponent(new RequirementAspect(amount, aspect, IOType.INPUT));
         return primer;
     }
+
+    //----------------------------------------------------------------------------------------------
+    // air
+    //----------------------------------------------------------------------------------------------
+    @ZenMethod
+    public static RecipePrimer addCompressedAirInput(RecipePrimer primer, float pressure, int air) {
+        primer.appendComponent(new RequirementCompressedAir(pressure, air, IOType.INPUT));
+        return primer;
+    }
+    @ZenMethod
+    public static RecipePrimer addCompressedAirOutput(RecipePrimer primer, float pressure, int air) {
+        primer.appendComponent(new RequirementCompressedAir(pressure, air, IOType.OUTPUT));
+        return primer;
+    }
+    @ZenMethod
+    public static RecipePrimer addCompressedAirPerTickInput(RecipePrimer primer, float pressure, int air) {
+        primer.appendComponent(new RequirementCompressedAirPerTick(pressure, air, primer.getTotalProcessingTickTime(), IOType.INPUT));
+        return primer;
+    }
+    @ZenMethod
+    public static RecipePrimer addCompressedAirPerTickOutput(RecipePrimer primer, float pressure, int air) {
+        primer.appendComponent(new RequirementCompressedAirPerTick(pressure, air, primer.getTotalProcessingTickTime(), IOType.OUTPUT));
+        return primer;
+    }
+
 
 }
