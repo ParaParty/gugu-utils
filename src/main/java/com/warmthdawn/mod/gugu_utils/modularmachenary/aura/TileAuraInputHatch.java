@@ -45,11 +45,11 @@ public class TileAuraInputHatch extends TileAuraHatch implements ITickable, Mach
         if (drains > 1000) {
             float scale = drains / 2500f;
             PacketHandler.sendToAllAround(this.world, this.pos, 32, new PacketParticleStream(
-                    this.pos.getX() + (float) rand.nextGaussian() * 6F,
-                    this.pos.getY() + rand.nextFloat() * 6F,
-                    this.pos.getZ() + (float) rand.nextGaussian() * 6F,
-                    this.pos.getX() + 0.5F, this.pos.getY() + 0.5F, this.pos.getZ() + 0.5F,
-                    rand.nextFloat() * 0.1F + 0.1F, IAuraType.forWorld(this.world).getColor(), rand.nextFloat() + scale
+                this.pos.getX() + (float) rand.nextGaussian() * 6F,
+                this.pos.getY() + rand.nextFloat() * 6F,
+                this.pos.getZ() + (float) rand.nextGaussian() * 6F,
+                this.pos.getX() + 0.5F, this.pos.getY() + 0.5F, this.pos.getZ() + 0.5F,
+                rand.nextFloat() * 0.1F + 0.1F, IAuraType.forWorld(this.world).getColor(), rand.nextFloat() + scale
             ));
             drains = 0;
         }
@@ -59,7 +59,16 @@ public class TileAuraInputHatch extends TileAuraHatch implements ITickable, Mach
     public void update() {
         Random rand = this.world.rand;
         if (!this.world.isRemote) {
-            double storeAttempt = 1.2 - ((float) this.container.getStoredAura() / this.container.getMaxAura());
+            float sorePercent = (float) this.container.getStoredAura() / this.container.getMaxAura();
+
+            double storeAttempt = 8;
+            if (sorePercent > 0.6) {
+                storeAttempt = 1.1 - sorePercent;
+            } else if (sorePercent > 0.4) {
+                storeAttempt = 2 * (1.1 - sorePercent);
+            } else if (sorePercent > 0.2) {
+                storeAttempt = 5 * (1.1 - sorePercent);
+            }
             int space = this.container.storeAura((int) (800 * storeAttempt), true);
             if (space > 0 && this.container.isAcceptableType(IAuraType.forWorld(this.world))) {
                 int toStore = Math.min(IAuraChunk.getAuraInArea(this.world, this.pos, 20), space);
@@ -80,8 +89,8 @@ public class TileAuraInputHatch extends TileAuraHatch implements ITickable, Mach
             if (!world.getBlockState(pos).isOpaqueCube() && rand.nextFloat() >= 0.7F) {
                 if (this.container.getStoredAura() > 0) {
                     NaturesAuraAPI.instance().spawnMagicParticle(
-                            this.pos.getX() + rand.nextFloat(), this.pos.getY() + 1F, this.pos.getZ() + rand.nextFloat(),
-                            0F, 0F, 0F, this.container.getAuraColor(), rand.nextFloat() * 3F + 1F, rand.nextInt(100) + 50, -0.05F, true, true);
+                        this.pos.getX() + rand.nextFloat(), this.pos.getY() + 1F, this.pos.getZ() + rand.nextFloat(),
+                        0F, 0F, 0F, this.container.getAuraColor(), rand.nextFloat() * 3F + 1F, rand.nextInt(100) + 50, -0.05F, true, true);
                 }
 
             }
@@ -94,7 +103,7 @@ public class TileAuraInputHatch extends TileAuraHatch implements ITickable, Mach
         int consume = this.container.drainAura(outputToken.getAura(), !doOperation);
         outputToken.setAura(outputToken.getAura() - consume);
         if (outputToken.isForceDrain() && outputToken.getAura() > 0) {
-            if(doOperation) {
+            if (doOperation) {
                 this.drainAuraForce(outputToken.getAura());
             }
             consume += outputToken.getAura();
