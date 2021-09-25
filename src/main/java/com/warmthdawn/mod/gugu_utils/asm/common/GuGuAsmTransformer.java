@@ -1,6 +1,8 @@
 package com.warmthdawn.mod.gugu_utils.asm.common;
 
 
+import com.warmthdawn.mod.gugu_utils.asm.transformers.ActiveMachineRecipeTransformer;
+import com.warmthdawn.mod.gugu_utils.asm.transformers.DynamicMachineDeserializerTransformer;
 import com.warmthdawn.mod.gugu_utils.asm.transformers.TileMachineControllerTransformer;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
@@ -17,6 +19,8 @@ public class GuGuAsmTransformer implements IClassTransformer {
 
     static {
         tweakedClasses.put("hellfirepvp.modularmachinery.common.tiles.TileMachineController", new TileMachineControllerTransformer());
+        tweakedClasses.put("hellfirepvp.modularmachinery.common.crafting.ActiveMachineRecipe", new ActiveMachineRecipeTransformer());
+        tweakedClasses.put("hellfirepvp.modularmachinery.common.machine.DynamicMachine$MachineDeserializer", new DynamicMachineDeserializerTransformer());
     }
 
     private final Logger logger = LogManager.getLogger("GuGu Utils Core");
