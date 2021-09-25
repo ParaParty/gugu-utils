@@ -1,7 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.config;
 
 import com.warmthdawn.mod.gugu_utils.GuGuUtils;
-import com.warmthdawn.mod.gugu_utils.botania.subtitle.SubTileEntropinnyumModified;
 import net.minecraftforge.common.config.Config;
 
 @Config(modid = GuGuUtils.MODID, category = "Tweaks")

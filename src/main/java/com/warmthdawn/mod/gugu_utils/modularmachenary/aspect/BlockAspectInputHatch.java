@@ -15,7 +15,8 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.Nonnull;
 
-import static com.warmthdawn.mod.gugu_utils.common.Constants.*;
+import static com.warmthdawn.mod.gugu_utils.common.Constants.NAME_ASPECTHATCH_INPUT;
+import static com.warmthdawn.mod.gugu_utils.common.Constants.RESOURCE_ASPECTHATCH_INPUT;
 import static com.warmthdawn.mod.gugu_utils.tools.ResourceUtils.j;
 
 public class BlockAspectInputHatch extends GenericBlock {

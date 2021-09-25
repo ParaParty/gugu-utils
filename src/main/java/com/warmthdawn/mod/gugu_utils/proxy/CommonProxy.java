@@ -21,7 +21,6 @@ import com.warmthdawn.mod.gugu_utils.modularmachenary.pressure.TilePressureOutpu
 import com.warmthdawn.mod.gugu_utils.network.Messages;
 import com.warmthdawn.mod.gugu_utils.psi.PsiCompact;
 import me.desht.pneumaticcraft.api.PneumaticRegistry;
-import me.desht.pneumaticcraft.api.item.IUpgradeAcceptor;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

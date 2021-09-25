@@ -2,8 +2,6 @@ package com.warmthdawn.mod.gugu_utils.modularmachenary.tools;
 
 import com.warmthdawn.mod.gugu_utils.GuGuUtils;
 import hellfirepvp.modularmachinery.common.selection.PlayerStructureSelectionHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;

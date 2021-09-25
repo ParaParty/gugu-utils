@@ -1,22 +1,16 @@
 package com.warmthdawn.mod.gugu_utils.modularmachenary.requirements;
 
-import com.warmthdawn.mod.gugu_utils.common.Constants;
 import com.warmthdawn.mod.gugu_utils.jei.components.JEIComponentCompressedAir;
-import com.warmthdawn.mod.gugu_utils.jei.components.JEIComponentMana;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.MMCompoments;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.MMRequirements;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.ComponentRequirementAdapter;
-import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.IResourceToken;
-import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.RequirementConsumeOnce;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.RequirementConsumePerTick;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.types.RequirementTypeAdapter;
 import hellfirepvp.modularmachinery.common.crafting.helper.RecipeCraftingContext;
-import hellfirepvp.modularmachinery.common.crafting.requirement.type.RequirementType;
 import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.modifier.RecipeModifier;
 
-import java.util.Collection;
 import java.util.List;
 
 import static hellfirepvp.modularmachinery.common.modifier.RecipeModifier.applyModifiers;

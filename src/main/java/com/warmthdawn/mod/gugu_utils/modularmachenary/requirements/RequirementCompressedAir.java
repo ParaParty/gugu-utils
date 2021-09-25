@@ -2,7 +2,6 @@ package com.warmthdawn.mod.gugu_utils.modularmachenary.requirements;
 
 import com.warmthdawn.mod.gugu_utils.common.Constants;
 import com.warmthdawn.mod.gugu_utils.jei.components.JEIComponentCompressedAir;
-import com.warmthdawn.mod.gugu_utils.jei.components.JEIComponentMana;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.MMCompoments;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.MMRequirements;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.ComponentRequirementAdapter;

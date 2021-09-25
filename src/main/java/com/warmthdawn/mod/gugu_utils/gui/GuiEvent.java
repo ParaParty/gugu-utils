@@ -1,13 +1,8 @@
 package com.warmthdawn.mod.gugu_utils.gui;
 
-import com.warmthdawn.mod.gugu_utils.GuGuUtils;
-import hellfirepvp.modularmachinery.ModularMachinery;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.Event;
-import net.minecraftforge.registries.IForgeRegistryEntry;
-import org.jetbrains.annotations.Nullable;
 
 public class GuiEvent extends Event{
 

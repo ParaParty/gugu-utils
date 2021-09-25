@@ -3,26 +3,16 @@ package com.warmthdawn.mod.gugu_utils.jei.renders;
 import com.google.common.collect.Lists;
 import com.warmthdawn.mod.gugu_utils.handler.ClientEventHandler;
 import com.warmthdawn.mod.gugu_utils.jei.ingedients.IngredientCompressedAir;
-import com.warmthdawn.mod.gugu_utils.jei.ingedients.IngredientMana;
 import me.desht.pneumaticcraft.client.gui.GuiUtils;
 import me.desht.pneumaticcraft.lib.PneumaticValues;
 import mezz.jei.api.ingredients.IIngredientRenderer;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.client.FMLClientHandler;
 import org.jetbrains.annotations.NotNull;
-import vazkii.botania.common.block.ModBlocks;
-import vazkii.botania.common.block.tile.mana.TilePool;
-import vazkii.botania.common.core.helper.ItemNBTHelper;
 
 import javax.annotation.Nullable;
 import java.util.List;
-
-import static com.warmthdawn.mod.gugu_utils.tools.RenderUtils.renderItem;
-import static com.warmthdawn.mod.gugu_utils.tools.RenderUtils.renderManaBarVertical;
 
 public class RendererCompressedAir implements IIngredientRenderer<IngredientCompressedAir> {
     public static final RendererCompressedAir INSTANCE = new RendererCompressedAir();

@@ -1,6 +1,5 @@
 package com.warmthdawn.mod.gugu_utils.common;
 
-import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.ManaHatchVariant;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;

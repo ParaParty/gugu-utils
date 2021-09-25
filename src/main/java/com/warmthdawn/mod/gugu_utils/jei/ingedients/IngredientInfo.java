@@ -1,9 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.jei.ingedients;
 
-import com.google.common.collect.Lists;
 import net.minecraft.util.ResourceLocation;
-
-import java.util.List;
 
 public class IngredientInfo {
     private final String displayName;

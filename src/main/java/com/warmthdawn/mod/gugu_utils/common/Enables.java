@@ -1,6 +1,5 @@
 package com.warmthdawn.mod.gugu_utils.common;
 
-import com.warmthdawn.mod.gugu_utils.GuGuUtils;
 import com.warmthdawn.mod.gugu_utils.config.PluginsConfig;
 import net.minecraftforge.fml.common.Loader;
 

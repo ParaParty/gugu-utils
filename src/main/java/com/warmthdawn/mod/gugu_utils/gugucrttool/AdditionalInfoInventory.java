@@ -1,7 +1,5 @@
 package com.warmthdawn.mod.gugu_utils.gugucrttool;
 
-import net.minecraftforge.fluids.FluidStack;
-
 import javax.annotation.Nullable;
 import java.util.function.Consumer;
 

@@ -1,7 +1,7 @@
 package com.warmthdawn.mod.gugu_utils;
 
-import com.warmthdawn.mod.gugu_utils.common.GenericBlock;
 import com.warmthdawn.mod.gugu_utils.common.Enables;
+import com.warmthdawn.mod.gugu_utils.common.GenericBlock;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.IColorableTileEntity;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.aspect.BlockAspectInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.aspect.TileAspectInputHatch;
@@ -21,8 +21,6 @@ import com.warmthdawn.mod.gugu_utils.modularmachenary.starlight.BlockStarightInp
 import com.warmthdawn.mod.gugu_utils.modularmachenary.starlight.TileStarlightInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.vanilla.BlockEnergyOutputPort;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.vanilla.TileEnergyOutputPort;
-import me.desht.pneumaticcraft.api.PneumaticRegistry;
-import me.desht.pneumaticcraft.api.item.IUpgradeAcceptor;
 import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.BlockColors;

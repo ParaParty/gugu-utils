@@ -4,12 +4,12 @@ package com.warmthdawn.mod.gugu_utils.asm.common;
 import com.warmthdawn.mod.gugu_utils.asm.transformers.ActiveMachineRecipeTransformer;
 import com.warmthdawn.mod.gugu_utils.asm.transformers.DynamicMachineDeserializerTransformer;
 import com.warmthdawn.mod.gugu_utils.asm.transformers.TileMachineControllerTransformer;
-import org.objectweb.asm.ClassReader;
-import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.tree.ClassNode;
 import net.minecraft.launchwrapper.IClassTransformer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.objectweb.asm.ClassReader;
+import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.tree.ClassNode;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -4,7 +4,6 @@ import com.warmthdawn.mod.gugu_utils.botania.lens.ItemLensAddition;
 import com.warmthdawn.mod.gugu_utils.botania.lens.ItemLensOverclocking;
 import com.warmthdawn.mod.gugu_utils.botania.lens.ItemLensTransform;
 import com.warmthdawn.mod.gugu_utils.common.Enables;
-import com.warmthdawn.mod.gugu_utils.common.VariantBlock;
 import com.warmthdawn.mod.gugu_utils.common.VariantItem;
 import com.warmthdawn.mod.gugu_utils.config.TweaksConfig;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.embers.BlockEmberInputHatch;

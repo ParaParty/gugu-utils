@@ -1,6 +1,5 @@
 package com.warmthdawn.mod.gugu_utils.modularmachenary.components;
 
-import de.ellpeck.naturesaura.api.NaturesAuraAPI;
 import hellfirepvp.modularmachinery.common.crafting.ComponentType;
 import org.jetbrains.annotations.Nullable;
 

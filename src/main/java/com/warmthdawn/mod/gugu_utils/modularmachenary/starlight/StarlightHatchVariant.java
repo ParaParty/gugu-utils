@@ -1,6 +1,5 @@
 package com.warmthdawn.mod.gugu_utils.modularmachenary.starlight;
 
-import crafttweaker.annotations.ModOnly;
 import net.minecraft.util.IStringSerializable;
 
 import java.util.Locale;

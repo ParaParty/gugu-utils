@@ -3,8 +3,6 @@ package com.warmthdawn.mod.gugu_utils.modularmachenary.aura;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.CommonMMTile;
 import de.ellpeck.naturesaura.api.NaturesAuraAPI;
 import de.ellpeck.naturesaura.api.aura.container.BasicAuraContainer;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 

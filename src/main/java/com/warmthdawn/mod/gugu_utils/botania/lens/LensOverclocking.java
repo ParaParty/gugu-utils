@@ -1,15 +1,10 @@
 package com.warmthdawn.mod.gugu_utils.botania.lens;
 
-import net.minecraft.block.Block;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.RayTraceResult;
 import vazkii.botania.api.internal.IManaBurst;
 import vazkii.botania.api.mana.BurstProperties;
 import vazkii.botania.api.mana.IManaReceiver;
-import vazkii.botania.api.mana.IManaSpreader;
-import vazkii.botania.common.block.BlockPistonRelay;
-import vazkii.botania.common.block.ModBlocks;
 import vazkii.botania.common.item.lens.Lens;
 
 public class LensOverclocking extends Lens {

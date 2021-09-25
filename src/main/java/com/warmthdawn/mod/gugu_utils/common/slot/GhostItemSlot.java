@@ -1,11 +1,7 @@
 package com.warmthdawn.mod.gugu_utils.common.slot;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemBlockSpecial;
-import net.minecraft.item.ItemSkull;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.items.IItemHandler;
 
 import javax.annotation.Nonnull;

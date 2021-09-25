@@ -1,15 +1,9 @@
 package com.warmthdawn.mod.gugu_utils.botania.subtitle;
 
 import com.warmthdawn.mod.gugu_utils.config.TweaksConfig;
-import net.minecraft.block.BlockRailDetector;
-import net.minecraft.block.BlockSlime;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityTNTPrimed;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityPiston;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;

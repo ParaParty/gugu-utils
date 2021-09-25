@@ -3,7 +3,6 @@ package com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.types;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import com.warmthdawn.mod.gugu_utils.GuGuUtils;
-import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.RequirementManaPerTick;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.RequirementStarlight;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.ComponentRequirementAdapter;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationRegistry;

@@ -8,7 +8,7 @@ import java.util.Set;
 import static com.warmthdawn.mod.gugu_utils.tools.ResourceUtils.j;
 
 public class IUpgradeAcceptorWrapper implements IUpgradeAcceptor {
-    private TilePressureHatch hatch;
+    private final TilePressureHatch hatch;
 
     public IUpgradeAcceptorWrapper(TilePressureHatch hatch) {
         this.hatch = hatch;

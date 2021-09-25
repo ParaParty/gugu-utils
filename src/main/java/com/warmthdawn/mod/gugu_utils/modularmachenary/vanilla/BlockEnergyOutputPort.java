@@ -8,7 +8,6 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
@@ -23,8 +22,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.awt.*;
-import java.util.Random;
 
 import static com.warmthdawn.mod.gugu_utils.common.Constants.NAME_ENERGYPORT_OUTPUT;
 import static com.warmthdawn.mod.gugu_utils.common.Constants.RESOURCE_ENERGYPORT_OUTPUT;

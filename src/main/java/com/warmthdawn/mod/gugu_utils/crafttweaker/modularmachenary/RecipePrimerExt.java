@@ -4,7 +4,6 @@ import com.warmthdawn.mod.gugu_utils.GuGuUtils;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.environment.envtypes.*;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.*;
 import crafttweaker.CraftTweakerAPI;
-import crafttweaker.annotations.ZenDoc;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.world.IBiome;
 import hellfirepvp.astralsorcery.common.constellation.ConstellationRegistry;

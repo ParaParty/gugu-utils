@@ -1,17 +1,10 @@
 package com.warmthdawn.mod.gugu_utils.modularmachenary.tweak;
 
 import com.warmthdawn.mod.gugu_utils.config.CoreConfig;
-import hellfirepvp.modularmachinery.common.machine.DynamicMachine;
-import javafx.scene.chart.ValueAxis;
 import net.minecraft.util.ResourceLocation;
 
-import java.util.Arrays;
-import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 public class MMRecipeFailureActions {
     public enum Type {
@@ -40,7 +33,7 @@ public class MMRecipeFailureActions {
         }
     }
 
-    private static Map<ResourceLocation, Type> REGISTRY_FAILURE_ACTIONS = new HashMap<>();
+    private static final Map<ResourceLocation, Type> REGISTRY_FAILURE_ACTIONS = new HashMap<>();
     private static Type _default;
 
     public static Type getDefault() {

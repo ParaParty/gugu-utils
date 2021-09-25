@@ -1,7 +1,7 @@
 package com.warmthdawn.mod.gugu_utils.jei.components;
 
-import com.warmthdawn.mod.gugu_utils.jei.ingedients.IngredientMana;
 import com.warmthdawn.mod.gugu_utils.jei.LayoutWapper;
+import com.warmthdawn.mod.gugu_utils.jei.ingedients.IngredientMana;
 import com.warmthdawn.mod.gugu_utils.jei.renders.RendererMana;
 import hellfirepvp.modularmachinery.common.crafting.helper.ComponentRequirement;
 import hellfirepvp.modularmachinery.common.integration.recipe.RecipeLayoutPart;

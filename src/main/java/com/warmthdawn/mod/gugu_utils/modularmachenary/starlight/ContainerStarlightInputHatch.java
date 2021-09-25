@@ -2,7 +2,6 @@ package com.warmthdawn.mod.gugu_utils.modularmachenary.starlight;
 
 import com.warmthdawn.mod.gugu_utils.network.Messages;
 import com.warmthdawn.mod.gugu_utils.network.PacketStarlight;
-import crafttweaker.annotations.ModOnly;
 import hellfirepvp.astralsorcery.common.constellation.IConstellation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;

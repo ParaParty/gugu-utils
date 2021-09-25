@@ -1,7 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.jei.botania;
 
 import com.warmthdawn.mod.gugu_utils.GuGuUtils;
-import com.warmthdawn.mod.gugu_utils.ModItems;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IRecipeLayout;

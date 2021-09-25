@@ -2,7 +2,6 @@ package com.warmthdawn.mod.gugu_utils.gui;
 
 import com.warmthdawn.mod.gugu_utils.tools.StackUtils;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
 
 import javax.annotation.Nonnull;

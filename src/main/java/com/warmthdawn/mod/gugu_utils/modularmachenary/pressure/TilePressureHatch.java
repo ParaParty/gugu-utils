@@ -1,27 +1,16 @@
 package com.warmthdawn.mod.gugu_utils.modularmachenary.pressure;
 
 import com.warmthdawn.mod.gugu_utils.common.IGuiProvider;
-import com.warmthdawn.mod.gugu_utils.modularmachenary.CommonMMTile;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.IColorableTileEntity;
-import com.warmthdawn.mod.gugu_utils.modularmachenary.starlight.ContainerStarlightInputHatch;
-import me.desht.pneumaticcraft.api.PneumaticRegistry;
-import me.desht.pneumaticcraft.api.tileentity.IAirHandler;
-import me.desht.pneumaticcraft.api.tileentity.IPneumaticMachine;
 import me.desht.pneumaticcraft.common.network.DescSynced;
 import me.desht.pneumaticcraft.common.tileentity.TileEntityPneumaticBase;
 import me.desht.pneumaticcraft.lib.PneumaticValues;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.apache.commons.lang3.tuple.Pair;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class TilePressureHatch extends TileEntityPneumaticBase implements IGuiProvider, IColorableTileEntity {
     public static final String KEY_MACHINE_COLOR = "machine_color";

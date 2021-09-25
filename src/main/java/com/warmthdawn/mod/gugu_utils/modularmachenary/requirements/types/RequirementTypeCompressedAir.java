@@ -1,7 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.types;
 
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
 import com.google.gson.JsonPrimitive;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.RequirementCompressedAir;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.ComponentRequirementAdapter;

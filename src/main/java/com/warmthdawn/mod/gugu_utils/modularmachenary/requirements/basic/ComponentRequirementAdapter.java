@@ -6,7 +6,6 @@ import hellfirepvp.modularmachinery.common.crafting.requirement.type.Requirement
 import hellfirepvp.modularmachinery.common.machine.IOType;
 import hellfirepvp.modularmachinery.common.modifier.RecipeModifier;
 
-import java.lang.reflect.Proxy;
 import java.util.List;
 
 public abstract class ComponentRequirementAdapter<T> extends ComponentRequirement<T, RequirementType<T, ? extends ComponentRequirementAdapter<T>>> implements IComponentRequirement<T, RequirementType<T, ? extends ComponentRequirementAdapter<T>>> {
