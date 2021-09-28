@@ -17,7 +17,8 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = GuGuUtils.MODID, name = GuGuUtils.NAME, version = GuGuUtils.VERSION, dependencies = GuGuUtils.DEPENDENCY)
 public class GuGuUtils {
     public static final String MODID = "gugu-utils";
-    public static final String DEPENDENCY = "required-after:forge@[14.23.5.2847,);required-after:codechickenlib@[3.2.2,);required-after:mcjtylib_ng@[3.5.4,);after:modularmachinery;";
+    public static final String DEPENDENCY = "required-after:forge@[14.23.5.2847,);required-after:codechickenlib@[3.2.2,);required-after:mcjtylib_ng@[3.5.4,);" +
+        "after:modularmachinery;after:pneumaticcraft;after:naturesaura;";
     public static final String NAME = "GuGu Utils";
     public static final String VERSION = "@VERSION@";
     public static final CreativeTabs creativeTab = new CreativeTabs(GuGuUtils.MODID) {

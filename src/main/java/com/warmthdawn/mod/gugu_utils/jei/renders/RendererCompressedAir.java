@@ -3,7 +3,7 @@ package com.warmthdawn.mod.gugu_utils.jei.renders;
 import com.google.common.collect.Lists;
 import com.warmthdawn.mod.gugu_utils.handler.ClientEventHandler;
 import com.warmthdawn.mod.gugu_utils.jei.ingedients.IngredientCompressedAir;
-import me.desht.pneumaticcraft.client.gui.GuiUtils;
+import me.desht.pneumaticcraft.client.util.GuiUtils;
 import me.desht.pneumaticcraft.lib.PneumaticValues;
 import mezz.jei.api.ingredients.IIngredientRenderer;
 import net.minecraft.client.Minecraft;
