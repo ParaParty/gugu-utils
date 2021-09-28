@@ -114,6 +114,7 @@ dependencies {
     deobfCompile "curse.maven:embersrekindled-${embers_version}"
     deobfCompile "curse.maven:bloodmagic-${bloodmagic_version_curse}"
     deobfCompile "curse.maven:thaumcraft-${thaumcraft_version}"
+    deobfCompile "curse.maven:mekanism-${mekanism_version}"
 
     deobfCompile("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal") {
         exclude group: "mezz.jei"

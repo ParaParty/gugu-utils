@@ -6,6 +6,7 @@ import com.warmthdawn.mod.gugu_utils.ModBlocks;
 import com.warmthdawn.mod.gugu_utils.ModItems;
 import com.warmthdawn.mod.gugu_utils.botania.SubtileRegisterOverride;
 import com.warmthdawn.mod.gugu_utils.common.Enables;
+import com.warmthdawn.mod.gugu_utils.compat.PneumaticCraftCompat;
 import com.warmthdawn.mod.gugu_utils.config.TweaksConfig;
 import com.warmthdawn.mod.gugu_utils.crafttweaker.CraftTweakerCompact;
 import com.warmthdawn.mod.gugu_utils.gui.ModIndependentGuis;
@@ -15,12 +16,8 @@ import com.warmthdawn.mod.gugu_utils.handler.StarlightHandler;
 import com.warmthdawn.mod.gugu_utils.handler.tweaks.EntropinnyumTNTHandler;
 import com.warmthdawn.mod.gugu_utils.handler.tweaks.GaiaHandler;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.ModularMachenaryCompact;
-import com.warmthdawn.mod.gugu_utils.modularmachenary.pressure.IUpgradeAcceptorWrapper;
-import com.warmthdawn.mod.gugu_utils.modularmachenary.pressure.TilePressureInputHatch;
-import com.warmthdawn.mod.gugu_utils.modularmachenary.pressure.TilePressureOutputHatch;
 import com.warmthdawn.mod.gugu_utils.network.Messages;
 import com.warmthdawn.mod.gugu_utils.psi.PsiCompact;
-import me.desht.pneumaticcraft.api.PneumaticRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -96,8 +93,7 @@ public class CommonProxy {
         }
 
         if (Enables.PNEUMATICCRAFT) {
-            PneumaticRegistry.getInstance().getItemRegistry().registerUpgradeAcceptor(new IUpgradeAcceptorWrapper(new TilePressureInputHatch()));
-            PneumaticRegistry.getInstance().getItemRegistry().registerUpgradeAcceptor(new IUpgradeAcceptorWrapper(new TilePressureOutputHatch()));
+            PneumaticCraftCompat.postInit();
         }
 
     }
