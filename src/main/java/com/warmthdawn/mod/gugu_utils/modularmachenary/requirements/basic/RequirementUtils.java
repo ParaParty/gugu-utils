@@ -7,6 +7,7 @@ import com.google.gson.JsonPrimitive;
 import hellfirepvp.modularmachinery.common.crafting.helper.ProcessingComponent;
 import hellfirepvp.modularmachinery.common.crafting.helper.RecipeCraftingContext;
 import hellfirepvp.modularmachinery.common.machine.IOType;
+import org.jetbrains.annotations.Nullable;
 
 public final class RequirementUtils {
     public static boolean isValidComponent(ProcessingComponent<?> component, RecipeCraftingContext ctx, IOType type) {
@@ -27,6 +28,29 @@ public final class RequirementUtils {
             throw new JsonParseException(msg);
         }
         return requirement.getAsJsonPrimitive(key);
+    }
+
+
+    public static int tryGetInt(JsonObject requirement, String key, @Nullable Integer fallback) {
+        JsonPrimitive jsonPrimitive = tryGet(requirement, key, fallback == null);
+        if(jsonPrimitive == null || !jsonPrimitive.isNumber()) {
+            if(fallback == null) {
+                String msg = String.format("The requirement %s should be an Integer", key);
+            }
+            return fallback;
+        }
+        return jsonPrimitive.getAsInt();
+    }
+
+    public static float tryGetFloat(JsonObject requirement, String key, @Nullable Float fallback) {
+        JsonPrimitive jsonPrimitive = tryGet(requirement, key, fallback == null);
+        if(jsonPrimitive == null || !jsonPrimitive.isNumber()) {
+            if(fallback == null) {
+                String msg = String.format("The requirement %s should be an Integer", key);
+            }
+            return fallback;
+        }
+        return jsonPrimitive.getAsFloat();
     }
 
     private static boolean checkRequirement(JsonObject requirement, String key, boolean required) {

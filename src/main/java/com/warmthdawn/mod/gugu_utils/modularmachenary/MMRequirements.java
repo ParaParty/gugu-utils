@@ -16,10 +16,9 @@ public class MMRequirements {
     public static Object REQUIREMENT_TYPE_EMBER;
     public static Object REQUIREMENT_TYPE_AURA;
     public static Object REQUIREMENT_TYPE_ASPECT;
-
-
     public static Object REQUIREMENT_TYPE_COMPRESSED_AIR;
     public static Object REQUIREMENT_TYPE_COMPRESSED_AIR_PER_TICK;
+    public static Object REQUIREMENT_TYPE_HOT_AIR;
 
     public static void preInit() {
         REQUIREMENT_TYPE_ENVIRONMENT = new RequirementTypeEnvironment().setRegistryName(RESOURCE_ENVIRONMENT);
@@ -35,11 +34,14 @@ public class MMRequirements {
             REQUIREMENT_TYPE_AURA = new RequirementTypeAura().setRegistryName(RESOURCE_AURA);
         if (Enables.THAUMCRAFT)
             REQUIREMENT_TYPE_ASPECT = new RequirementTypeAspect().setRegistryName(RESOURCE_ASPECT);
-
-        if(Enables.PNEUMATICCRAFT) {
+        if (Enables.PNEUMATICCRAFT) {
             REQUIREMENT_TYPE_COMPRESSED_AIR = new RequirementTypeCompressedAir().setRegistryName(RESOURCE_COMPRESSED_AIR);
             REQUIREMENT_TYPE_COMPRESSED_AIR_PER_TICK = new RequirementTypeCompressedAirPerTick().setRegistryName(RESOURCE_COMPRESSED_AIR_PER_TICK);
         }
+        if (Enables.PRODIGYTECH)
+            REQUIREMENT_TYPE_HOT_AIR = new RequirementTypeHotAir().setRegistryName(RESOURCE_HOT_AIR);
+
+
     }
 
 
@@ -59,10 +61,13 @@ public class MMRequirements {
         if (Enables.THAUMCRAFT)
             registry.register((IForgeRegistryEntry) REQUIREMENT_TYPE_ASPECT);
 
-        if(Enables.PNEUMATICCRAFT) {
+        if (Enables.PNEUMATICCRAFT) {
             registry.register((IForgeRegistryEntry) REQUIREMENT_TYPE_COMPRESSED_AIR);
             registry.register((IForgeRegistryEntry) REQUIREMENT_TYPE_COMPRESSED_AIR_PER_TICK);
         }
+        if (Enables.PRODIGYTECH)
+            registry.register((IForgeRegistryEntry) REQUIREMENT_TYPE_HOT_AIR);
+
 
     }
 }

@@ -186,6 +186,10 @@ public class RecipePrimerExt {
         primer.appendComponent(new RequirementAspect(amount, aspect, IOType.INPUT));
         return primer;
     }
+    @ZenMethod
+    public static RecipePrimer addThaumcraftAspcetInput(RecipePrimer primer, int amount, String aspectTag) {
+        return addAspcetInput(primer, amount, aspectTag);
+    }
 
     //----------------------------------------------------------------------------------------------
     // air

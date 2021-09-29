@@ -37,6 +37,10 @@ public class Constants {
     public static final String STRING_RESOURCE_COMPRESSED_AIR = GuGuUtils.MODID + ":" + "compressed_air";
 
 
+    public static final ResourceLocation RESOURCE_HOT_AIR = new ResourceLocation(GuGuUtils.MODID , "hot_air");
+    public static final String STRING_RESOURCE_HOT_AIR = GuGuUtils.MODID + ":" + "hot_air";
+
+
     //方块相关
     public static final String NAME_MANAHATCH = "sparkmanahatch";
     public static final ResourceLocation RESOURCE_MANAHATCH = new ResourceLocation(GuGuUtils.MODID, NAME_MANAHATCH);

@@ -18,6 +18,7 @@ public final class Enables {
     public static boolean THERMAL_DYNAMICS = false;
     public static boolean THAUMCRAFT = false;
     public static boolean PNEUMATICCRAFT = false;
+    public static boolean PRODIGYTECH = false;
 
     public static void init() {
         Enables.BOTANIA = PluginsConfig.ENABLE_BOTANIA_SUPPORT && Loader.isModLoaded("botania");
@@ -34,5 +35,6 @@ public final class Enables {
         Enables.BLOOD_MAGIC = PluginsConfig.ENABLE_BLOOD_MAGIC_SUPPORT && Loader.isModLoaded("bloodmagic");
         Enables.THAUMCRAFT = PluginsConfig.ENABLE_THAUMCRAFT_SUPPORT && Loader.isModLoaded("thaumcraft");
         Enables.PNEUMATICCRAFT = PluginsConfig.ENABLE_PNEUMATICCRAFT_SUPPORT && Loader.isModLoaded("pneumaticcraft");
+        Enables.PRODIGYTECH = PluginsConfig.ENABLE_PRODIGYTECH_SUPPORT && Loader.isModLoaded("prodigytech");
     }
 }

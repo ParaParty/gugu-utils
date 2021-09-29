@@ -15,4 +15,5 @@ public class PluginsConfig {
     public static boolean ENABLE_MODULAR_MACHIENARY_SUPPORT = true;
     public static boolean ENABLE_PSI_SUPPORT = true;
     public static boolean ENABLE_PNEUMATICCRAFT_SUPPORT = true;
+    public static boolean ENABLE_PRODIGYTECH_SUPPORT = true;
 }

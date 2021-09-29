@@ -16,6 +16,7 @@ public class MMCompoments {
     public static Object COMPONENT_AURA;
     public static Object COMPONENT_ASPECT;
     public static Object COMPONENT_COMPRESSED_AIR;
+    public static Object COMPONENT_HOT_AIR;
 
     public static void preInit() {
         COMPONENT_ENVIRONMENT = new ComponentEnvironment().setRegistryName(Constants.RESOURCE_ENVIRONMENT);
@@ -31,6 +32,10 @@ public class MMCompoments {
             COMPONENT_ASPECT = new ComponentAspect().setRegistryName(Constants.RESOURCE_ASPECT);
         if (Enables.PNEUMATICCRAFT)
             COMPONENT_COMPRESSED_AIR = new ComponentCompressedAir().setRegistryName(Constants.RESOURCE_COMPRESSED_AIR);
+
+
+        if (Enables.PRODIGYTECH)
+            COMPONENT_HOT_AIR = new ComponentHotAir().setRegistryName(Constants.RESOURCE_HOT_AIR);
     }
 
     public static void initComponents(IForgeRegistry<ComponentType> registry) {
