@@ -20,7 +20,7 @@ public class TileMachineControllerTransformer implements MyTransformer {
         while (inserator.hasNext()) {
             AbstractInsnNode in = inserator.next();
 
-            if (!AsmUtils.matchMethodInsn(in, Opcodes.INVOKEVIRTUAL, "getTileEntity", null, null, null)) {
+            if (!AsmUtils.matchMethodInsn(in, Opcodes.INVOKEVIRTUAL, "getTileEntity", "func_175625_s", null, null, null)) {
                 continue;
             }
             InsnList hook = new InsnList();

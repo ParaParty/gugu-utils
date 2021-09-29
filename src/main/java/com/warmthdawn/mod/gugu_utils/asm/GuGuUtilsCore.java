@@ -1,6 +1,8 @@
 package com.warmthdawn.mod.gugu_utils.asm;
 
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
@@ -9,6 +11,8 @@ import java.util.Map;
 @IFMLLoadingPlugin.Name("gugu-utils-core")
 @IFMLLoadingPlugin.TransformerExclusions({"com.warmthdawn.mod.gugu_utils.asm"})
 public class GuGuUtilsCore implements IFMLLoadingPlugin {
+
+    public static final Logger logger = LogManager.getLogger("GuGu Utils Core");
     @Override
     public String[] getASMTransformerClass() {
         return new String[] {

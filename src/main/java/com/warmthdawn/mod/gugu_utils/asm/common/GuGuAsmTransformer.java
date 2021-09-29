@@ -1,9 +1,11 @@
 package com.warmthdawn.mod.gugu_utils.asm.common;
 
 
+import com.warmthdawn.mod.gugu_utils.asm.GuGuUtilsCore;
 import com.warmthdawn.mod.gugu_utils.asm.transformers.ActiveMachineRecipeTransformer;
 import com.warmthdawn.mod.gugu_utils.asm.transformers.DynamicMachineDeserializerTransformer;
 import com.warmthdawn.mod.gugu_utils.asm.transformers.TileMachineControllerTransformer;
+import com.warmthdawn.mod.gugu_utils.asm.utils.SafeClassWriter;
 import net.minecraft.launchwrapper.IClassTransformer;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,7 +25,6 @@ public class GuGuAsmTransformer implements IClassTransformer {
         tweakedClasses.put("hellfirepvp.modularmachinery.common.machine.DynamicMachine$MachineDeserializer", new DynamicMachineDeserializerTransformer());
     }
 
-    private final Logger logger = LogManager.getLogger("GuGu Utils Core");
 
 
     @Override
@@ -32,7 +33,7 @@ public class GuGuAsmTransformer implements IClassTransformer {
             return basicClass;
         }
 
-        logger.info("Transforming: " + transformedName);
+        GuGuUtilsCore.logger.info("Transforming: " + transformedName);
         try {
             ClassNode classNode = new ClassNode();
             ClassReader classReader = new ClassReader(basicClass);
@@ -40,7 +41,7 @@ public class GuGuAsmTransformer implements IClassTransformer {
 
             tweakedClasses.getOrDefault(transformedName, MyTransformer.EMPTY_TRANSFORMER).transform(classNode);
 
-            ClassWriter classWriter = new ClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+            ClassWriter classWriter = new SafeClassWriter(ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
             classNode.accept(classWriter);
             return classWriter.toByteArray();
         } catch (Exception e) {

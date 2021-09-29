@@ -4,6 +4,7 @@ package com.warmthdawn.mod.gugu_utils.asm.mixin;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
+import com.warmthdawn.mod.gugu_utils.asm.GuGuUtilsCore;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.IColorableTileEntity;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.tweak.MMRecipeFailureActions;
 import hellfirepvp.modularmachinery.ModularMachinery;
