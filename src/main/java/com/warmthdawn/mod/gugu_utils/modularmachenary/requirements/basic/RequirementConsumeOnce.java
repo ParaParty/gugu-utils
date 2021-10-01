@@ -1,5 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic;
 
+import com.google.common.collect.Lists;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.types.RequirementTypeAdapter;
 import hellfirepvp.modularmachinery.common.crafting.helper.ComponentOutputRestrictor;
 import hellfirepvp.modularmachinery.common.crafting.helper.CraftCheck;
@@ -33,13 +34,19 @@ public abstract class RequirementConsumeOnce<T, V extends IResourceToken> extend
     @SuppressWarnings("unchecked")
     public boolean startCrafting(ProcessingComponent<?> component, RecipeCraftingContext context, ResultChance chance) {
         ICraftingResourceHolder<V> handler = (ICraftingResourceHolder<V>) component.getComponent().getContainerProvider();
+        handler.startCrafting(checkToken);
+        if (handler.isFulfilled()) {
+            return false;
+        }
         switch (getActionType()) {
             case INPUT:
                 handler.consume(outputToken, true);
-                if (outputToken.isEmpty())
-                    return true;
+                if (outputToken.isEmpty()) {
+                    handler.setFulfilled(true);
+                }
         }
         return false;
+
     }
 
     @SuppressWarnings("unchecked")
@@ -47,13 +54,18 @@ public abstract class RequirementConsumeOnce<T, V extends IResourceToken> extend
     @Override
     public CraftCheck finishCrafting(ProcessingComponent<?> component, RecipeCraftingContext context, ResultChance chance) {
         ICraftingResourceHolder<V> handler = (ICraftingResourceHolder<V>) component.getComponent().getContainerProvider();
+        handler.finishCrafting(outputToken);
+        if (handler.isFulfilled()) {
+            return CraftCheck.partialSuccess();
+        }
         switch (getActionType()) {
             case OUTPUT:
                 handler.generate(outputToken, true);
-                if (outputToken.isEmpty())
-                    return CraftCheck.success();
+                if (outputToken.isEmpty()) {
+                    handler.setFulfilled(true);
+                }
         }
-        return CraftCheck.failure("");
+        return CraftCheck.partialSuccess();
     }
 
     @Nonnull

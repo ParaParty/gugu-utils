@@ -1,6 +1,8 @@
 package com.warmthdawn.mod.gugu_utils.modularmachenary.requirements;
 
 import com.warmthdawn.mod.gugu_utils.common.Constants;
+import com.warmthdawn.mod.gugu_utils.jei.components.JEIComponentCompressedAir;
+import com.warmthdawn.mod.gugu_utils.jei.components.JEIComponentHotAir;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.MMCompoments;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.MMRequirements;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.ComponentRequirementAdapter;
@@ -45,7 +47,7 @@ public class RequirementHotAir extends RequirementConsumePerTick<Integer, Requir
 
     @Override
     public JEIComponent provideJEIComponent() {
-        return null;
+        return new JEIComponentHotAir(minTemperature, maxTemperature, heat);
     }
 
     @Override
@@ -66,6 +68,7 @@ public class RequirementHotAir extends RequirementConsumePerTick<Integer, Requir
         private int maxTemperature;
         //热量消耗
         private int heat;
+        private String error;
 
         public RT(int minTemperature, int maxTemperature, int heat) {
             this.minTemperature = minTemperature;
@@ -102,6 +105,15 @@ public class RequirementHotAir extends RequirementConsumePerTick<Integer, Requir
         @Override
         public boolean isEmpty() {
             return heat <= 0;
+        }
+
+        @Override
+        public String getError() {
+            return error;
+        }
+
+        public void setError(String error) {
+            this.error = error;
         }
     }
 }

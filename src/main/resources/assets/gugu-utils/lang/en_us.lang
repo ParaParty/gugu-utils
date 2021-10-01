@@ -29,6 +29,7 @@ tile.gugu-utils.environmenthatch.name=Environment Sensor
 tile.gugu-utils.aurainputhatch.name=Aura Input Hatch
 tile.gugu-utils.energyoutputport.name=Energy Output Port
 tile.gugu-utils.aspectinputhatch.name=Aspect Input Hatch
+tile.gugu-utils.hotairinputhatch.name=热空气输入仓
 
 
 
@@ -80,6 +81,7 @@ tooltips.gugu-utils.gas_amount=Air: %s mL
 tooltips.gugu-utils.gas_amount.tick=Air: %s mL/t
 tooltips.gugu-utils.gas_amount.total=Total: %s mL
 tooltips.gugu-utils.pressure=Working pressure: %s bar
+tooltips.gugu-utils.hotair.consume=§6Heat consume:§f %d°C§r
 
 gugu-utils.jei.category.burst_transform=Mana Burst Transform
 
@@ -102,7 +104,9 @@ craftcheck.failure.gugu-utils:aura.input=Missing aura input!
 craftcheck.failure.gugu-utils:compressed_air.input=Missing compressed air input!
 craftcheck.failure.gugu-utils:compressed_air.input.not_enough_pressure=Not enough pressure!
 craftcheck.failure.gugu-utils:compressed_air.input.not_enough_vacuum=Not enough vacuum!
-
+craftcheck.failure.gugu-utils:hot_air.input=Missing hot air input!
+craftcheck.failure.gugu-utils:hot_air.input.temp_too_high=Hot air's temperature is too high!
+craftcheck.failure.gugu-utils:hot_air.input.temp_too_low=Hot air's temperature is too low!
 craftcheck.failure.gugu-utils:environment.altitude=Altitude is incorrect!
 craftcheck.failure.gugu-utils:environment.dimensions=Dimensions are incorrect!
 craftcheck.failure.gugu-utils:environment.biomes=Biomes are incorrect!

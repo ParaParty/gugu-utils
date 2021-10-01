@@ -5,6 +5,7 @@ public class CraftingResourceHolder<T extends IResourceToken> implements ICrafti
     public final IConsumable<T> consumable;
     public final IGeneratable<T> generatable;
     private ICraftNotifier<T> notifier;
+    private boolean fulfilled = false;
 
     public CraftingResourceHolder(IConsumable<T> consumable, IGeneratable<T> generatable) {
         this.consumable = consumable;
@@ -80,5 +81,15 @@ public class CraftingResourceHolder<T extends IResourceToken> implements ICrafti
         if (this.notifier != null) {
             notifier.finishCrafting(outputToken);
         }
+    }
+
+    @Override
+    public boolean isFulfilled() {
+        return fulfilled;
+    }
+
+    @Override
+    public void setFulfilled(boolean value) {
+        fulfilled = value;
     }
 }

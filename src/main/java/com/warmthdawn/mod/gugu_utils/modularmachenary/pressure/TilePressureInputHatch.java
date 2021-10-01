@@ -5,6 +5,7 @@ import com.warmthdawn.mod.gugu_utils.modularmachenary.MMCompoments;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.components.GenericMachineCompoment;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.RequirementCompressedAir;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.IConsumable;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.ICraftNotifier;
 import hellfirepvp.modularmachinery.common.crafting.ComponentType;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.tiles.base.MachineComponentTile;
@@ -17,7 +18,7 @@ import static com.warmthdawn.mod.gugu_utils.common.Constants.NAME_PRESSUREHATCH;
 import static com.warmthdawn.mod.gugu_utils.tools.ResourceUtils.j;
 
 public class TilePressureInputHatch extends TilePressureHatch implements IMinWorkingPressure,
-    MachineComponentTile, IConsumable<RequirementCompressedAir.RT> {
+    MachineComponentTile, IConsumable<RequirementCompressedAir.RT>, ICraftNotifier<RequirementCompressedAir.RT> {
     @Override
     public String getName() {
         return j("tile", GuGuUtils.MODID, NAME_PRESSUREHATCH, "input");
@@ -40,6 +41,11 @@ public class TilePressureInputHatch extends TilePressureHatch implements IMinWor
     @Override
     public void update() {
         super.update();
+    }
+
+    @Override
+    public void finishCrafting(RequirementCompressedAir.RT outputToken) {
+        lastWorkingPressure = -Float.MAX_VALUE;
     }
 
     @Override

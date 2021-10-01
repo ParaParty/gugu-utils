@@ -37,28 +37,6 @@ public class RequirementAspect extends RequirementConsumePerTick<Integer, Requir
         this.aspect = aspect;
     }
 
-    @SuppressWarnings("unchecked")
-    @Override
-    public boolean startCrafting(ProcessingComponent<?> component, RecipeCraftingContext recipeCraftingContext, ResultChance resultChance) {
-        if (canStartCrafting(component, recipeCraftingContext, Lists.newArrayList()).isSuccess()) {
-            ICraftingResourceHolder<RT> handler = (ICraftingResourceHolder<RT>) component.getProvidedComponent();
-            handler.startCrafting(checkToken);
-            return true;
-
-        }
-        return false;
-    }
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public @NotNull CraftCheck finishCrafting(ProcessingComponent<?> component, RecipeCraftingContext recipeCraftingContext, ResultChance resultChance) {
-        if (component.getProvidedComponent() instanceof ICraftingResourceHolder) {
-            ICraftingResourceHolder<RT> handler = (ICraftingResourceHolder<RT>) component.getProvidedComponent();
-            handler.finishCrafting(checkToken);
-        }
-        return super.finishCrafting(component, recipeCraftingContext, resultChance);
-    }
-
     @Override
     public CraftCheck canStartCrafting(ProcessingComponent<?> component, RecipeCraftingContext context, List<ComponentOutputRestrictor> list) {
         if (!isCorrectHatch(component.getComponent())) return CraftCheck.skipComponent();

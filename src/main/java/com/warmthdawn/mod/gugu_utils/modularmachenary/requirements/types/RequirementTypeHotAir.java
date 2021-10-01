@@ -13,9 +13,9 @@ public class RequirementTypeHotAir extends RequirementTypeAdapter<Integer> imple
     @Override
     public ComponentRequirementAdapter.PerTick<Integer> gererateRequirementPerTick(IOType ioType, JsonObject jsonObject) {
         if (ioType == IOType.OUTPUT) {
-            return new RequirementHotAir(0, tryGetInt(jsonObject, "maxHeat", null), 0, ioType);
+            return new RequirementHotAir(0, tryGetInt(jsonObject, "maxTemperature", null), 0, ioType);
         }
-        return new RequirementHotAir(tryGetInt(jsonObject, "minTemperature", 0), tryGetInt(jsonObject, "maxTemperature", Integer.MAX_VALUE), tryGetInt(jsonObject, "heat", null), ioType);
+        return new RequirementHotAir(tryGetInt(jsonObject, "minTemperature", 0), tryGetInt(jsonObject, "maxTemperature", 0), tryGetInt(jsonObject, "consume", null), ioType);
     }
 
     @Override

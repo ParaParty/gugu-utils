@@ -14,6 +14,9 @@ public interface ICraftingResourceHolder<V> {
     void startCrafting(V outputToken);
     void finishCrafting(V outputToken);
 
+    boolean isFulfilled();
+    void setFulfilled(boolean value);
+
 
 
 }

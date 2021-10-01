@@ -2,6 +2,7 @@ package com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.RequirementAspect;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.types.RequirementTypeAdapter;
 import hellfirepvp.modularmachinery.common.crafting.helper.ComponentOutputRestrictor;
 import hellfirepvp.modularmachinery.common.crafting.helper.CraftCheck;
@@ -35,16 +36,26 @@ public abstract class RequirementConsumePerTick<T, V extends IResourceToken> ext
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public boolean startCrafting(ProcessingComponent<?> processingComponent, RecipeCraftingContext recipeCraftingContext, ResultChance resultChance) {
-        return canStartCrafting(processingComponent, recipeCraftingContext, Lists.newArrayList()).isSuccess();
+        boolean canStart = canStartCrafting(processingComponent, recipeCraftingContext, Lists.newArrayList()).isSuccess();
+        if(canStart) {
+            ICraftingResourceHolder<V> handler = (ICraftingResourceHolder<V>) processingComponent.getProvidedComponent();
+            handler.startCrafting(checkToken);
+        }
+
+        return false;
     }
 
     @NotNull
     @Override
     @SuppressWarnings("unchecked")
     public CraftCheck finishCrafting(ProcessingComponent<?> processingComponent, RecipeCraftingContext recipeCraftingContext, ResultChance resultChance) {
-
-        return CraftCheck.success();
+        if (processingComponent.getProvidedComponent() instanceof ICraftingResourceHolder) {
+            ICraftingResourceHolder<V> handler = (ICraftingResourceHolder<V>) processingComponent.getProvidedComponent();
+            handler.finishCrafting(checkToken);
+        }
+        return CraftCheck.partialSuccess();
     }
 
     protected String getMissingInput() {

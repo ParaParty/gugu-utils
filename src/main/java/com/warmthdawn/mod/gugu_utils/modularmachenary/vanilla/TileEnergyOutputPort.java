@@ -72,12 +72,13 @@ public class TileEnergyOutputPort extends CommonMMTile implements ITickable, Mac
 
     @Override
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
-        super.onDataPacket(net, packet);
         NBTTagCompound compound = packet.getNbtCompound();
-        int stateIndex = compound.getInteger(TAG_STATE);
-        if (world.isRemote && stateIndex != state.ordinal()) {
-            world.markBlockRangeForRenderUpdate(pos, pos);
+        if (compound.hasKey(TAG_STATE)) {
+            int stateIndex = compound.getInteger(TAG_STATE);
+            if (world.isRemote && stateIndex != state.ordinal())
+                world.markBlockRangeForRenderUpdate(pos, pos);
         }
+        super.onDataPacket(net, packet);
     }
 
     @Override
@@ -147,14 +148,14 @@ public class TileEnergyOutputPort extends CommonMMTile implements ITickable, Mac
         }
 
         if (this.getState() == OutputPortState.OUTPUTING && connectedTE != null
-                && getPos().distanceSq(connectedTE.getPos()) > 1) {
+            && getPos().distanceSq(connectedTE.getPos()) > 1) {
             BlockPos posEnd = getConnectedTE().getPos();
             Vec3d start = new Vec3d(pos.getX() + rand.nextDouble() * 0.5 + 0.25,
-                    pos.getY() + rand.nextDouble() * 0.5 + 0.25,
-                    pos.getZ() + rand.nextDouble() * 0.5 + 0.25);
+                pos.getY() + rand.nextDouble() * 0.5 + 0.25,
+                pos.getZ() + rand.nextDouble() * 0.5 + 0.25);
             Vec3d end = new Vec3d(posEnd.getX() + rand.nextDouble() * 0.5 + 0.25,
-                    posEnd.getY() + rand.nextDouble() * 0.5 + 0.25,
-                    posEnd.getZ() + rand.nextDouble() * 0.5 + 0.25);
+                posEnd.getY() + rand.nextDouble() * 0.5 + 0.25,
+                posEnd.getZ() + rand.nextDouble() * 0.5 + 0.25);
             Vec3d dir = end.subtract(start);
             double length = dir.length();
             float speed = rand.nextFloat() * 0.2f + 0.4f;
@@ -163,14 +164,14 @@ public class TileEnergyOutputPort extends CommonMMTile implements ITickable, Mac
                 dir = dir.normalize();
                 dir = dir.scale(speed);
                 PacketParticles particles = new PacketParticles(
-                        start,
-                        dir,
-                        new Color(0xFF1F1F), scale, (int) (length / speed)
+                    start,
+                    dir,
+                    new Color(0xFF1F1F), scale, (int) (length / speed)
                 );
                 Messages.INSTANCE.sendToAllAround(particles,
-                        new NetworkRegistry.TargetPoint(world.provider.getDimension(),
-                                getPos().getX(), getPos().getY(), getPos().getZ(),
-                                32));
+                    new NetworkRegistry.TargetPoint(world.provider.getDimension(),
+                        getPos().getX(), getPos().getY(), getPos().getZ(),
+                        32));
             }
 
             if (this.getEnergyProducing() != clientCurrentRecieve) {

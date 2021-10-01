@@ -80,7 +80,9 @@ public class ModItems {
             if (Enables.PNEUMATICCRAFT) {
                 registry.register(new VariantItem<>((BlockPressureHatch) ModBlocks.blockPressureHatch).setRegistryName(RESOURCE_PRESSUREHATCH));
             }
-
+            if (Enables.PRODIGYTECH) {
+                registry.register(new ItemBlock(ModBlocks.blockHotAirHatch).setRegistryName(RESOURCE_HOTAIRHATCH_INPUT));
+            }
         }
     }
 }

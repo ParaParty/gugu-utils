@@ -42,6 +42,9 @@ public class JEICompact implements IModPlugin {
         if(Enables.PNEUMATICCRAFT){
             registry.register(() -> IngredientCompressedAir.class, new ArrayList<>(), new InfoHelper<>(), RendererCompressedAir.INSTANCE);
         }
+        if(Enables.PRODIGYTECH){
+            registry.register(() -> IngredientHotAir.class, new ArrayList<>(), new InfoHelper<>(), RendererHotAir.INSTANCE);
+        }
     }
 
 

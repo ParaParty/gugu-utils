@@ -11,6 +11,8 @@ import com.warmthdawn.mod.gugu_utils.modularmachenary.embers.BlockEmberInputHatc
 import com.warmthdawn.mod.gugu_utils.modularmachenary.embers.TileEmberInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.environment.BlockEnvironmentHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.environment.TileEnvironmentHatch;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.hotair.BlockHotAirInputHatch;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.hotair.TileHotAirInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.BlockSparkManaHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.TileSparkManaInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.TileSparkManaOutputHatch;
@@ -62,6 +64,9 @@ public class ModBlocks {
     //气压输入输出仓
     @GameRegistry.ObjectHolder(STRING_RESOURCE_PRESSUREHATCH)
     public static GenericBlock blockPressureHatch;
+    //热气输入仓
+    @GameRegistry.ObjectHolder(STRING_RESOURCE_HOTAIRHATCH_INPUT)
+    public static GenericBlock blockHotAirHatch;
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
@@ -80,6 +85,8 @@ public class ModBlocks {
                 blockAspectInputHatch.initModel();
             if(Enables.PNEUMATICCRAFT)
                 blockPressureHatch.initModel();
+            if(Enables.PRODIGYTECH)
+                blockHotAirHatch.initModel();
         }
     }
 
@@ -120,6 +127,11 @@ public class ModBlocks {
                 registry.register(new BlockPressureHatch());
                 GameRegistry.registerTileEntity(TilePressureOutputHatch.class, RESOURCE_TILE_PRESSUREHATCH_INPUT);
                 GameRegistry.registerTileEntity(TilePressureInputHatch.class, RESOURCE_TILE_PRESSUREHATCH_OUTPUT);
+            }
+
+            if(Enables.PRODIGYTECH){
+                registry.register(new BlockHotAirInputHatch());
+                GameRegistry.registerTileEntity(TileHotAirInputHatch.class, RESOURCE_TILE_HOTAIRHATCH_INPUT);
             }
         }
     }
@@ -176,6 +188,10 @@ public class ModBlocks {
         if (Enables.PNEUMATICCRAFT) {
             blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockPressureHatch);
             itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockPressureHatch));
+        }
+        if (Enables.PRODIGYTECH) {
+            blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockHotAirHatch);
+            itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockHotAirHatch));
         }
     }
 
