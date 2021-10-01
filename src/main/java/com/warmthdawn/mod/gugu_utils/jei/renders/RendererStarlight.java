@@ -65,8 +65,7 @@ public class RendererStarlight implements IIngredientRenderer<IngredientStarligh
             GlStateManager.enableDepth();
             GlStateManager.popAttrib();
         }
-
-        GlStateTracker.pushState();
+        GlStateTracker.popState();
         GlStateManager.color(1F, 1F, 1F, 1F);
     }
 
