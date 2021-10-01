@@ -186,6 +186,7 @@ public class RecipePrimerExt {
         primer.appendComponent(new RequirementAspect(amount, aspect, IOType.INPUT));
         return primer;
     }
+
     @ZenMethod
     public static RecipePrimer addThaumcraftAspcetInput(RecipePrimer primer, int amount, String aspectTag) {
         return addAspcetInput(primer, amount, aspectTag);
@@ -199,21 +200,39 @@ public class RecipePrimerExt {
         primer.appendComponent(new RequirementCompressedAir(pressure, air, IOType.INPUT));
         return primer;
     }
+
     @ZenMethod
     public static RecipePrimer addCompressedAirOutput(RecipePrimer primer, float pressure, int air) {
         primer.appendComponent(new RequirementCompressedAir(pressure, air, IOType.OUTPUT));
         return primer;
     }
+
     @ZenMethod
     public static RecipePrimer addCompressedAirPerTickInput(RecipePrimer primer, float pressure, int air) {
         primer.appendComponent(new RequirementCompressedAirPerTick(pressure, air, primer.getTotalProcessingTickTime(), IOType.INPUT));
         return primer;
     }
+
     @ZenMethod
     public static RecipePrimer addCompressedAirPerTickOutput(RecipePrimer primer, float pressure, int air) {
         primer.appendComponent(new RequirementCompressedAirPerTick(pressure, air, primer.getTotalProcessingTickTime(), IOType.OUTPUT));
         return primer;
     }
 
+
+    //----------------------------------------------------------------------------------------------
+    // hot_air
+    //----------------------------------------------------------------------------------------------
+    @ZenMethod
+    public static RecipePrimer addHotAirInput(RecipePrimer primer, int consume, int minTemperature, int maxTemperature) {
+        primer.appendComponent(new RequirementHotAir(minTemperature, maxTemperature, consume, IOType.INPUT));
+        return primer;
+    }
+
+    @ZenMethod
+    public static RecipePrimer addHotAirOutput(RecipePrimer primer, int maxTemperature) {
+        primer.appendComponent(new RequirementHotAir(0, maxTemperature, 0, IOType.OUTPUT));
+        return primer;
+    }
 
 }
