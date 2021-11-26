@@ -11,7 +11,7 @@ public abstract class RequirementTypeAdapter<T> extends RequirementType<T, Compo
     public abstract ComponentRequirementAdapter<T> gererateRequirement(IOType ioType, JsonObject jsonObject);
 
     @Override
-    public final ComponentRequirement createRequirement(IOType ioType, JsonObject jsonObject) {
+    public ComponentRequirement createRequirement(IOType ioType, JsonObject jsonObject) {
         if (this instanceof PerTick) {
             return ((PerTick) this).gererateRequirementPerTick(ioType, jsonObject);
         }

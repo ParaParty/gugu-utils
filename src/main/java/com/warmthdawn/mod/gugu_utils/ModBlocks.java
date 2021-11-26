@@ -3,8 +3,8 @@ package com.warmthdawn.mod.gugu_utils;
 import com.warmthdawn.mod.gugu_utils.common.Enables;
 import com.warmthdawn.mod.gugu_utils.common.GenericBlock;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.IColorableTileEntity;
-import com.warmthdawn.mod.gugu_utils.modularmachenary.aspect.BlockAspectInputHatch;
-import com.warmthdawn.mod.gugu_utils.modularmachenary.aspect.TileAspectInputHatch;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.aspect.BlockAspectHatch;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.aspect.TileAspectHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.aura.BlockAuraInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.aura.TileAuraInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.embers.BlockEmberInputHatch;
@@ -59,8 +59,8 @@ public class ModBlocks {
     @GameRegistry.ObjectHolder(STRING_RESOURCE_ENERGYPORT_OUTPUT)
     public static GenericBlock blockEnergyOutputPort;
     //源质输入仓
-    @GameRegistry.ObjectHolder(STRING_RESOURCE_ASPECTHATCH_INPUT)
-    public static GenericBlock blockAspectInputHatch;
+    @GameRegistry.ObjectHolder(STRING_RESOURCE_ASPECTHATCH)
+    public static GenericBlock blockAspectHatch;
     //气压输入输出仓
     @GameRegistry.ObjectHolder(STRING_RESOURCE_PRESSUREHATCH)
     public static GenericBlock blockPressureHatch;
@@ -82,7 +82,7 @@ public class ModBlocks {
             if (Enables.NATURES_AURA)
                 blockAuraInputHatch.initModel();
             if(Enables.THAUMCRAFT)
-                blockAspectInputHatch.initModel();
+                blockAspectHatch.initModel();
             if(Enables.PNEUMATICCRAFT)
                 blockPressureHatch.initModel();
             if(Enables.PRODIGYTECH)
@@ -119,8 +119,8 @@ public class ModBlocks {
             }
 
             if(Enables.THAUMCRAFT){
-                registry.register(new BlockAspectInputHatch());
-                GameRegistry.registerTileEntity(TileAspectInputHatch.class, RESOURCE_ASPECTHATCH_INPUT);
+                registry.register(new BlockAspectHatch());
+                GameRegistry.registerTileEntity(TileAspectHatch.class, RESOURCE_ASPECTHATCH);
             }
 
             if(Enables.PNEUMATICCRAFT){
@@ -182,8 +182,8 @@ public class ModBlocks {
             itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockAuraInputHatch));
         }
         if (Enables.THAUMCRAFT) {
-            blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockAspectInputHatch);
-            itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockAspectInputHatch));
+            blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockAspectHatch);
+            itemColors.registerItemColorHandler(mmItemColorMultiplier, Item.getItemFromBlock(blockAspectHatch));
         }
         if (Enables.PNEUMATICCRAFT) {
             blockColors.registerBlockColorHandler(mmBlockColorMultiplier, blockPressureHatch);

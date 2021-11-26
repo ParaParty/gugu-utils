@@ -161,7 +161,7 @@ processResources {
 
 runClient {
     args '--username', 'WarmthDawn'
-    jvmArgs '-Xms4G', '-Xmx4G'
+    jvmArgs '-Xms4G', '-Xmx8G'
 }
 
 def getBuildNumber() {

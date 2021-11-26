@@ -183,13 +183,28 @@ public class RecipePrimerExt {
         if (aspect == null) {
             GuGuUtils.logger.warn("Couldn't find aspect " + aspectTag);
         }
-        primer.appendComponent(new RequirementAspect(amount, aspect, IOType.INPUT));
+        primer.appendComponent(RequirementAspect.createInput(amount, aspect));
         return primer;
     }
 
     @ZenMethod
     public static RecipePrimer addThaumcraftAspcetInput(RecipePrimer primer, int amount, String aspectTag) {
         return addAspcetInput(primer, amount, aspectTag);
+    }
+
+    @ZenMethod
+    public static RecipePrimer addAspcetOutput(RecipePrimer primer, int amount, String aspectTag) {
+        Aspect aspect = Aspect.getAspect(aspectTag);
+        if (aspect == null) {
+            GuGuUtils.logger.warn("Couldn't find aspect " + aspectTag);
+        }
+        primer.appendComponent(new RequirementAspectOutput(amount, aspect));
+        return primer;
+    }
+
+    @ZenMethod
+    public static RecipePrimer addThaumcraftAspcetOutput(RecipePrimer primer, int amount, String aspectTag) {
+        return addAspcetOutput(primer, amount, aspectTag);
     }
 
     //----------------------------------------------------------------------------------------------

@@ -69,9 +69,14 @@ public class Constants {
     public static final String STRING_RESOURCE_ENERGYPORT_OUTPUT = GuGuUtils.MODID + ":" + NAME_ENERGYPORT_OUTPUT;
 
 
-    public static final String NAME_ASPECTHATCH_INPUT = "aspectinputhatch";
-    public static final ResourceLocation RESOURCE_ASPECTHATCH_INPUT = new ResourceLocation(GuGuUtils.MODID, NAME_ASPECTHATCH_INPUT);
-    public static final String STRING_RESOURCE_ASPECTHATCH_INPUT = GuGuUtils.MODID + ":" + NAME_ASPECTHATCH_INPUT;
+    public static String getStringResource(String name) {
+        return GuGuUtils.MODID + ":"+ name;
+    }
+    public static final String NAME_ASPECTHATCH = "aspecthatch";
+    public static final ResourceLocation RESOURCE_ASPECTHATCH = new ResourceLocation(GuGuUtils.MODID, NAME_ASPECTHATCH);
+    public static final String STRING_RESOURCE_ASPECTHATCH = GuGuUtils.MODID + ":" + NAME_ASPECTHATCH;
+    public static final ResourceLocation RESOURCE_TILE_ASPECTHATCH_OUTPUT = new ResourceLocation(GuGuUtils.MODID, NAME_ASPECTHATCH + "_output");
+    public static final ResourceLocation RESOURCE_TILE_ASPECTHATCH_INPUT = new ResourceLocation(GuGuUtils.MODID, NAME_ASPECTHATCH + "_input");
 
 
     public static final String NAME_PRESSUREHATCH = "pressurehatch";

@@ -2,6 +2,7 @@ package com.warmthdawn.mod.gugu_utils.modularmachenary.mana;
 
 import com.warmthdawn.mod.gugu_utils.GuGuUtils;
 import com.warmthdawn.mod.gugu_utils.common.VariantBlock;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.common.IOHatchVariant;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -32,13 +33,13 @@ import static com.warmthdawn.mod.gugu_utils.tools.ResourceUtils.TOOLTIP_PREFIX;
 import static com.warmthdawn.mod.gugu_utils.tools.ResourceUtils.j;
 
 
-public class BlockSparkManaHatch extends VariantBlock<ManaHatchVariant> implements ITileEntityProvider, IWandHUD, IWandable {
+public class BlockSparkManaHatch extends VariantBlock<IOHatchVariant> implements ITileEntityProvider, IWandHUD, IWandable {
 
-    public static final PropertyEnum<ManaHatchVariant> VARIANT = PropertyEnum.create("variant", ManaHatchVariant.class);
+    public static final PropertyEnum<IOHatchVariant> VARIANT = PropertyEnum.create("variant", IOHatchVariant.class);
 
 
     public BlockSparkManaHatch() {
-        super(Material.ROCK, ManaHatchVariant.class);
+        super(Material.ROCK, IOHatchVariant.class);
         setHardness(2.0F);
         setResistance(10.0F);
         setSoundType(SoundType.STONE);
@@ -79,7 +80,7 @@ public class BlockSparkManaHatch extends VariantBlock<ManaHatchVariant> implemen
     @Nullable
     @Override
     public TileEntity createNewTileEntity(World world, int meta) {
-        if (meta == ManaHatchVariant.OUTPUT.ordinal()) {
+        if (meta == IOHatchVariant.OUTPUT.ordinal()) {
             return new TileSparkManaOutputHatch();
         } else {
             return new TileSparkManaInputHatch();
@@ -121,7 +122,7 @@ public class BlockSparkManaHatch extends VariantBlock<ManaHatchVariant> implemen
 //    }
 
     @Override
-    public PropertyEnum<ManaHatchVariant> getVariant() {
+    public PropertyEnum<IOHatchVariant> getVariant() {
         return VARIANT;
     }
 }

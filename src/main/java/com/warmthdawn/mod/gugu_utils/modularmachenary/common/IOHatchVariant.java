@@ -1,10 +1,10 @@
-package com.warmthdawn.mod.gugu_utils.modularmachenary.mana;
+package com.warmthdawn.mod.gugu_utils.modularmachenary.common;
 
 import net.minecraft.util.IStringSerializable;
 
 import java.util.Locale;
 
-public enum ManaHatchVariant implements IStringSerializable {
+public enum IOHatchVariant implements IStringSerializable {
     INPUT,
     OUTPUT,
     ;

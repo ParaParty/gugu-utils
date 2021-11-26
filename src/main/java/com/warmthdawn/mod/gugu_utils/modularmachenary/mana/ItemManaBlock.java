@@ -1,6 +1,7 @@
 package com.warmthdawn.mod.gugu_utils.modularmachenary.mana;
 
 import com.warmthdawn.mod.gugu_utils.common.VariantItem;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.common.IOHatchVariant;
 import com.warmthdawn.mod.gugu_utils.tools.ItemNBTUtils;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -10,7 +11,7 @@ import vazkii.botania.common.core.helper.ItemNBTHelper;
 
 import static com.warmthdawn.mod.gugu_utils.common.Constants.NAME_MANA;
 
-public class ItemManaBlock extends VariantItem<ManaHatchVariant> implements IManaItem, IManaTooltipDisplay {
+public class ItemManaBlock extends VariantItem<IOHatchVariant> implements IManaItem, IManaTooltipDisplay {
     private final int maxMana;
 
     public ItemManaBlock(BlockSparkManaHatch block, int maxMana) {
@@ -42,7 +43,7 @@ public class ItemManaBlock extends VariantItem<ManaHatchVariant> implements IMan
 
     @Override
     public boolean canReceiveManaFromPool(ItemStack stack, TileEntity pool) {
-        return this.getMetadata(stack) == ManaHatchVariant.INPUT.ordinal();
+        return this.getMetadata(stack) == IOHatchVariant.INPUT.ordinal();
     }
 
     @Override
@@ -52,7 +53,7 @@ public class ItemManaBlock extends VariantItem<ManaHatchVariant> implements IMan
 
     @Override
     public boolean canExportManaToPool(ItemStack stack, TileEntity pool) {
-        return this.getMetadata(stack) == ManaHatchVariant.OUTPUT.ordinal();
+        return this.getMetadata(stack) == IOHatchVariant.OUTPUT.ordinal();
     }
 
     @Override

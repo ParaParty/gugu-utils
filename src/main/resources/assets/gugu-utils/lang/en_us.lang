@@ -28,8 +28,9 @@ tile.gugu-utils.emberinputhatch.extreme.name=Extreme Ember Input Hatch
 tile.gugu-utils.environmenthatch.name=Environment Sensor
 tile.gugu-utils.aurainputhatch.name=Aura Input Hatch
 tile.gugu-utils.energyoutputport.name=Energy Output Port
-tile.gugu-utils.aspectinputhatch.name=Aspect Input Hatch
-tile.gugu-utils.hotairinputhatch.name=热空气输入仓
+tile.gugu-utils.aspecthatch.input.name=Aspect Input Hatch
+tile.gugu-utils.aspecthatch.output.name=Aspect Output Hatch
+tile.gugu-utils.hotairinputhatch.name=Hot Air Input Hatch
 
 
 

@@ -28,7 +28,8 @@ tile.gugu-utils.emberinputhatch.extreme.name=极限灰烬能量输入仓
 tile.gugu-utils.environmenthatch.name=环境传感器
 tile.gugu-utils.aurainputhatch.name=灵气输入仓
 tile.gugu-utils.energyoutputport.name=能源输出端口
-tile.gugu-utils.aspectinputhatch.name=源质输入仓
+tile.gugu-utils.aspecthatch.input.name=源质输入仓
+tile.gugu-utils.aspecthatch.output.name=源质输出仓
 tile.gugu-utils.hotairinputhatch.name=热空气输入仓
 
 

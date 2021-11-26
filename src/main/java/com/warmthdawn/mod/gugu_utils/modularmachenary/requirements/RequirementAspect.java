@@ -31,10 +31,14 @@ public class RequirementAspect extends RequirementConsumePerTick<Integer, Requir
     Aspect aspect;
 
     @SuppressWarnings("unchecked")
-    public RequirementAspect(int amount, Aspect aspect, IOType actionType) {
-        super((RequirementTypeAdapter) MMRequirements.REQUIREMENT_TYPE_ASPECT, actionType);
+    private RequirementAspect(int amount, Aspect aspect) {
+        super((RequirementTypeAdapter) MMRequirements.REQUIREMENT_TYPE_ASPECT, IOType.INPUT);
         this.amount = amount;
         this.aspect = aspect;
+    }
+
+    public static RequirementAspect createInput(int amount, Aspect aspect) {
+        return new RequirementAspect(amount, aspect);
     }
 
     @Override
@@ -45,12 +49,12 @@ public class RequirementAspect extends RequirementConsumePerTick<Integer, Requir
 
     @Override
     public RequirementAspect deepClone() {
-        return new RequirementAspect(amount, aspect, getActionType());
+        return new RequirementAspect(amount, aspect);
     }
 
     @Override
     public RequirementAspect deepCloneModified(List list) {
-        return new RequirementAspect((int) applyModifiers(list, this, amount, false), aspect, getActionType());
+        return new RequirementAspect((int) applyModifiers(list, this, amount, false), aspect);
     }
 
     @Override
@@ -68,7 +72,7 @@ public class RequirementAspect extends RequirementConsumePerTick<Integer, Requir
         return new JEIComponentAspect(amount, aspect);
     }
 
-    public class RT implements IResourceToken {
+    public static class RT implements IResourceToken {
         int amount;
         Aspect aspect;
         private String error;

@@ -6,6 +6,7 @@ import com.warmthdawn.mod.gugu_utils.botania.lens.ItemLensTransform;
 import com.warmthdawn.mod.gugu_utils.common.Enables;
 import com.warmthdawn.mod.gugu_utils.common.VariantItem;
 import com.warmthdawn.mod.gugu_utils.config.TweaksConfig;
+import com.warmthdawn.mod.gugu_utils.modularmachenary.aspect.BlockAspectHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.embers.BlockEmberInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.BlockSparkManaHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.ItemManaBlock;
@@ -75,7 +76,7 @@ public class ModItems {
                 registry.register(new ItemBlock(ModBlocks.blockAuraInputHatch).setRegistryName(RESOURCE_AURAHATCH_INPUT));
             }
             if (Enables.THAUMCRAFT) {
-                registry.register(new ItemBlock(ModBlocks.blockAspectInputHatch).setRegistryName(RESOURCE_ASPECTHATCH_INPUT));
+                registry.register(new VariantItem<>((BlockAspectHatch)ModBlocks.blockAspectHatch).setRegistryName(RESOURCE_ASPECTHATCH));
             }
             if (Enables.PNEUMATICCRAFT) {
                 registry.register(new VariantItem<>((BlockPressureHatch) ModBlocks.blockPressureHatch).setRegistryName(RESOURCE_PRESSUREHATCH));
