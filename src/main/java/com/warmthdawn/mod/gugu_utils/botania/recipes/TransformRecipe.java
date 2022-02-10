@@ -1,5 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.botania.recipes;
 
+import com.warmthdawn.mod.gugu_utils.crafttweaker.gugu.ITransformFunction;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 
@@ -7,15 +8,17 @@ public class TransformRecipe {
     private final ItemStack output;
     private final Ingredient input;
     private final int inputNum;
+    private final ITransformFunction function;
 
 
     private final int mana;
 
-    public TransformRecipe(ItemStack output, int mana, Ingredient input) {
+    public TransformRecipe(ItemStack output, int mana, Ingredient input, ITransformFunction function) {
         this.output = output;
         this.input = input;
         this.mana = mana;
-        inputNum = input.getMatchingStacks()[0].getCount();
+        this.inputNum = input.getMatchingStacks()[0].getCount();
+        this.function = function;
     }
 
     public boolean matches(ItemStack item) {
@@ -24,6 +27,10 @@ public class TransformRecipe {
 
     public int getInputNum() {
         return inputNum;
+    }
+
+    public ITransformFunction getFunction() {
+        return function;
     }
 
     public Ingredient getInput() {
