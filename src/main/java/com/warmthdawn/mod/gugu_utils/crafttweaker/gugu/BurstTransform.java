@@ -17,7 +17,23 @@ public class BurstTransform {
     @Optional.Method(modid = "botania")
     public static void addRecipe(IItemStack output, int mana, IIngredient input) {
         BotaniaCompact.registerBurstTransformRecipe(
-                CraftTweakerMC.getItemStack(output),
-                mana, CraftTweakerMC.getIngredient(input));
+            output,
+            mana, input);
+    }
+
+    @ZenMethod
+    @Optional.Method(modid = "botania")
+    public static void addRecipe(IItemStack output, int mana, IIngredient input, ITransformFunction function) {
+        BotaniaCompact.registerBurstTransformRecipe(
+            output,
+            mana, input, function);
+    }
+
+    @ZenMethod
+    @Optional.Method(modid = "botania")
+    public static void addRecipe(IItemStack output, int mana, IIngredient input, ITransformFunction function, ITransformEvent recipeEvent) {
+        BotaniaCompact.registerBurstTransformRecipe(
+            output,
+            mana, input, function, recipeEvent);
     }
 }

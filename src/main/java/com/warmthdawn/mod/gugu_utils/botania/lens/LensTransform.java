@@ -37,42 +37,44 @@ public class LensTransform extends Lens {
     private boolean doCraft(IManaBurst burst, EntityThrowable entity, TransformRecipe recipe, EntityItem entityItem) {
         ItemStack input = entityItem.getItem();
         int inputNum = recipe.getInputNum();
-        int crafts = input.getCount() / inputNum;
         int mana;
         int outputNum;
         ItemStack output;
 
         if (recipe.getFunction() != null) {
-            TransformContext transformContext = TransformContext.create(entity, recipe);
-            boolean result = recipe.getFunction().process(CraftTweakerMC.getIItemStack(input), transformContext);
+            TransformContext transformContext = TransformContext.create(entity, burst.getBurstSourceBlockPos(), recipe);
+            boolean result = recipe.getFunction().process(CraftTweakerMC.getIEntityItem(entityItem), transformContext);
             if (!result) {
                 return false;
             }
             mana = transformContext.getMana();
             output = transformContext.getOutputStack();
-            outputNum = output.getCount();
+
         } else {
             mana = recipe.getMana();
-            outputNum = recipe.getOutput().getCount();
-            output = recipe.getOutput();
+            output = recipe.getOutputStack();
         }
-
+        if (output == null || output.isEmpty()) {
+            outputNum = 0;
+        } else {
+            outputNum = output.getCount();
+        }
 
         int previousMana = entityItem.getEntityData().getInteger(TAG_MANA);
         int outputCount = 0;
 
+        int crafts = input.getCount() / inputNum;
         for (int i = 0; i < crafts; i++) {
-
-            if (burst.getMana() + previousMana >= mana) {
+            int currentMana = burst.getMana() + previousMana;
+            if (currentMana >= mana) {
                 if (previousMana != 0) {
                     entityItem.getEntityData().removeTag(TAG_MANA);
                     previousMana = 0;
                 }
-                burst.setMana(burst.getMana() + previousMana - mana);
+                burst.setMana(currentMana - mana);
                 input.shrink(inputNum);
                 outputCount += outputNum;
             } else {
-                int currentMana = burst.getMana();
                 entityItem.getEntityData().setInteger(TAG_MANA, currentMana);
                 burst.setMana(0);
                 break;
@@ -80,6 +82,13 @@ public class LensTransform extends Lens {
         }
 
         if (outputCount > 0) {
+            if (recipe.getEvent() != null) {
+                if (!recipe.getEvent().process(
+                    CraftTweakerMC.getIItemStack(output),
+                    CraftTweakerMC.getIEntity(entity), outputCount)) {
+                    return true;
+                }
+            }
             spawnOutput(entity, output, outputCount, output.getMaxStackSize());
             return true;
         }
@@ -99,8 +108,12 @@ public class LensTransform extends Lens {
 
     @Override
     public void updateBurst(IManaBurst burst, EntityThrowable entity, ItemStack stack) {
-        if (entity.world.isRemote)
+        if (entity.world.isRemote || entity.isDead)
             return;
+        if (burst.getMana() <= 0) {
+            entity.setDead();
+            return;
+        }
         double range = 0.5;
         AxisAlignedBB bounds = new AxisAlignedBB(entity.posX, entity.posY, entity.posZ, entity.lastTickPosX, entity.lastTickPosY, entity.lastTickPosZ).grow(range);
         List<EntityItem> entities = entity.world.getEntitiesWithinAABB(EntityItem.class, bounds);

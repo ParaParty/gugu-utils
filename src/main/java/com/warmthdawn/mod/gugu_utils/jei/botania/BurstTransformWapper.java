@@ -26,7 +26,7 @@ public class BurstTransformWapper implements IRecipeWrapper {
     @Override
     public void getIngredients(IIngredients ingredients) {
         ingredients.setInputs(VanillaTypes.ITEM, ImmutableList.copyOf(theRecipe.getInput().getMatchingStacks()));
-        ingredients.setOutput(VanillaTypes.ITEM, theRecipe.getOutput());
+        ingredients.setOutput(VanillaTypes.ITEM, theRecipe.getOutputStack());
     }
 
     @Override

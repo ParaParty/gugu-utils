@@ -1,30 +1,34 @@
 package com.warmthdawn.mod.gugu_utils.crafttweaker.gugu;
 
 import com.warmthdawn.mod.gugu_utils.botania.recipes.TransformRecipe;
-import crafttweaker.CraftTweakerAPI;
 import crafttweaker.api.entity.IEntity;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
+import crafttweaker.api.world.IBlockPos;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import vazkii.botania.api.internal.IManaBurst;
 
 public class TransformContext implements ITransformContext {
     private int mana;
     private IItemStack output;
     private IEntity manaBurstEntity;
+    private IBlockPos spreaderPos;
 
-    public TransformContext(int mana, IItemStack output, IEntity manaBurstEntity) {
+    public TransformContext(int mana, IItemStack output, IEntity manaBurstEntity, IBlockPos spreaderPos) {
         this.mana = mana;
         this.output = output;
         this.manaBurstEntity = manaBurstEntity;
+        this.spreaderPos = spreaderPos;
     }
 
-    public static TransformContext create(Entity burst, TransformRecipe recipe) {
+    public static TransformContext create(Entity burstEntity, BlockPos spreaderPos, TransformRecipe recipe) {
         return new TransformContext(
             recipe.getMana(),
-            CraftTweakerMC.getIItemStack(recipe.getOutput()),
-            CraftTweakerMC.getIEntity(burst)
-        );
+            recipe.getOutput(),
+            CraftTweakerMC.getIEntity(burstEntity),
+            CraftTweakerMC.getIBlockPos(spreaderPos));
     }
 
     public ItemStack getOutputStack() {
@@ -34,6 +38,11 @@ public class TransformContext implements ITransformContext {
     @Override
     public IEntity getManaBurstEntity() {
         return manaBurstEntity;
+    }
+
+    @Override
+    public IBlockPos getSpreaderPos() {
+        return spreaderPos;
     }
 
     @Override
