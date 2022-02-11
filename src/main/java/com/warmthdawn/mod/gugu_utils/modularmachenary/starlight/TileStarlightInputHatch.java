@@ -49,10 +49,7 @@ public class TileStarlightInputHatch extends TileReceiverBase implements IColora
     protected int machineColor = hellfirepvp.modularmachinery.common.data.Config.machineColor;
     private int starlightStored;
     private IConstellation focusedConstellation;
-    private int clientStarlightStored;
-    private IConstellation clientFocusedConstellation;
     private int lastRequirement = -1;
-    private int clientLastRequirement;
 
 
     private float posDistribution;
@@ -184,22 +181,6 @@ public class TileStarlightInputHatch extends TileReceiverBase implements IColora
         return doesSeeSky;
     }
 
-    public int getClientStarlightStored() {
-        return clientStarlightStored;
-    }
-
-    public void setClientStarlightStored(int clientStarlightStored) {
-        this.clientStarlightStored = clientStarlightStored;
-    }
-
-    public IConstellation getClientFocusedConstellation() {
-        return clientFocusedConstellation;
-    }
-
-    public void setClientFocusedConstellation(IConstellation clientFocusedConstellation) {
-        this.clientFocusedConstellation = clientFocusedConstellation;
-    }
-
     @Nullable
     @Override
     public String getUnLocalizedDisplayName() {
@@ -311,14 +292,6 @@ public class TileStarlightInputHatch extends TileReceiverBase implements IColora
 
     public int getLastRequirement() {
         return lastRequirement;
-    }
-
-    public int getClientLastRequirement() {
-        return clientLastRequirement;
-    }
-
-    public void setClientLastRequirement(int val) {
-        clientLastRequirement = val;
     }
 
     public static class TransmissionReceiver extends SimpleTransmissionReceiver {

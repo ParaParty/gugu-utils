@@ -65,21 +65,31 @@ public class TileHotAirInputHatch extends CommonMMTile implements ITickable,
     }
 
     @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        super.writeToNBT(compound);
+        compound.setTag(TAG_HOT_AIR, hotAir.serializeNBT());
+        return compound;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        super.readFromNBT(compound);
+        if (compound.hasKey(TAG_HOT_AIR)) {
+            hotAir.deserializeNBT(compound.getCompoundTag(TAG_HOT_AIR));
+        }
+    }
+
+    @Override
     public void readNBT(NBTTagCompound compound) {
         super.readNBT(compound);
         if (compound.hasKey(TAG_STATE))
             state = HotAirHatchState.VALUES[compound.getInteger(TAG_STATE)];
-        if (compound.hasKey(TAG_HOT_AIR)) {
-            hotAir.deserializeNBT(compound.getCompoundTag(TAG_HOT_AIR));
-        }
-
     }
 
     @Override
     public void writeNBT(NBTTagCompound compound) {
         super.writeNBT(compound);
         compound.setInteger(TAG_STATE, state.ordinal());
-        compound.setTag(TAG_HOT_AIR, hotAir.serializeNBT());
     }
 
     @Override

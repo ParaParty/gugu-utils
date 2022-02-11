@@ -35,6 +35,7 @@ public class GuiStarlightInputHatch extends GuiContainer {
     private static final String KEY_TOOLTIP_STARLIGHT = ResourceUtils.j("tooltips", GuGuUtils.MODID, "starlight");
 
     private final TileStarlightInputHatch hatch;
+    private final ContainerStarlightInputHatch container;
 
     public GuiStarlightInputHatch(TileStarlightInputHatch tileEntity, ContainerStarlightInputHatch container) {
         super(container);
@@ -43,6 +44,7 @@ public class GuiStarlightInputHatch extends GuiContainer {
         ySize = HEIGHT;
 
         hatch = tileEntity;
+        this.container = container;
     }
 
     @Override
@@ -72,8 +74,8 @@ public class GuiStarlightInputHatch extends GuiContainer {
                     spriteStarlight.getULength() * percFilled, spriteStarlight.getVLength());
 
 
-            int req = hatch.getClientLastRequirement();
-            int has = hatch.getClientStarlightStored();
+            int req = container.getClientLastRequirement();
+            int has = container.getClientStarlightStored();
             if (has < req) {
                 int max = hatch.getMaxStarlightStorage();
                 req = Math.min(max, req);
@@ -117,7 +119,7 @@ public class GuiStarlightInputHatch extends GuiContainer {
         renderHoveredToolTip(mouseX, mouseY);
 
         if (mouseX > guiLeft + 56 && mouseX < guiLeft + 120 && mouseY > guiTop + 4 && mouseY < guiTop + 68) {
-            IConstellation c = hatch.getClientFocusedConstellation();
+            IConstellation c = container.getClientFocusedConstellation();
             if (c != null && ResearchManager.clientProgress.hasConstellationDiscovered(c.getUnlocalizedName())) {
                 drawHoveringText(Collections.singletonList(I18n.format(c.getUnlocalizedName())), mouseX, mouseY, fontRenderer);
             }
@@ -163,7 +165,7 @@ public class GuiStarlightInputHatch extends GuiContainer {
         GL11.glPopAttrib();
         TextureHelper.refreshTextureBindState();
 
-        IConstellation c = hatch.getClientFocusedConstellation();
+        IConstellation c = container.getClientFocusedConstellation();
         if (c != null && ResearchManager.clientProgress.hasConstellationDiscovered(c.getUnlocalizedName())) {
             rand.setSeed(0x61FF25A5B7C24109L);
 

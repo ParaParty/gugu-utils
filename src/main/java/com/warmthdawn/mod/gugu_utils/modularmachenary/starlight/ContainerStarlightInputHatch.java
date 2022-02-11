@@ -16,9 +16,27 @@ import java.util.Objects;
 
 public class ContainerStarlightInputHatch extends Container {
     private final TileStarlightInputHatch te;
+    private int clientStarlightStored;
+    private IConstellation clientFocusedConstellation;
+    private int clientLastRequirement;
+
+    public int getClientStarlightStored() {
+        return clientStarlightStored;
+    }
+
+    public IConstellation getClientFocusedConstellation() {
+        return clientFocusedConstellation;
+    }
+
+    public int getClientLastRequirement() {
+        return clientLastRequirement;
+    }
 
     public ContainerStarlightInputHatch(IInventory playerInventory, TileStarlightInputHatch te) {
         this.te = te;
+        this.clientStarlightStored = te.getStarlightStored();
+        this.clientFocusedConstellation = te.getFocusedConstellation();
+        this.clientLastRequirement = te.getLastRequirement();
 
         // This container references items out of our own inventory (the 9 slots we hold ourselves)
         // as well as the slots from the player inventory so that the user can transfer items between
@@ -60,30 +78,40 @@ public class ContainerStarlightInputHatch extends Container {
         super.detectAndSendChanges();
 
         if (!te.getWorld().isRemote) {
-            if (te.getStarlightStored() != te.getClientStarlightStored() ||
-                    !Objects.equals(te.getFocusedConstellation(), te.getClientFocusedConstellation()) ||
-                    te.getClientLastRequirement() != te.getLastRequirement()) {
-                te.setClientStarlightStored(te.getStarlightStored());
-                te.setClientFocusedConstellation(te.getFocusedConstellation());
+            if (te.getStarlightStored() != clientStarlightStored ||
+                !Objects.equals(te.getFocusedConstellation(), clientFocusedConstellation) ||
+                clientLastRequirement != te.getLastRequirement()) {
+                this.clientStarlightStored = te.getStarlightStored();
+                this.clientFocusedConstellation = te.getFocusedConstellation();
+                this.clientLastRequirement = te.getLastRequirement();
 
                 for (IContainerListener listener : listeners) {
-                    if (listener instanceof EntityPlayerMP) {
-                        EntityPlayerMP player = (EntityPlayerMP) listener;
-                        Messages.INSTANCE.sendTo(new PacketStarlight(te.getStarlightStored(), te.getLastRequirement(), te.getFocusedConstellation()), player);
-                    }
+                    sync(listener);
                 }
             }
         }
     }
 
-    public void sync(int starlightAmount, int starlightRequirement, IConstellation constellation) {
-        te.setClientStarlightStored(starlightAmount);
-        te.setClientFocusedConstellation(constellation);
-        te.setClientLastRequirement(starlightRequirement);
-        if (te.getWorld().isRemote) {
-            te.setStarlightStored(starlightAmount);
-            te.setFocusedConstellation(constellation);
-        }
+    @Override
+    public void addListener(IContainerListener listener) {
+        super.addListener(listener);
+        this.clientStarlightStored = te.getStarlightStored();
+        this.clientFocusedConstellation = te.getFocusedConstellation();
+        this.clientLastRequirement = te.getLastRequirement();
+        sync(listener);
+    }
 
+    public void sync(IContainerListener listener) {
+        if (listener instanceof EntityPlayerMP) {
+            EntityPlayerMP player = (EntityPlayerMP) listener;
+            Messages.INSTANCE.sendTo(new PacketStarlight(te.getStarlightStored(), te.getLastRequirement(), te.getFocusedConstellation()), player);
+        }
+    }
+
+
+    public void sync(int starlightAmount, int starlightRequirement, IConstellation constellation) {
+        this.clientStarlightStored = starlightAmount;
+        this.clientFocusedConstellation = constellation;
+        this.clientLastRequirement = starlightRequirement;
     }
 }

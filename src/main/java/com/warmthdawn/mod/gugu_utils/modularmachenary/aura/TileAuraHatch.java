@@ -3,6 +3,7 @@ package com.warmthdawn.mod.gugu_utils.modularmachenary.aura;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.CommonMMTile;
 import de.ellpeck.naturesaura.api.NaturesAuraAPI;
 import de.ellpeck.naturesaura.api.aura.container.BasicAuraContainer;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 
@@ -30,4 +31,15 @@ public class TileAuraHatch extends CommonMMTile {
     }
 
 
+    @Override
+    public void writeNBT(NBTTagCompound compound) {
+        super.writeNBT(compound);
+        container.writeNBT(compound);
+    }
+
+    @Override
+    public void readNBT(NBTTagCompound compound) {
+        super.readNBT(compound);
+        container.readNBT(compound);
+    }
 }

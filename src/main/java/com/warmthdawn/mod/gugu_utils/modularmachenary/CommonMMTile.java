@@ -42,7 +42,6 @@ public class CommonMMTile extends TileEntity implements IColorableTileEntity {
         compound.setInteger(TAG_MACHINE_COLOR, this.getMachineColor());
     }
 
-
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
@@ -64,18 +63,14 @@ public class CommonMMTile extends TileEntity implements IColorableTileEntity {
 
     @Override
     public NBTTagCompound getUpdateTag() {
-        return writeToNBT(new NBTTagCompound());
+        NBTTagCompound updateTag = super.getUpdateTag();
+        writeNBT(updateTag);
+        return updateTag;
     }
 
     @Override
     public SPacketUpdateTileEntity getUpdatePacket() {
-        // Prepare a packet for syncing our TE to the client. Since we only have to sync the stack
-        // and that's all we have we just write our entire NBT here. If you have a complex
-        // tile entity that doesn't need to have all information on the client you can write
-        // a more optimal NBT here.
-        NBTTagCompound nbtTag = new NBTTagCompound();
-        this.writeNBT(nbtTag);
-        return new SPacketUpdateTileEntity(getPos(), 1, nbtTag);
+        return new SPacketUpdateTileEntity(getPos(), 1, getUpdateTag());
     }
 
     @Override
