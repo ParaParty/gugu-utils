@@ -1,6 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.botania.subtitle;
 
-import com.warmthdawn.mod.gugu_utils.config.TweaksConfig;
+import com.warmthdawn.mod.gugu_utils.config.GuGuUtilsConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
@@ -36,8 +36,8 @@ public class SubTileDandelifeonModified extends SubTileGenerating {
     private int MAX_MANA = 100000;
 
     public SubTileDandelifeonModified() {
-        this.MAX_MANA_GENERATIONS = (int) (MAX_MANA_GENERATIONS * TweaksConfig.DANDELIFEON_GENERATING_MULTIPLE);
-        this.MAX_MANA = (int) (MAX_MANA * TweaksConfig.DANDELIFEON_GENERATING_MULTIPLE);
+        this.MAX_MANA_GENERATIONS = (int) (MAX_MANA_GENERATIONS * GuGuUtilsConfig.Tweaks.DANDELIFEON_GENERATING_MULTIPLE);
+        this.MAX_MANA = (int) (MAX_MANA * GuGuUtilsConfig.Tweaks.DANDELIFEON_GENERATING_MULTIPLE);
     }
 
     @Override

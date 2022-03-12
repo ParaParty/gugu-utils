@@ -1,6 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.botania.subtitle;
 
-import com.warmthdawn.mod.gugu_utils.config.TweaksConfig;
+import com.warmthdawn.mod.gugu_utils.config.GuGuUtilsConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.entity.item.EntityXPOrb;
@@ -29,7 +29,7 @@ public class SubTileArcaneRoseModified extends SubTileGenerating {
         if (!supertile.getWorld().isRemote && (flowerNum < 0 || ticksExisted % 80 == 0)) {
             flowerNum = Tools.getNearbyFlowers(getWorld(), getPos(), RANGE + 1,
                     te -> te instanceof SubTileArcaneRoseModified || te instanceof SubTileArcaneRose);
-            efficiency = Tools.getOutputEfficiency(flowerNum, TweaksConfig.ARCANEROSE_MAX_FLOWERS);
+            efficiency = Tools.getOutputEfficiency(flowerNum, GuGuUtilsConfig.Tweaks.ARCANEROSE_MAX_FLOWERS);
         }
         super.onUpdate();
 
@@ -78,7 +78,7 @@ public class SubTileArcaneRoseModified extends SubTileGenerating {
     @Override
     public void renderHUD(Minecraft mc, ScaledResolution res) {
         super.renderHUD(mc, res);
-        Tools.renderTooManyFlowers(mc, res, flowerNum, TweaksConfig.ARCANEROSE_MAX_FLOWERS);
+        Tools.renderTooManyFlowers(mc, res, flowerNum, GuGuUtilsConfig.Tweaks.ARCANEROSE_MAX_FLOWERS);
 
     }
 

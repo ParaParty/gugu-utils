@@ -24,7 +24,7 @@ public class GuGuUtils {
     public static final CreativeTabs creativeTab = new CreativeTabs(GuGuUtils.MODID) {
         @Override
         public ItemStack createIcon() {
-            return new ItemStack(Items.BOOK);
+            return new ItemStack(ModItems.constructionTool);
         }
 
         @Override

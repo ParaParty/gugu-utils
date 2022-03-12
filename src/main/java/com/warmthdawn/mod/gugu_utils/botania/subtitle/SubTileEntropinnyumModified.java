@@ -1,6 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.botania.subtitle;
 
-import com.warmthdawn.mod.gugu_utils.config.TweaksConfig;
+import com.warmthdawn.mod.gugu_utils.config.GuGuUtilsConfig;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityTNTPrimed;
 import net.minecraft.init.SoundEvents;
@@ -80,7 +80,7 @@ public class SubTileEntropinnyumModified extends SubTileGenerating {
 
     @Override
     public int getMaxMana() {
-        return TweaksConfig.ENTROPINNYUM_GENERATING;
+        return GuGuUtilsConfig.Tweaks.ENTROPINNYUM_GENERATING;
     }
 
     @Override

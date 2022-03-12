@@ -1,6 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.botania.subtitle;
 
-import com.warmthdawn.mod.gugu_utils.config.TweaksConfig;
+import com.warmthdawn.mod.gugu_utils.config.GuGuUtilsConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
@@ -33,7 +33,7 @@ public class SubTileSpectrolusModified extends SubTileGenerating {
     int nextColor;
 
     public SubTileSpectrolusModified() {
-        SINGLE_MANA = (int) (2400 * TweaksConfig.SPECTROLUS_GENERATIONG_MULTIPLE);
+        SINGLE_MANA = (int) (2400 * GuGuUtilsConfig.Tweaks.SPECTROLUS_GENERATIONG_MULTIPLE);
     }
 
     @Override
