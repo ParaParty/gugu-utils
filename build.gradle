@@ -116,7 +116,12 @@ dependencies {
     deobfCompile "curse.maven:thaumcraft-${thaumcraft_version}"
     deobfCompile "curse.maven:mekanism-${mekanism_version}"
     deobfCompile "curse.maven:prodigytech-${prodigytech_version}"
-
+	
+	deobfCompile "curse.maven:bwmsuite-${bwm_suite}"
+	deobfCompile "curse.maven:immersiveengineering-${immersive_engineering}"
+	deobfCompile "curse.maven:immersivepetroleum-${immersive_petroleum}"
+	deobfCompile "curse.maven:extrautilities-${extra_utilities}"
+	
     deobfCompile("codechicken:CodeChickenLib:${mc_version}-${ccl_version}:universal") {
         exclude group: "mezz.jei"
     }
@@ -124,7 +129,7 @@ dependencies {
 
 
     runtime "com.azanor.baubles:Baubles:${mc_short}-${baubles_version}"
-
+	runtime files("libs/BetterWithLib-1.12-1.5.jar")
 
 
 }
@@ -168,7 +173,7 @@ processResources {
 }
 
 runClient {
-    args '--username', 'WarmthDawn'
+    args '--username', 'sddsd2332'
     jvmArgs '-Xms4G', '-Xmx8G'
 }
 
