@@ -1,6 +1,7 @@
 package com.warmthdawn.mod.gugu_utils.modularmachenary.tools;
 
 import com.warmthdawn.mod.gugu_utils.GuGuUtils;
+import com.warmthdawn.mod.gugu_utils.tools.ItemNBTUtils;
 import hellfirepvp.modularmachinery.common.selection.PlayerStructureSelectionHelper;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.resources.I18n;
@@ -17,7 +18,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import vazkii.botania.common.core.helper.ItemNBTHelper;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -37,17 +37,17 @@ public class ItemRangedConstructTool extends Item {
     }
 
     public static BlockPos getNbtPos(ItemStack stack) {
-        int x = ItemNBTHelper.getInt(stack, TAG_X, 0);
-        int y = ItemNBTHelper.getInt(stack, TAG_Y, -1);
-        int z = ItemNBTHelper.getInt(stack, TAG_Z, 0);
+        int x = ItemNBTUtils.getInt(stack, TAG_X, 0);
+        int y = ItemNBTUtils.getInt(stack, TAG_Y, -1);
+        int z = ItemNBTUtils.getInt(stack, TAG_Z, 0);
         return new BlockPos(x, y, z);
     }
 
     public static void setNbtPos(ItemStack stack, BlockPos pos) {
 
-        ItemNBTHelper.setInt(stack, TAG_X, pos.getX());
-        ItemNBTHelper.setInt(stack, TAG_Y, pos.getY());
-        ItemNBTHelper.setInt(stack, TAG_Z, pos.getZ());
+        ItemNBTUtils.setInt(stack, TAG_X, pos.getX());
+        ItemNBTUtils.setInt(stack, TAG_Y, pos.getY());
+        ItemNBTUtils.setInt(stack, TAG_Z, pos.getZ());
     }
 
     @Override
