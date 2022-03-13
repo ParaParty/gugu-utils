@@ -1,6 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.psi;
 
-import com.warmthdawn.mod.gugu_utils.config.TweaksConfig;
+import com.warmthdawn.mod.gugu_utils.config.GuGuUtilsConfig;
 import vazkii.psi.api.PsiAPI;
 import vazkii.psi.api.spell.Spell;
 import vazkii.psi.api.spell.SpellPiece;
@@ -13,7 +13,7 @@ public class PsiCompact {
 
 
     public static void initSpell() {
-        if (TweaksConfig.ENABLE_ACCELATE_TRICK)
+        if (GuGuUtilsConfig.Tweaks.ENABLE_ACCELATE_TRICK)
             trickAccelerate = register(PieceTrickAccelerate.class, TRICK_ACCELERATE, LibPieceGroups.EIDOS_REVERSAL);
     }
 

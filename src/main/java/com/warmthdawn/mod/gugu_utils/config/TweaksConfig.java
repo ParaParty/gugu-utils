@@ -1,9 +1,11 @@
+/*
 package com.warmthdawn.mod.gugu_utils.config;
+
 
 import com.warmthdawn.mod.gugu_utils.GuGuUtils;
 import net.minecraftforge.common.config.Config;
 
-@Config(modid = GuGuUtils.MODID, category = "Tweaks")
+@Config(modid = GuGuUtils.MODID, name = "Tweaks")
 public class TweaksConfig {
 
     @Config.Comment("Enable psi accelate trick")
@@ -38,5 +40,12 @@ public class TweaksConfig {
     public static double SHULKMENOT_GENERATIONG_MULTIPLE = 1.25;
     public static double SPECTROLUS_GENERATIONG_MULTIPLE = 2;
 
+    @Config.Comment("Configure the maximum transmission distance of the energy outlet")
+    @Config.RangeInt(min = 1,max = 256)
+    public static int Energy_Outlet_Transmission = 3;
+
 
 }
+
+
+ */

@@ -1,6 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.botania.subtitle;
 
-import com.warmthdawn.mod.gugu_utils.config.TweaksConfig;
+import com.warmthdawn.mod.gugu_utils.config.GuGuUtilsConfig;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -29,8 +29,8 @@ public class SubTileRafflowsiaModified extends SubTileGenerating {
     String lastFlower;
     int lastFlowerTimes;
     public SubTileRafflowsiaModified() {
-        SINGLE_MANA = (int) (2100 * TweaksConfig.RAFFLOWSIA_GENERATIONG_MULTIPLE);
-        MAX_MANA = (int) (9000 * TweaksConfig.RAFFLOWSIA_GENERATIONG_MULTIPLE);
+        SINGLE_MANA = (int) (2100 * GuGuUtilsConfig.Tweaks.RAFFLOWSIA_GENERATIONG_MULTIPLE);
+        MAX_MANA = (int) (9000 * GuGuUtilsConfig.Tweaks.RAFFLOWSIA_GENERATIONG_MULTIPLE);
     }
 
     @Override

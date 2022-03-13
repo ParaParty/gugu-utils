@@ -67,6 +67,20 @@ public class ModBlocks {
     //热气输入仓
     @GameRegistry.ObjectHolder(STRING_RESOURCE_HOTAIRHATCH_INPUT)
     public static GenericBlock blockHotAirHatch;
+    //mek激光输入仓
+
+    //mek热量输入输出仓
+
+    //IE矿脉仓
+
+    //IE原油仓
+
+    //EXU
+
+    //blood
+
+
+
 
     @SideOnly(Side.CLIENT)
     public static void initModels() {
@@ -87,6 +101,8 @@ public class ModBlocks {
                 blockPressureHatch.initModel();
             if(Enables.PRODIGYTECH)
                 blockHotAirHatch.initModel();
+
+
         }
     }
 
@@ -133,6 +149,15 @@ public class ModBlocks {
                 registry.register(new BlockHotAirInputHatch());
                 GameRegistry.registerTileEntity(TileHotAirInputHatch.class, RESOURCE_TILE_HOTAIRHATCH_INPUT);
             }
+          /*if (Enables.MEKANISM){
+                //mek
+               // registry.register(new);
+              //  GameRegistry.registerTileEntity(, );
+                //mek
+              //  registry.register(new);
+              ///  GameRegistry.registerTileEntity();
+              //  GameRegistry.registerTileEntity();
+            }*/
         }
     }
 

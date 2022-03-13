@@ -94,7 +94,7 @@ component.missing.gugu-utils:starlight.input=缺少星辉输入仓！
 component.missing.gugu-utils:environment.input=缺少环境传感器！
 component.missing.gugu-utils:aura.input=缺少灵气输入仓！
 component.missing.gugu-utils:pressurehatch.input=缺少压缩空气输入阀门！
-component.missing.gugu-utils:pressurehatch.output=缺少压缩空气输出阀门！、
+component.missing.gugu-utils:pressurehatch.output=缺少压缩空气输出阀门！
 
 craftcheck.failure.gugu-utils:mana.input=缺少魔力输入！
 craftcheck.failure.gugu-utils:mana.output.space=没有足够的空间用于魔力输出！

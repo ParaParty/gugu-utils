@@ -36,7 +36,6 @@ public class Constants {
     public static final ResourceLocation RESOURCE_COMPRESSED_AIR_PER_TICK = new ResourceLocation(GuGuUtils.MODID , "compressed_air_pertick");
     public static final String STRING_RESOURCE_COMPRESSED_AIR = GuGuUtils.MODID + ":" + "compressed_air";
 
-
     public static final ResourceLocation RESOURCE_HOT_AIR = new ResourceLocation(GuGuUtils.MODID , "hot_air");
     public static final String STRING_RESOURCE_HOT_AIR = GuGuUtils.MODID + ":" + "hot_air";
 

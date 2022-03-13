@@ -1,5 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.modularmachenary.vanilla;
 
+import com.warmthdawn.mod.gugu_utils.config.GuGuUtilsConfig;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.CommonMMTile;
 import com.warmthdawn.mod.gugu_utils.network.Messages;
 import com.warmthdawn.mod.gugu_utils.network.PacketParticles;
@@ -118,7 +119,7 @@ public class TileEnergyOutputPort extends CommonMMTile implements ITickable, Mac
 
     public TileEntity refreshFacingEnergy() {
         EnumFacing facing = getFacing();
-        int maxDist = 3;
+        int maxDist = GuGuUtilsConfig.Tweaks.Energy_Outlet_Transmission;
         BlockPos pos = this.pos;
         for (int i = 0; i < maxDist; i++) {
             pos = pos.offset(facing);

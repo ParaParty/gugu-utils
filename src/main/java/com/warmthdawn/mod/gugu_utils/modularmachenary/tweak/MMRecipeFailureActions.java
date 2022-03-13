@@ -1,6 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.modularmachenary.tweak;
 
-import com.warmthdawn.mod.gugu_utils.config.CoreConfig;
+import com.warmthdawn.mod.gugu_utils.config.GuGuUtilsConfig;
 import net.minecraft.util.ResourceLocation;
 
 import java.util.HashMap;
@@ -38,7 +38,7 @@ public class MMRecipeFailureActions {
 
     public static Type getDefault() {
         if (_default == null) {
-            _default = Type.NAME_MAP.get(CoreConfig.DEFAULT_RECIPE_FAILURE_ACTION);
+            _default = Type.NAME_MAP.get(GuGuUtilsConfig.Core.DEFAULT_RECIPE_FAILURE_ACTION);
             if (_default == null) {
                 _default = Type.RESET;
             }

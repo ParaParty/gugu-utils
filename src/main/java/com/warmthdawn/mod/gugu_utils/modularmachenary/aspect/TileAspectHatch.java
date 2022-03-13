@@ -1,6 +1,6 @@
 package com.warmthdawn.mod.gugu_utils.modularmachenary.aspect;
 
-import com.warmthdawn.mod.gugu_utils.config.HatchesConfig;
+import com.warmthdawn.mod.gugu_utils.config.GuGuUtilsConfig;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.CommonMMTile;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.MMCompoments;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.components.GenericMachineCompoment;
@@ -8,24 +8,20 @@ import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.RequirementAs
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.IConsumable;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.ICraftNotifier;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.IGeneratable;
-import com.warmthdawn.mod.gugu_utils.modularmachenary.requirements.basic.IResourceToken;
 import hellfirepvp.modularmachinery.common.crafting.ComponentType;
 import hellfirepvp.modularmachinery.common.machine.MachineComponent;
 import hellfirepvp.modularmachinery.common.tiles.base.MachineComponentTile;
-import jdk.nashorn.internal.runtime.regexp.joni.Config;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraftforge.fluids.FluidStack;
 import org.jetbrains.annotations.Nullable;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
 import thaumcraft.api.aspects.IEssentiaTransport;
 import thaumcraft.api.aura.AuraHelper;
-import thaumcraft.api.blocks.BlocksTC;
 
 public class TileAspectHatch extends CommonMMTile implements
     ITickable,
@@ -222,8 +218,8 @@ public class TileAspectHatch extends CommonMMTile implements
         }
 
         this.existTime++;
-        if (isOutput() && !"halt".equals(HatchesConfig.ASPECT_OUTPUT_HATCH_FULL_ACTION) && !"spill_all".equals(HatchesConfig.ASPECT_OUTPUT_HATCH_FULL_ACTION)) {
-            if (this.essentia.visSize() > HatchesConfig.ASPECT_OUTPUT_HATCH_MAX_STORAGE) {
+        if (isOutput() && !"halt".equals(GuGuUtilsConfig.Hatches.ASPECT_OUTPUT_HATCH_FULL_ACTION) && !"spill_all".equals(GuGuUtilsConfig.Hatches.ASPECT_OUTPUT_HATCH_FULL_ACTION)) {
+            if (this.essentia.visSize() > GuGuUtilsConfig.Hatches.ASPECT_OUTPUT_HATCH_MAX_STORAGE) {
                 this.spillRandom();
             }
             return;
@@ -304,8 +300,8 @@ public class TileAspectHatch extends CommonMMTile implements
 
     @Override
     public boolean generate(RequirementAspect.RT inputToken, boolean doOperation) {
-        if ("halt".equals(HatchesConfig.ASPECT_OUTPUT_HATCH_FULL_ACTION)) {
-            int generated = Math.min(inputToken.getAmount(), HatchesConfig.ASPECT_OUTPUT_HATCH_MAX_STORAGE - this.essentia.visSize());
+        if ("halt".equals(GuGuUtilsConfig.Hatches.ASPECT_OUTPUT_HATCH_FULL_ACTION)) {
+            int generated = Math.min(inputToken.getAmount(), GuGuUtilsConfig.Hatches.ASPECT_OUTPUT_HATCH_MAX_STORAGE - this.essentia.visSize());
             inputToken.setAmount(inputToken.getAmount() - generated);
 
             if (doOperation) {
@@ -321,8 +317,8 @@ public class TileAspectHatch extends CommonMMTile implements
         inputToken.setAmount(0);
 
         if (doOperation) {
-            if ("spill_all".equals(HatchesConfig.ASPECT_OUTPUT_HATCH_FULL_ACTION)) {
-                int actuallyGenerated = Math.min(generated, HatchesConfig.ASPECT_OUTPUT_HATCH_MAX_STORAGE - this.essentia.visSize());
+            if ("spill_all".equals(GuGuUtilsConfig.Hatches.ASPECT_OUTPUT_HATCH_FULL_ACTION)) {
+                int actuallyGenerated = Math.min(generated, GuGuUtilsConfig.Hatches.ASPECT_OUTPUT_HATCH_MAX_STORAGE - this.essentia.visSize());
                 float pollute = (generated - actuallyGenerated) * (inputToken.getAspect() == Aspect.FLUX ? 1.0F : 0.25F);
                 AuraHelper.polluteAura(this.world, this.getPos(), pollute, true);
                 if(actuallyGenerated > 0) {
