@@ -250,4 +250,27 @@ public class RecipePrimerExt {
         return primer;
     }
 
+    //----------------------------------------------------------------------------------------------
+    // mek_laser
+    //----------------------------------------------------------------------------------------------
+    /*
+    @ZenMethod
+    public static RecipePrimer addMekLaserInput
+     */
+
+    //----------------------------------------------------------------------------------------------
+    // mek_heat
+    //----------------------------------------------------------------------------------------------
+    /*
+    @ZenMethod
+    public static RecipePrimer addMekheatInput(RecipePrimer primer,)
+    primer.appendComponent(
+    return primer;
+
+    @ZenMethod
+    public static RecipePrimer addMekheatOutput(RecipePrimer primer,)
+    primer.appendComponent(
+    return primer;
+     */
+
 }

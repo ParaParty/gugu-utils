@@ -7,7 +7,7 @@ import com.warmthdawn.mod.gugu_utils.ModItems;
 import com.warmthdawn.mod.gugu_utils.botania.SubtileRegisterOverride;
 import com.warmthdawn.mod.gugu_utils.common.Enables;
 import com.warmthdawn.mod.gugu_utils.compat.PneumaticCraftCompat;
-import com.warmthdawn.mod.gugu_utils.config.TweaksConfig;
+import com.warmthdawn.mod.gugu_utils.config.GuGuUtilsConfig;
 import com.warmthdawn.mod.gugu_utils.crafttweaker.CraftTweakerCompact;
 import com.warmthdawn.mod.gugu_utils.gui.ModIndependentGuis;
 import com.warmthdawn.mod.gugu_utils.handler.GuiHandler;
@@ -50,10 +50,10 @@ public class CommonProxy {
         Messages.registerMessages(GuGuUtils.MODID);
         MinecraftForge.EVENT_BUS.register(new MiscEventHandler());
         if (Enables.BOTANIA) {
-            if (TweaksConfig.TWEAKS_GAIA) {
+            if (GuGuUtilsConfig.Tweaks.TWEAKS_GAIA) {
                 MinecraftForge.EVENT_BUS.register(new GaiaHandler());
             }
-            if (TweaksConfig.ENTROPINNYUM_NOT_ACCEPT_COPY_TNT) {
+            if (GuGuUtilsConfig.Tweaks.ENTROPINNYUM_NOT_ACCEPT_COPY_TNT) {
                 MinecraftForge.EVENT_BUS.register(new EntropinnyumTNTHandler());
             }
         }
@@ -84,7 +84,7 @@ public class CommonProxy {
         if (Enables.CRAFT_TWEAKER)
             CraftTweakerCompact.postInit();
 
-        if (Enables.BOTANIA_TWEAKS && Enables.BOTANIA && TweaksConfig.ENTROPINNYUM_NOT_ACCEPT_COPY_TNT) {
+        if (Enables.BOTANIA_TWEAKS && Enables.BOTANIA && GuGuUtilsConfig.Tweaks.ENTROPINNYUM_NOT_ACCEPT_COPY_TNT) {
             try {
                 MinecraftForge.EVENT_BUS.unregister(Class.forName("quaternary.botaniatweaks.modules.botania.handler.TNTDuplicatorDetectionWorldTickHander"));
             } catch (ClassNotFoundException e) {

@@ -5,7 +5,7 @@ import com.warmthdawn.mod.gugu_utils.botania.lens.ItemLensOverclocking;
 import com.warmthdawn.mod.gugu_utils.botania.lens.ItemLensTransform;
 import com.warmthdawn.mod.gugu_utils.common.Enables;
 import com.warmthdawn.mod.gugu_utils.common.VariantItem;
-import com.warmthdawn.mod.gugu_utils.config.TweaksConfig;
+import com.warmthdawn.mod.gugu_utils.config.GuGuUtilsConfig;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.aspect.BlockAspectHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.embers.BlockEmberInputHatch;
 import com.warmthdawn.mod.gugu_utils.modularmachenary.mana.BlockSparkManaHatch;
@@ -48,10 +48,10 @@ public class ModItems {
     public static void register(IForgeRegistry<Item> registry) {
 
         if (Enables.BOTANIA) {
-            if (TweaksConfig.TWEAKE_LENS) {
-                if (TweaksConfig.ENABLE_LENS_OVERCLOCKING)
+            if (GuGuUtilsConfig.Tweaks.TWEAKE_LENS) {
+                if (GuGuUtilsConfig.Tweaks.ENABLE_LENS_OVERCLOCKING)
                     registry.register(new ItemLensOverclocking().setRegistryName(RESOURCE_LENS_OVERCLOCKING));
-                if (TweaksConfig.ENABLE_LENS_TRASNFORM)
+                if (GuGuUtilsConfig.Tweaks.ENABLE_LENS_TRASNFORM)
                     registry.register(new ItemLensTransform().setRegistryName(RESOURCE_LENS_TRANSFORM));
             }
         }
