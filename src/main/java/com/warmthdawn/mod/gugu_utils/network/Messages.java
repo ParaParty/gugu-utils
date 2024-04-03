@@ -18,7 +18,7 @@ public class Messages {
         INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(channelName);
 
         // Server side
-        INSTANCE.registerMessage(PacketSetContainerSlot.Handler.class, PacketSetContainerSlot.class, nextID(), Side.SERVER);
+        // INSTANCE.registerMessage(PacketSetContainerSlot.Handler.class, PacketSetContainerSlot.class, nextID(), Side.SERVER);
 
 
         // Client side
